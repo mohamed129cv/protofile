@@ -1,0 +1,67 @@
+<section class="contcat_us">
+  <article class="myLinks ">
+    <section class="fade-left" appFadeLeft>
+      <!--& Email  -->
+      <span>
+        <i class="fa-solid fa-envelope"></i>
+      </span>
+        <p>mohamed8abdulaziz&#64;gmail.com</p>
+    </section>
+
+    <!--& phon  -->
+    <section class="fade-up" appFadeUp>
+      <span>
+        <i class="fa-solid fa-phone"></i>
+      </span>
+        <p>01029155459</p>
+    </section>
+
+    <!--& location  -->
+    <section class="fade-right" appFadeRight>
+      <span>
+        <i class="fa-solid fa-location-dot"></i>
+      </span>
+        <p>Cairo, Egypt</p>
+    </section>
+
+  </article>
+  <article class="sendMessage">
+    <h2 class="fade-up" appFadeUp>send me a message</h2>
+    <form [formGroup]="form" (ngSubmit)="send()">
+      <label for="name" class="form-label fade-up" appFadeUp>Name</label>
+      <input type="text" id="name" placeholder="your name" class="form-control fade-up" appFadeUp formControlName="name">
+      <section class="validators">
+        @if(name.dirty && name.touched){
+          @if(name.getError('required')){
+            <p appFadeLeft class="fade-left alert alert-danger my-2"> <i class="fa-solid fa-circle-exclamation"></i> name is required</p>
+          }@if(name.getError('minlength')){
+            <p appFadeLeft class="fade-left alert alert-danger my-2"><i class="fa-solid fa-circle-exclamation"></i> This name {{name.value}} is very small </p>
+          }@if(name.getError('maxlength')){
+            <p appFadeLeft class="fade-left alert alert-danger my-2"><i class="fa-solid fa-circle-exclamation"></i> This name {{name.value}} is very big </p>
+          }
+        }
+      </section>
+      <label for="email" class="form-label fade-up" appFadeUp>Email</label>
+      <input type="email" id="email" placeholder="your email" class="form-control fade-up" appFadeUp formControlName="email">
+       <section class="validators">
+        @if(email.dirty && email.touched){
+          @if(email.getError('required')){
+            <p appFadeLeft class="fade-left alert alert-danger my-2"> <i class="fa-solid fa-circle-exclamation"></i> email is required</p>
+          }@if(email.getError('email')){
+            <p appFadeLeft class="fade-left alert alert-danger my-2"><i class="fa-solid fa-circle-exclamation"></i> This {{email.value}} is not email </p>
+          }
+        }
+      </section>
+      <label for="message" class="form-label fade-up" appFadeUp>Message</label>
+      <textarea rows="5" placeholder="your message" class="form-control fade-up" appFadeUp formControlName="message"></textarea>
+       <section class="validators">
+        @if(message.dirty && message.touched){
+          @if(message.getError('required')){
+            <p appFadeUp class="fade-left alert alert-danger my-2"> <i class="fa-solid fa-circle-exclamation"></i> massage is required</p>
+          }
+        }
+      </section>
+      <button type="submit" class="fade-up" appFadeUp>send message</button>
+    </form>
+  </article>
+</section>

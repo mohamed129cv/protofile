@@ -1,0 +1,587 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  text-transform: capitalize;
+}
+
+h2 {
+  color: var(--bg);
+  text-align: center;
+  position: relative;
+  margin: 3rem 0;
+}
+h2::after {
+  content: "";
+  width: 5rem;
+  height: 0.2rem;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+body.dark h2::after{
+  background-color: var(--color-text);
+}
+
+.home_page {
+  width: 100%;
+}
+button {
+  cursor: pointer;
+  width: 15rem;
+  padding: 0.5rem 0.3rem;
+  margin: 1rem 0;
+  text-align: center;
+  background-color: transparent;
+  border: 3px solid var(--main-color);
+  color: var(--main-color);
+  transition: var(--transition);
+  position: relative;
+}
+button::after {
+  content: "";
+  width: 0;
+  height: 100%;
+  background-color: var(--main-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: var(--transition);
+}
+button:hover {
+  color: var(--color-text);
+}
+button:hover::after {
+  width: 100%;
+}
+
+/*& hero section  */
+.hero {
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  gap: 2rem;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
+    url("/assets/mohamed re.png") no-repeat center/cover;
+  color: var(--color-text);
+  position: relative;
+}
+.hero .my_job_name::after {
+  content: "";
+  animation: jopAnimation 15s infinite;
+}
+/*! icon code    */
+.hero .go_down {
+  text-decoration: none;
+  position: absolute;
+  bottom: 3rem;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background-color: var(--color-text);
+  color: var(--main-color);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  cursor: pointer;
+}
+body.dark .go_down{
+  background-color: var(--bg3) ;
+}
+.hero i {
+  font-size: 2rem;
+  transition: var(--transition);
+  animation: bounce 1s infinite alternate;
+}
+
+.hero .go_down:hover {
+  background-color: var(--main-color);
+  color: var(--color-text);
+}
+
+/*& about me section  */
+
+.about_me {
+  width: 100%;
+  min-height: 70vh;
+  padding: clamp(1rem, 1vw + 1rem, 2rem);
+  margin-top: 30px;
+}
+.about_me .about_me_content {
+  width: 85%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  border: var(--border);
+  box-shadow: var(--shadow);
+}
+.about_me .data {
+  display: flex;
+  gap: 1.5rem;
+}
+.about_me img {
+  width: 40%;
+  border-radius: 0.3rem 0 0 0.3rem;
+}
+/** البيانات الاساسية  */
+.about_me .informtion {
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .7rem;
+  text-transform: capitalize;
+}
+.about_me .informtion span {
+  margin: 0;
+  font-weight: 700;
+  color: var(--dark);
+  text-transform: uppercase;
+}
+/** معلومات العمل و المهارات   */
+.about_me_text {
+  padding: 1.3rem;
+  width: 60%;
+  line-height: 160%;
+}
+.about_me_text h2 {
+  margin: 0.8rem 0 1.5rem 0;
+}
+.about_me_text span {
+  position: relative;
+  display: inline-block;
+  margin: 10px 0;
+}
+.about_me_text span::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--dark);
+  position: absolute;
+  top: 10px;
+  left: -25px;
+}
+body.dark .about_me_text span::after {
+  background-color: var(--bg3);
+}
+/*& project section  */
+.my-project {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  padding: clamp(1rem, 1vw + 0.1rem, 2.5rem);
+}
+.my-project .projects_contect {
+  width: 85%;
+  margin: auto;
+  /* position: relative; */
+}
+.btn_pro {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/*& skills section  */
+.my_skills {
+  width: 100%;
+  height: 100vh;
+  padding: clamp(1rem, 1vw + 0.1rem, 2.5rem);
+}
+
+.skills {
+  width: 85%;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.skills img {
+  width: 5rem;
+  margin: 0.5rem;
+  border-radius: 50%;
+  transition: var(--transition);
+}
+.skill img:hover {
+  transform: translateY(-0.1rem);
+}
+
+/*& Services section  */
+
+.Services {
+  width: 100%;
+  min-height: 100vh;
+  padding: clamp(1rem, 1vw + 0.1rem, 2.5rem);
+}
+.Services_contect {
+  width: 85%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+}
+.Services_contect .service-card {
+  box-shadow: var(--shadow);
+  border-radius: 0.4rem;
+  padding: 0.5rem;
+  text-align: center;
+  transition: var(--transition);
+  border-bottom: 5px solid transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.Services_contect .service-card:hover {
+  transform: translateY(-1rem);
+  border-color: var(--main-color);
+}
+.service-card span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: var(--color-muted);
+  margin-bottom: 0.5rem;
+}
+.service-card i {
+  font-size: 2rem;
+  color: var(--main-color);
+}
+.service-card h3 {
+  font-size: 1.3rem;
+  color: var(--bg);
+}
+.service-card p {
+  font-size: 0.7rem;
+  color: var(--border);
+}
+/*& achievements section  */
+
+.achievements {
+  width: 100%;
+  min-height: 60vh;
+  padding: clamp(1rem, 1vw + 0.1rem, 2.5rem);
+  background-attachment: fixed;
+  background:
+    linear-gradient(rgba(0, 120, 255, 0.4), rgba(0, 120, 255, 0.5)),
+    url("/assets/sec5.jpg") center/cover;
+  color: var(--color-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.achievements_contect {
+  width: 85%;
+  margin: auto;
+  padding: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  justify-content: space-between;
+  text-align: center;
+}
+.achievement p {
+  font-size: 1.3rem;
+}
+.achievement i {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+/*! madie Qoury  */
+
+@media screen and (max-width: 992px) {
+  .about_me .about_me_content {
+    flex-flow: column wrap;
+    gap: 0rem;
+  }
+  .about_me img {
+    width: 100%;
+    border-radius: 0.3rem 0.3rem 0 0;
+  }
+  .about_me .about_me_content {
+    width: 95%;
+  }
+  .skills {
+    flex-direction: column;
+  }
+  .Services_contect {
+    flex-direction: column;
+  }
+  .data {
+    flex-direction: column;
+    width: 100%;
+  }
+  .about_me .informtion,
+  .about_me_text {
+    width: 100%;
+    padding: 0 2rem;
+    margin: 0.5rem 0;
+  }
+}
+
+/* Digital Marketer */
+/* Data analyst */
+/* Social Media Ads Manager */
+@keyframes jopAnimation {
+  0% {
+    content: "|";
+  }
+  2% {
+    content: "D|";
+  }
+  4% {
+    content: "Di|";
+  }
+  5% {
+    content: "Dig|";
+  }
+  6% {
+    content: "Digi|";
+  }
+  7% {
+    content: "Digit|";
+  }
+  8% {
+    content: "Digita|";
+  }
+  9% {
+    content: "Digital |";
+  }
+  10% {
+    content: "Digital M|";
+  }
+  11% {
+    content: "Digital Ma|";
+  }
+  12% {
+    content: "Digital Mar|";
+  }
+  13% {
+    content: "Digital Mark|";
+  }
+  14% {
+    content: "Digital Market|";
+  }
+  15% {
+    content: "Digital Markete|";
+  }
+  16% {
+    content: "Digital Marketer|";
+  }
+
+  24% {
+    content: "Digital Markt|";
+  }
+  25% {
+    content: "Digital Mark|";
+  }
+  26% {
+    content: "Digital Ma|";
+  }
+  27% {
+    content: "Digital|";
+  }
+  28% {
+    content: "Digit|";
+  }
+  29% {
+    content: "Digi|";
+  }
+  30% {
+    content: "Di|";
+  }
+  31% {
+    content: "|";
+  }
+  32% {
+    content: "D|";
+  }
+  33% {
+    content: "Da|";
+  }
+  34% {
+    content: "Data|";
+  }
+  35% {
+    content: "Data a|";
+  }
+  36% {
+    content: "Data an|";
+  }
+  37% {
+    content: "Data ana|";
+  }
+  38% {
+    content: "Data anal|";
+  }
+  39% {
+    content: "Data analys|";
+  }
+  40% {
+    content: "Data analyst|";
+  }
+  45% {
+    content: "Data anays|";
+  }
+  46% {
+    content: "Data anay|";
+  }
+  47% {
+    content: "Data an|";
+  }
+  48% {
+    content: "Data|";
+  }
+  49% {
+    content: "Dat|";
+  }
+  50% {
+    content: "Da|";
+  }
+  51% {
+    content: "|";
+  }
+  52% {
+    content: "S|";
+  }
+  53% {
+    content: "Soc|";
+  }
+  54% {
+    content: "Socia|";
+  }
+  55% {
+    content: "Social|";
+  }
+  57% {
+    content: "Social |";
+  }
+  58% {
+    content: "Social M|";
+  }
+  59% {
+    content: "Social Me|";
+  }
+  60% {
+    content: "Social Med|";
+  }
+  62% {
+    content: "Social Medi|";
+  }
+  63% {
+    content: "Social Media|";
+  }
+  64% {
+    content: "Social Media |";
+  }
+  66% {
+    content: "Social Media A|";
+  }
+  67% {
+    content: "Social Media Ad|";
+  }
+  68% {
+    content: "Social Media Ads|";
+  }
+  69% {
+    content: "Social Media Ads |";
+  }
+  70% {
+    content: "Social Media Ads M|";
+  }
+  71% {
+    content: "Social Media Ads Ma|";
+  }
+  72% {
+    content: "Social Media Ads Man|";
+  }
+  74% {
+    content: "Social Media Ads Mana|";
+  }
+  76% {
+    content: "Social Media Ads Manag|";
+  }
+  77% {
+    content: "Social Media Ads Manager|";
+  }
+  82% {
+    content: "Social Media Ads Manag|";
+  }
+  83% {
+    content: "Social Media Ads Mana|";
+  }
+  84% {
+    content: "Social Media Ads Man|";
+  }
+  85% {
+    content: "Social Media Ads M|";
+  }
+  86% {
+    content: "Social Media Ads |";
+  }
+  87% {
+    content: "Social Media Ads|";
+  }
+  88% {
+    content: "Social Media A|";
+  }
+  89% {
+    content: "Social Media |";
+  }
+  90% {
+    content: "Social Media|";
+  }
+  91% {
+    content: "Social Medi|";
+  }
+  92% {
+    content: "Social Me|";
+  }
+  93% {
+    content: "Social M|";
+  }
+  94% {
+    content: "Social |";
+  }
+  95% {
+    content: "Social|";
+  }
+  96% {
+    content: "Soci|";
+  }
+  97% {
+    content: "So|";
+  }
+  98% {
+    content: "|";
+  }
+  99% {
+    content: "|";
+  }
+  100% {
+    content: "|";
+  }
+}

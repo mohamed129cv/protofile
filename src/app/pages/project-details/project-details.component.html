@@ -1,0 +1,58 @@
+<section class='details_page'>
+  <div class="container">
+    <section class="project_details">
+      <article class="details">
+        <h1>{{project.project_title}}</h1>
+        <p>{{project.project_dis}}</p>
+      </article>
+      <article class="poster">
+        <img [src]="project.project_image" [alt]="project.project_title">
+      </article>
+    </section>
+    <section class="all_media">
+      <h2 class="text-primary my-2 text-capitalize">project details</h2>
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+
+          @for (btn of project.project_media; track $index) {
+          <button type="button" data-bs-target="#carouselExampleCaptions" [attr.data-bs-slide-to]="$index"
+            [ngClass]="{'active' : $index === 0}" aria-current="true"
+            [attr.aria-label]="'Slide'+ ($index + 1)"></button>
+          }
+
+        </div>
+        <div class="carousel-inner">
+
+          @for (media of project.project_media; track $index) {
+          <div class="carousel-item " [ngClass]="{'active': $index === 0}">
+            @if (media.isVideo ){
+            <video class="d-block w-100" controls>
+              <source [src]="media.url" type="video/mp4">
+              <p class="alert alert-danger"> <i class="fa-solid fa-circle-exclamation"></i> Your browser does not
+                support the
+                video tag.</p>
+            </video> }@else{
+            <img [src]="media.url" class="d-block w-100" alt="...">
+            }
+
+            <div class="carousel-caption  d-md-block lr">
+              <!-- <h5>First slide label</h5> -->
+              <p>{{media.dis}}</p>
+            </div>
+          </div>
+          }
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+  </div>
+</section>

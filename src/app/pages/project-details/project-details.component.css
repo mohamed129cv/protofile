@@ -1,0 +1,71 @@
+.details_page {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  box-shadow: var(--shadow);
+  border-radius: 7px;
+  padding: 20px;
+  margin-block: 30px;
+}
+.project_details {
+  display: flex;
+  gap: 1.2rem;
+  margin-block: 30px;
+  flex-flow: wrap row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project_details .poster {
+  width: 50%;
+  border: 5px solid var(--primary-color);
+  height: 350px;
+  border-radius: 7px;
+  overflow: hidden;
+}
+.project_details .img {
+  width: 100%;
+  object-fit: cover;
+}
+.project_details .details{
+  width: 45% ;
+}
+.project_details .details h1{
+  color: var(--main-color);
+}
+.project_details .details p{
+  color: var(--border);
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+#carouselExampleCaptions .carousel-item{
+  width: 100%;
+  height: 400px;
+}
+.lr{
+  background-color: rgba(0, 0, 0, .7);
+  width: 100%;
+  height: 40%;
+  left: 0;
+  bottom: -60px;
+  opacity: 0;
+  transition: var(--transition);
+  pointer-events: none;
+}
+.carousel-item:hover .lr {
+  opacity: 1;
+  bottom: 0;
+  pointer-events: all;
+}
+@media screen and (max-width : 768px) {
+  .project_details{
+    flex-flow: column-reverse;
+  }
+  .project_details .poster {
+    width: 100%;
+  }
+  .project_details .details{
+    width: 100% ;
+  }
+}

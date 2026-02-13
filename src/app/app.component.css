@@ -1,0 +1,31 @@
+.go_to_up{
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1rem;
+  border-radius: 50%;
+  background-color: var(--color-text);
+  color: var(--main-color);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: var(--transition);
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: grid;
+  place-items: center;
+}
+.go_to_up:hover{
+  color: var(--color-text);
+  background-color: var(--main-color);
+}
+.go_to_up.hidden{
+  opacity: 0;
+  transform: translateY(-20px) scale(1);
+}
+.go_to_up.show{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.go_to_up i{
+  animation: bounce 1s infinite alternate;
+}

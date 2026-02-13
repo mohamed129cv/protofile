@@ -1,0 +1,97 @@
+.contcat_us {
+  width: 85%;
+  margin: auto;
+  margin-block: 50px;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  padding:  clamp(1rem , 1vw + .8rem , 2.2rem);
+    overflow: hidden;
+
+}
+.myLinks {
+  width: 100%;
+  /* display: flex;
+  flex-wrap: wrap;
+  flex-direction: row; */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+}
+.myLinks section{
+  display: grid;
+  place-items: center;
+
+  gap: .7rem;
+}
+.myLinks span {
+  display: grid;
+  place-items: center;
+  background-color: var(--color-muted);
+  color: var(--main-color);
+  width: 5rem;
+  height: 5rem;
+  font-size: clamp(1rem , 1vw + .8rem , 2.2rem);
+  border-radius: 50%;
+}
+.myLinks p{
+  font-size: clamp(.8rem , 1vw + .5rem , 1.2rem);
+  margin-top: 0.5rem;
+}
+.sendMessage h2{
+  margin: 2rem 0;
+  position: relative;
+  text-align: center;
+}
+.sendMessage h2::after{
+  content: '';
+  width: 5rem;
+  height: 0.2rem;
+  background-color: var(--main-color);
+  position: absolute;
+  bottom: -.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+.sendMessage button{
+  margin-top: 20px;
+  width: 10rem;
+  height: 3rem;
+  border: 4px solid var(--main-color);
+  color: var(--main-color);
+  border-radius: .3rem;
+  font-size: 1.2rem;
+  background-color: transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+}
+
+.sendMessage button::after{
+  content: '';
+  width: 0;height: 100%;
+  background-color: var(--main-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: var(--transition);
+}
+.sendMessage button:hover::after{
+  width: 100%;
+}
+.sendMessage button:hover{
+  color: var(--color-text);
+}
+@media screen and (max-width : 992px) {
+  .contcat_us {
+    width: 95%;
+  }
+  .myLinks {
+    flex-direction: column;
+  }
+}

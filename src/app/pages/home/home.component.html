@@ -1,0 +1,172 @@
+<section class="home_page " >
+  <!--& hero section  -->
+  <article class="hero fade-up" appFadeUp>
+    <h1 class="my_name">i am mohammed rabie Abdelaziz <span></span></h1>
+    <h4 class="my_job_name"></h4>
+    <a class="go_down" (click)="scrollToAboutMe()"> <i class="fa fa-chevron-down"></i></a>
+
+  </article>
+  <!--& About me  -->
+  <article class="about_me fade-up" id="about_me" appFadeUp>
+    <h2 class="fade-up" appFadeUp>about me</h2>
+    <section class="about_me_content">
+      <!--& informtion -->
+      <article class="data">
+        <img src="assets/mohamed re.png" alt="my_image" class="fade-left" appFadeLeft>
+        <div class="informtion fade-right" appFadeRight>
+          <p><span>name :</span>mohammed rabie Abdelaziz</p>
+          <p><span>age :</span>24</p>
+          <p><span>phon :</span>01029155459</p>
+          <p><span>email :</span>mohammedAbdlaiziz1&#64;gmail.com</p>
+        </div>
+      </article>
+      <div class="about_me_text">
+        <span class="fade-left" appFadeLeft>
+        Business Administration Graduate specialized in Digital Marketing. Skilled in social media management, paid
+        advertising, content creation, and performance analysis. Focused on delivering high ROI and building strong
+        online brand presence.
+      </span>
+        <span class="fade-right" appFadeRight>
+          Experienced in creating data-driven marketing strategies, optimizing campaigns for better conversion rates, and
+          helping businesses reach their target audience effectively. Always eager to learn new trends and tools to stay
+          ahead in the fast-paced digital marketing world..
+        </span>
+      </div>
+
+    </section>
+  </article>
+  <!--& projects  -->
+  <article class="my-project">
+    <h2 class="fade-up " appFadeUp>my projects</h2>
+    <section class="projects_contect">
+      <!--& project 1  -->
+      <app-projects-cart [projcets]="projects" [adminMode]="false"></app-projects-cart>
+      <button class="btn_pro fade-up" appFadeUp [routerLink]="'/project'" >show more projects </button>
+      </section>
+  </article>
+  <!--& skills  -->
+  <article class="my_skills">
+    <h2 class="fade-up" appFadeUp>my skills</h2>
+    <section class="skills">
+      <!--& skill one  -->
+      <div class="skill">
+        <img src="" alt="skill-image">
+        <h3 class="skill_name">skill one</h3>
+      </div>
+      <!--& skill tow  -->
+    </section>
+  </article>
+  <!--& My Achievements  -->
+  <article class="achievements">
+    <!-- <h2>My Achievements</h2> -->
+    <section class="achievements_contect" #achievement>
+      <!--! client  -->
+      <div class="achievement fade-right" appFadeRight>
+        <i class="fa-solid fa-users"></i>
+        <p class="achievement_number">{{counts.client}}</p>
+      </div>
+
+      <!--! Number Of project  -->
+      <div class="achievement fade-left" appFadeLeft>
+        <i class="fas fa-rocket"></i>
+        <p>{{counts.project}}</p>
+      </div>
+
+      <!--! Number of certificates  -->
+      <div class="achievement fade-right" appFadeRight>
+        <i class="fas fa-certificate"></i>
+        <p>{{counts.certificate}}</p>
+      </div>
+
+      <!--! Number of working hours  -->
+      <div class="achievement fade-left" appFadeLeft>
+        <i class="fa-regular fa-clock"></i>
+        <p>{{counts.hours}}</p>
+      </div>
+
+    </section>
+  </article>
+
+  <!--& Services  -->
+
+  <article class="Services"  >
+    <h2 class="fade-up" appFadeUp>Services</h2>
+    <section class="Services_contect">
+      <!--& service 1  -->
+      <div class="service-card fade-up" appFadeUp>
+        <span>
+          <i class="fa-solid fa-bullhorn"></i>
+        </span>
+        <h3>Paid Advertising</h3>
+        <p>Managing Facebook, Google and social media ad campaigns.</p>
+      </div>
+
+      <!--& service 2  -->
+      <div class="service-card fade-up" appFadeUp>
+        <span>
+          <i class="fa-solid fa-bullhorn"></i>
+        </span>
+        <h3>Social Media Management</h3>
+        <p>Managing pages, posting content and increasing engagement.</p>
+      </div>
+      <!--& service 3  -->
+
+      <div class="service-card fade-up" appFadeUp>
+        <span>
+          <i class="fa-solid fa-pen-nib"></i>
+        </span>
+        <h3>Content Creation</h3>
+        <p>Creating marketing content and attractive posts.</p>
+      </div>
+      <!--& service 4  -->
+
+      <div class="service-card fade-up" appFadeUp>
+        <span>
+          <i class="fa-solid fa-magnifying-glass-chart"></i>
+        </span>
+        <h3>SEO Optimization</h3>
+        <p>Improving website ranking on search engines.</p>
+      </div>
+      <!--& service 5  -->
+
+      <div class="service-card fade-up" appFadeUp>
+        <span>
+          <i class="fa-solid fa-envelope-open-text"></i>
+        </span>
+        <h3>Email Marketing</h3>
+        <p>Creating email campaigns and newsletters.</p>
+      </div>
+      <!--& service 6  -->
+
+      <div class="service-card fade-up" appFadeUp>
+        <span>
+          <i class="fa-solid fa-chart-line"></i>
+        </span>
+        <h3>Marketing Analytics</h3>
+        <p>Analyzing data and tracking campaign performance.</p>
+      </div>
+      <!--& service 7  -->
+
+      <div class="service-card fade-up" appFadeUp>
+        <span>
+          <i class="fa-solid fa-funnel-dollar"></i>
+        </span>
+        <h3>Sales Funnel Setup</h3>
+        <p>Building funnels to increase conversions.</p>
+      </div>
+      <!--& service 8  -->
+
+      <div class="service-card fade-up" appFadeUp>
+        <span>
+          <i class="fa-solid fa-bullseye"></i>
+        </span>
+        <h3>Brand Strategy</h3>
+        <p>Building strong digital brand identity.</p>
+      </div>
+
+
+
+    </section>
+  </article>
+
+</section>
