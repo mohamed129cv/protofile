@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withHashLocation } from '@angular/router';
 import { provideToastr } from 'ngx-toastr';
 
 import { routes } from './app.routes';
@@ -13,7 +13,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-     provideRouter(routes),
+     provideRouter(routes ),
      provideClientHydration() ,
      provideAnimations() ,
      provideHttpClient(withInterceptors([loadingInterceptor])) ,
