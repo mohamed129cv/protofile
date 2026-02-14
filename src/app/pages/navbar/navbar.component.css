@@ -26,3 +26,13 @@
 .nav-item a.active {
   color: var(--main-color);
 }
+
+.navbar.dark .nav-item a::after {
+  background-color: var(--green) !important;
+
+}
+.navbar.dark .nav-item:hover a,
+  .navbar.dark .nav-item a.active {
+  color: var(--green) !important;
+}
+  

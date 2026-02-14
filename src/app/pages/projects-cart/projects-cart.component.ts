@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { NgIf } from "@angular/common";
+import { CommonModule } from "@angular/common";
 import { Iproject } from '../../core/interface/iproject';
 import { ProjectApiService } from '../../core/api/ProjectApiService';
 import { ProjectDisPipe } from '../../core/pipe/project-dis.pipe';
@@ -7,11 +7,12 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } fr
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { FadeUpDirective } from "../../core/direcitve/fade-up.directive";
+import { BgService } from '../../core/api/bg.service';
 
 @Component({
   selector: 'app-projects-cart',
   standalone: true,
-  imports: [NgIf, ProjectDisPipe, ReactiveFormsModule, FadeUpDirective],
+  imports: [CommonModule, ProjectDisPipe, ReactiveFormsModule, FadeUpDirective],
   templateUrl: './projects-cart.component.html',
   styleUrl: './projects-cart.component.css'
 })
@@ -19,10 +20,18 @@ export class ProjectsCartComponent {
   constructor(
     private _ProjectApiService: ProjectApiService,
     private _ToastrService: ToastrService ,
-  private _router: Router) { }
+  private _router: Router ,
+private _bg : BgService) { }
   @Input({ required: true }) adminMode: boolean = false
   @Input({ required: true }) projcets: Iproject[] = [] as Iproject[]
-
+  bg!: string
+   ngAfterViewInit(): void {
+    this._bg.$theme.subscribe({
+      next: res=>{
+        this.bg = res
+      }
+    })
+  }
   ngOnInit(): void {
     this.initFormControlNewPro()
     this.initFormGroupNewPro()

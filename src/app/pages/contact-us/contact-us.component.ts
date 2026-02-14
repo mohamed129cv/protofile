@@ -5,17 +5,19 @@ import emailjs from 'emailjs-com';
 import { FadeUpDirective } from "../../core/direcitve/fade-up.directive";
 import { FadeLeftDirective } from "../../core/direcitve/fade-left.directive";
 import { FadeRightDirective } from "../../core/direcitve/fade-right.directive";
+import { BgService } from '../../core/api/bg.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-  imports: [ReactiveFormsModule, FadeUpDirective, FadeLeftDirective, FadeRightDirective],
+  imports: [CommonModule, ReactiveFormsModule, FadeUpDirective, FadeLeftDirective, FadeRightDirective],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.css'
 })
 export class ContactUsComponent {
 
-  constructor(private _ToastrService: ToastrService) {
+  constructor(private _ToastrService: ToastrService , private _bg: BgService) {
     this.initFormControls()
     this.ititFormGrop()
   }
@@ -25,7 +27,14 @@ export class ContactUsComponent {
   name!: FormControl
   email!: FormControl
   message!: FormControl
-
+  bg !:string
+  ngAfterViewInit(): void {
+    this._bg.$theme.subscribe({
+      next: res=>{
+        this.bg = res
+      }
+    })
+  }
   initFormControls() {
     this.name = new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)])
     this.email = new FormControl('', [Validators.required, Validators.email])

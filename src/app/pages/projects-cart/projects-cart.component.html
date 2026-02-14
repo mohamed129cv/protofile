@@ -1,4 +1,4 @@
-<section class="card_page">
+<section class="card_page" [ngClass]="{'dark' : bg== 'dark'}" >
   @for (projcet of projcets; track $index) {
   <!--& المشروع  -->
   <article class="project_card fade-up" appFadeUp [attr.data-id]="projcet.id">
@@ -18,140 +18,145 @@
   </article>
   }
   <!--&كرت اضافة   -->
-  <section class="add_new_project" *ngIf="adminMode" (click)="open_add_pro()">
+  <section class="add_new_project fade-up" appFadeUp *ngIf="adminMode" (click)="open_add_pro()">
     <h4>Add New Project</h4>
     <span> <i class="fa-solid fa-circle-plus"></i>
     </span>
   </section>
-</section>
 
 
-<!--! اضافة مشروع جديد  -->
-<section class="add_type hidden" #add_pro>
+  <!--! اضافة مشروع جديد  -->
+  <section class="add_type hidden" #add_pro>
 
-  <form [formGroup]="add_project" (ngSubmit)="onsubmit()">
-    <i class="fa-solid fa-circle-xmark " (click)="closing_add_pro()"></i>
-    <h2 class="text-center fade-up" appFadeUp> add new project</h2>
+    <form [formGroup]="add_project" (ngSubmit)="onsubmit()">
+      <i class="fa-solid fa-circle-xmark " (click)="closing_add_pro()"></i>
+      <h2 class="text-center fade-up" appFadeUp> add new project</h2>
 
-    <!--& project title  -->
-    <article class="flid">
-      <label for="title" class="form-label fade-up" appFadeUp>project title</label>
-      <input type="text" name="title" id="title" class="form-control fade-up" appFadeUp formControlName="project_title">
-      <div class="validators">
-        @if(project_title.dirty || project_title.touched){
-        @if(project_title.getError('required')){
-        <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this flid
-          required</p>
-        }@if(project_title.getError('minlength')){
-        <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> project
-          title must be at least 3 characters</p>
+      <!--& project title  -->
+      <article class="flid">
+        <label for="title" class="form-label fade-up" appFadeUp>project title</label>
+        <input type="text" name="title" id="title" class="form-control fade-up" appFadeUp
+          formControlName="project_title">
+        <div class="validators">
+          @if(project_title.dirty || project_title.touched){
+          @if(project_title.getError('required')){
+          <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this
+            flid
+            required</p>
+          }@if(project_title.getError('minlength')){
+          <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> project
+            title must be at least 3 characters</p>
+          }
+          }
+        </div>
+      </article>
+
+      <!--& project main description  -->
+      <article class="flid">
+        <label for="description" class="form-label fade-up" appFadeUp>project description</label>
+        <input type="text" name="description" id="description" class="form-control fade-up" appFadeUp
+          formControlName="project_dis">
+        <div class="validators">
+          @if(project_dis.dirty || project_dis.touched){
+          @if(project_dis.getError('required')){
+          <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this
+            flid
+            required</p>
+          }@if(project_dis.getError('minlength')){
+          <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> project
+            dicription must be at least 3 characters</p>
+          }
+          }
+        </div>
+      </article>
+
+      <!--& project type  -->
+      <article class="flid">
+        <label for="type" class="form-label fade-up" appFadeUp>project type</label>
+        <input type="text" name="type" id="type" class="form-control fade-up" appFadeUp formControlName="project_type">
+        <div class="validators">
+          @if(project_type.dirty || project_type.touched){
+          @if(project_type.getError('required')){
+          <p class="fade-up alert alert-danger my-2" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this flid
+            required</p>
+          }
+          }
+        </div>
+      </article>
+
+      <!--& project rate  -->
+      <article class="flid">
+        <label for="rate" class="form-label fade-up" appFadeUp>project rate</label>
+        <input type="number" name="rate" id="rate" class="form-control fade-up" appFadeUp
+          formControlName="project_rate">
+        <div class="validators">
+          @if(project_rate.dirty || project_rate.touched){
+          @if(project_title.getError('required')){
+          <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this
+            flid
+            required</p>
+          }@if(project_title.getError('min')){
+          <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i>
+            project must be big than or equal 1 </p>
+          }@if(project_rate.getError('max')){
+          <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> project
+            rate must be less than or equal 10</p>
+          }
+          }
+        </div>
+      </article>
+
+      <!--& project poster  -->
+      <article class="flid">
+        <label for="media" class="form-label">project poster</label>
+        <input type="text" name="media" id="media" class="form-control" formControlName="project_image">
+        <div class="validators">
+          @if(project_image.dirty || project_image.touched){
+          @if(project_image.getError('required')){
+          <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this
+            flid
+            required</p>
+          }
+          }
+        </div>
+      </article>
+      <!--& project details  -->
+      <article class="flid">
+        <label for="details" class="form-label fade-up " appFadeUp>project details</label>
+        <input type="text" name="details" id="details" appFadeUp class=" fade-up form-control"
+          formControlName="project_details">
+      </article>
+
+      <!--& project media  -->
+      <article class="flid" formArrayName="project_media">
+        @for (media of mediaControls.controls; track $index) {
+        <div class="media" [formGroupName]="$index">
+          <label class="form-label">Add media {{$index + 1}}</label>
+          <input type="text" formControlName="url" placeholder="Media URL" class="my-1 form-control w-25 d-inline mx-1"
+            formControlName="url">
+
+          <input type="text" formControlName="dis" placeholder="Description" class="my-1 form-control w-25 d-inline mx-1"
+            formControlName="dis">
+
+          <select name="isVideo" id="isVideo" class="form-select d-inline w-auto mx-2" formControlName="isVideo">
+            <option [ngValue]="true">Video</option>
+            <option [ngValue]="false">Image</option>
+          </select>
+        </div>
+        }
+        <button class="btn btn-primary" [ngClass]="{'btn-success' : bg =='dark'}" (click)="addMedia()" type="button"><i class="fa-solid fa-plus"></i></button>
+      </article>
+
+
+      <button class="btn btn-primary w-25 " [ngClass]="{'btn-success' : bg =='dark'}"  type="submit" #btnSubmit>
+        @switch (eidtMode) {
+        @case (true) {
+        Update Project
+        }
+        @case (false) {
+        add project
         }
         }
-      </div>
-    </article>
-
-    <!--& project main description  -->
-    <article class="flid">
-      <label for="description" class="form-label fade-up" appFadeUp>project description</label>
-      <input type="text" name="description" id="description" class="form-control fade-up" appFadeUp
-        formControlName="project_dis">
-      <div class="validators">
-        @if(project_dis.dirty || project_dis.touched){
-        @if(project_dis.getError('required')){
-        <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this flid
-          required</p>
-        }@if(project_dis.getError('minlength')){
-        <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> project
-          dicription must be at least 3 characters</p>
-        }
-        }
-      </div>
-    </article>
-
-    <!--& project type  -->
-    <article class="flid">
-      <label for="type" class="form-label fade-up" appFadeUp>project type</label>
-      <input type="text" name="type" id="type" class="form-control fade-up" appFadeUp formControlName="project_type">
-      <div class="validators">
-        @if(project_type.dirty || project_type.touched){
-        @if(project_type.getError('required')){
-        <p class="fade-up alert alert-danger my-2" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this flid
-          required</p>
-        }
-        }
-      </div>
-    </article>
-
-    <!--& project rate  -->
-    <article class="flid">
-      <label for="rate" class="form-label fade-up" appFadeUp>project rate</label>
-      <input type="number" name="rate" id="rate" class="form-control fade-up" appFadeUp formControlName="project_rate">
-      <div class="validators">
-        @if(project_rate.dirty || project_rate.touched){
-        @if(project_title.getError('required')){
-        <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this flid
-          required</p>
-        }@if(project_title.getError('min')){
-        <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i>
-          project must be big than or equal 1 </p>
-        }@if(project_rate.getError('max')){
-        <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> project
-          rate must be less than or equal 10</p>
-        }
-        }
-      </div>
-    </article>
-
-    <!--& project poster  -->
-    <article class="flid">
-      <label for="media" class="form-label">project poster</label>
-      <input type="text" name="media" id="media" class="form-control" formControlName="project_image">
-      <div class="validators">
-        @if(project_image.dirty || project_image.touched){
-        @if(project_image.getError('required')){
-        <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this flid
-          required</p>
-        }
-        }
-      </div>
-    </article>
-    <!--& project details  -->
-    <article class="flid">
-      <label for="details" class="form-label fade-up " appFadeUp>project details</label>
-      <input type="text" name="details" id="details" appFadeUp class=" fade-up form-control"
-        formControlName="project_details">
-    </article>
-
-    <!--& project media  -->
-    <article class="flid" formArrayName="project_media">
-      @for (media of mediaControls.controls; track $index) {
-      <div class="media" [formGroupName]="$index">
-        <label class="form-label">Add media {{$index + 1}}</label>
-        <input type="text" formControlName="url" placeholder="Media URL" class="form-control w-25 d-inline mx-1"
-          formControlName="url">
-    
-        <input type="text" formControlName="dis" placeholder="Description" class="form-control w-25 d-inline mx-1"
-        formControlName="dis">
-
-        <select name="isVideo" id="isVideo" class="form-select d-inline w-auto mx-2" formControlName="isVideo">
-          <option [ngValue]="true">Video</option>
-          <option [ngValue]="false">Image</option>
-        </select>
-      </div>
-      }
-      <button class="btn btn-primary" (click)="addMedia()" type="button"><i class="fa-solid fa-plus"></i></button>
-    </article>
-
-
-    <button class="btn btn-primary w-25 " type="submit" #btnSubmit>
-      @switch (eidtMode) {
-      @case (true) {
-      Update Project
-      }
-      @case (false) {
-      add project
-      }
-      }
-    </button>
-  </form>
-</section>
+      </button>
+    </form>
+  </section>

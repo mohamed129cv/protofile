@@ -6,27 +6,40 @@ import { ProjectsCartComponent } from '../projects-cart/projects-cart.component'
 import { ProjectApiService } from '../../core/api/ProjectApiService';
 import { Iproject } from '../../core/interface/iproject';
 import { SearchPipe } from '../../core/pipe/search.pipe';
+import { BgService } from '../../core/api/bg.service';
+import { GetTypePipe } from '../../core/pipe/get-type.pipe';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, FormsModule,ReactiveFormsModule, ProjectsCartComponent , SearchPipe ],
+  imports: [GetTypePipe, CommonModule, FormsModule, ReactiveFormsModule, ProjectsCartComponent, SearchPipe],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css'
 })
 export class ProjectsComponent {
-  constructor(private _ToastrService: ToastrService, private _ProjectApiService: ProjectApiService) {
+  constructor(private _ToastrService: ToastrService, private _ProjectApiService: ProjectApiService, private _bg: BgService) {
   }
   ngOnInit(): void {
     this.intiFormControl()
     this.intiFormGroup()
     this.getProjects()
   }
-  projects :Iproject [] = [] as Iproject[]
-  adminMode: boolean = true
+  ngAfterViewInit(): void {
+    this._bg.$theme.subscribe({
+      next: res => {
+        this.bg = res
+      }
+    })
+  }
+  typeMode: string = 'all'
+  types : string[] = []
+  bg!: string
+  projects: Iproject[] = [] as Iproject[]
+  allProjects: Iproject[] = [] as Iproject[]
+  adminMode: boolean = false
   userName: string = 'admin'
   password: string = 'army4'
-  searchWord : string = ''
+  searchWord: string = ''
   @ViewChild('loginSection') loginSection!: ElementRef
   @ViewChild('popert') popert!: ElementRef
   //! فتح ببرت تجيل الادمن
@@ -73,12 +86,18 @@ export class ProjectsComponent {
   }
 
   //* جلب المشاريع
-  getProjects(){
+  getProjects() {
     this._ProjectApiService.getAllProjects().subscribe({
-      next:res=>{
+      next: res => {
         this.projects = res
+        this.allProjects = res
+        this.types = Array.from(new Set(this.projects.map(pro=>pro.project_type.toLocaleLowerCase().trim())))
       }
     })
   }
-
+  filterByType(type: string) {
+    if (type.toLocaleLowerCase().trim() !== 'all') {
+      this.projects =  this.allProjects.filter(prj => prj.project_type.toLocaleLowerCase().trim() == type.toLocaleLowerCase().trim())
+    }
+  }
 }

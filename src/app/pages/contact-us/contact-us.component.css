@@ -1,3 +1,4 @@
+
 .contcat_us {
   width: 85%;
   margin: auto;
@@ -6,7 +7,6 @@
   box-shadow: var(--shadow);
   padding:  clamp(1rem , 1vw + .8rem , 2.2rem);
     overflow: hidden;
-
 }
 .myLinks {
   width: 100%;
@@ -15,7 +15,6 @@
   flex-direction: row; */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-
   justify-content: center;
   align-items: center;
   gap: 2rem;
@@ -24,7 +23,6 @@
 .myLinks section{
   display: grid;
   place-items: center;
-
   gap: .7rem;
 }
 .myLinks span {
@@ -37,6 +35,7 @@
   font-size: clamp(1rem , 1vw + .8rem , 2.2rem);
   border-radius: 50%;
 }
+
 .myLinks p{
   font-size: clamp(.8rem , 1vw + .5rem , 1.2rem);
   margin-top: 0.5rem;
@@ -46,6 +45,7 @@
   position: relative;
   text-align: center;
 }
+
 .sendMessage h2::after{
   content: '';
   width: 5rem;
@@ -57,6 +57,7 @@
   transform: translateX(-50%);
   border-radius: 50%;
 }
+
 .sendMessage button{
   margin-top: 20px;
   width: 10rem;
@@ -71,6 +72,7 @@
   position: relative;
 }
 
+
 .sendMessage button::after{
   content: '';
   width: 0;height: 100%;
@@ -84,9 +86,12 @@
 .sendMessage button:hover::after{
   width: 100%;
 }
+
+.contcat_us.dark .sendMessage button:hover ,
 .sendMessage button:hover{
   color: var(--color-text);
 }
+
 @media screen and (max-width : 992px) {
   .contcat_us {
     width: 95%;
@@ -94,4 +99,24 @@
   .myLinks {
     flex-direction: column;
   }
+}
+
+
+/*& dark mode  */
+.contcat_us.dark{
+  background: var(--bg4);
+}
+.contcat_us.dark .myLinks span {
+  background-color: var(--green) !important;
+
+}
+.contcat_us.dark .sendMessage h2::after{
+  background-color: var(--green);
+}
+.contcat_us.dark  .sendMessage button{
+  color: var(--green);
+  border-color: var(--green);
+  }
+.contcat_us.dark .sendMessage button::after{
+  background-color: var(--green);
 }

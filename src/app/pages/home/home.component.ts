@@ -7,16 +7,17 @@ import { Iproject } from '../../core/interface/iproject';
 import { ProjectApiService } from '../../core/api/ProjectApiService';
 import { RouterLink } from '@angular/router';
 import { BgService } from '../../core/api/bg.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FadeUpDirective, RouterLink, FadeRightDirective, FadeLeftDirective , ProjectsCartComponent],
+  imports: [FadeUpDirective, RouterLink, FadeRightDirective, FadeLeftDirective , ProjectsCartComponent ,CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  constructor(private _ProjectApiService:ProjectApiService , private _BgService:BgService){
+  constructor(private _bg:BgService , private _ProjectApiService:ProjectApiService , private _BgService:BgService){
 
   }
   ngOnInit(): void {
@@ -26,11 +27,10 @@ export class HomeComponent {
     this._BgService.$theme.subscribe({
       next: res=>{
         this.bg = res
-        console.log(this.bg);
       }
     })
   }
-  bg!:any
+   bg!: string
   scrollToAboutMe(){
     let aboutMeSection= document.getElementById('about_me')
     if(aboutMeSection){
@@ -54,6 +54,11 @@ export class HomeComponent {
   @ViewChild('achievement' ) achievementsContect!:ElementRef;
   ngAfterViewInit(){
     this.observ()
+     this._bg.$theme.subscribe({
+      next: res=>{
+        this.bg = res
+      }
+    })
   }
   observ(){
     const observable = new IntersectionObserver(e=>{

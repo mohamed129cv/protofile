@@ -51,7 +51,6 @@
 }
 .lr .tools i{
   transition: var(--transition);
-
 }
 .project_card:hover .lr {
   top: 45%;
@@ -75,6 +74,7 @@
   bottom:  calc( anchor(top) - 50px);
   left: calc( anchor(right) - 60px);
 }
+
 /** كرت اضافة المزيد  */
 .add_new_project {
   height: 250px;
@@ -88,11 +88,12 @@
   cursor: pointer;
   position: relative;
 }
+
 .add_new_project span {
   width: 100%;
   height: 0;
   background-color: var(--color-muted);
-  border-radius: 0 0 0.4rem 0.4rem;
+  border-radius:  0.4rem;
   font-size: 2rem;
   position: absolute;
   top: 100%;
@@ -104,18 +105,22 @@
 .add_new_project span i {
   position: absolute;
   left: 50%;
-  top: -1rem;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%);
 }
 
-.add_new_project:hover {
+.add_new_project span i {
   color: var(--main-color);
+}
+.add_new_project:hover {
+  color: var(--main-color) ;
   transform: translateY(-15px);
 }
+
 .add_new_project:hover span {
-  height: 40%;
-  top: 60%;
-  opacity: 1;
+  height: 100%;
+  top: 0;
+  opacity: .5;
   color: var(--main-color);
 }
 
@@ -158,6 +163,7 @@
   box-shadow: var(--shadow);
   position: relative;
 }
+
 .add_type .fa-circle-xmark{
   position: absolute;
   top: 10px;
@@ -169,4 +175,35 @@
 .add_type form h2 {
   color: var(--main-color);
   text-transform: capitalize;
+}
+/*& dark mode  */
+.card_page.dark .lr{
+  background-color: var(--bg4);
+}
+.card_page.dark .lr .tools {
+  color: var(--color-text);
+}
+.card_page.dark .lr .tools i:hover{
+  color: var(--green);
+}
+.card_page.dark .lr:hover .text h4{
+  color: var(--green) !important;
+}
+.card_page.dark .add_new_project{
+  background-color: var(--bg4);
+}
+.card_page.dark .add_new_project span i {
+  color: var(--green);
+}
+.card_page.dark .add_new_project:hover {
+  color: var(--green) !important;
+}
+.card_page.dark .add_type form {
+  background-color: var(--bg4);
+}
+.card_page.dark .add_type form h2 {
+  color: var(--green) !important;
+}
+.card_page.dark .project_card .rate {
+  background-color: var(--green);
 }

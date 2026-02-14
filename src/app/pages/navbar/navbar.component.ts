@@ -9,19 +9,19 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive , CommonModule],
+  imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  constructor(private _ToastrService: ToastrService , private _bg:BgService) { }
+  constructor(private _ToastrService: ToastrService, private _bg: BgService) { }
   ngOnInit(): void {
-      this.bg = this._bg.$theme.subscribe({
-      next : res=>{
-        console.log(res);
+    this._bg.$theme.subscribe({
+      next: res => {
+        this.bg = res
       }
     })
-    if(localStorage.getItem('bg_protfile') =='dark'){
+    if (localStorage.getItem('bg_protfile') == 'dark') {
       document.body.classList.add('dark')
     }
   }
@@ -29,24 +29,24 @@ export class NavbarComponent {
   translateMode: boolean = localStorage.getItem('translateMode') === 'true';
 
   translatePage() {
-   setTimeout(() => {
-     const convey = (window as any).ConveyThis;
-    if (!convey) {
-      this._ToastrService.info('ConveyThis not loaded yet, please refresh', '');
-      return;
-    }
-    this.translateMode = !this.translateMode;
-    localStorage.setItem('translateMode', this.translateMode.toString());
-    if (this.translateMode) {
-      (window as any).ConveyThis.switchLanguage('ar');
-    } else {
-      (window as any).ConveyThis.switchLanguage('en')
-    }
-   }, 1000);
+    setTimeout(() => {
+      const convey = (window as any).ConveyThis;
+      if (!convey) {
+        this._ToastrService.info('ConveyThis not loaded yet, please refresh', '');
+        return;
+      }
+      this.translateMode = !this.translateMode;
+      localStorage.setItem('translateMode', this.translateMode.toString());
+      if (this.translateMode) {
+        (window as any).ConveyThis.switchLanguage('ar');
+      } else {
+        (window as any).ConveyThis.switchLanguage('en')
+      }
+    }, 1000);
   }
 
 
-    ngAfterViewInit(): void {
+  ngAfterViewInit(): void {
     // نتاكد ان السكريبت اتحمل
     const checkConvey = setInterval(() => {
       if ((window as any).ConveyThis) {
@@ -62,21 +62,21 @@ export class NavbarComponent {
   }
 
   bg !: any
-  b(){
-     if(this.bg == 'dark'){
+  b() {
+    if (this.bg == 'dark') {
       this.bg = 'light'
       document.body.classList.remove('dark')
-    }else{
+    } else {
       this.bg = 'dark'
       // this._ProjectApiService
       document.body.classList.add('dark')
     }
-    localStorage.setItem('bg_protfile',this.bg)
+    localStorage.setItem('bg_protfile', this.bg)
   }
-  toggleBg(){
+  toggleBg() {
     this.bg = this._bg.$theme.subscribe({
-      next : res=>{
-        console.log(res);
+      next: res => {
+        // console.log(res);
       }
     })
     this._bg.toggleTheme()

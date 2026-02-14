@@ -18,6 +18,13 @@
   color: var(--color-text);
   background-color: var(--main-color);
 }
+.go_to_up.dark{
+  color: var(--green) !important;
+}
+.go_to_up.dark:hover{
+  background-color: var(--green) !important;
+  color: var(--color-text) !important;
+}
 .go_to_up.hidden{
   opacity: 0;
   transform: translateY(-20px) scale(1);

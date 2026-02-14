@@ -1,4 +1,4 @@
-<section class="home_page " >
+<section class="home_page " [ngClass]="{'dark': bg== 'dark'}">
   <!--& hero section  -->
   <article class="hero fade-up" appFadeUp>
     <h1 class="my_name">i am mohammed rabie Abdelaziz <span></span></h1>
@@ -22,12 +22,13 @@
       </article>
       <div class="about_me_text">
         <span class="fade-left" appFadeLeft>
-        Business Administration Graduate specialized in Digital Marketing. Skilled in social media management, paid
-        advertising, content creation, and performance analysis. Focused on delivering high ROI and building strong
-        online brand presence.
-      </span>
+          Business Administration Graduate specialized in Digital Marketing. Skilled in social media management, paid
+          advertising, content creation, and performance analysis. Focused on delivering high ROI and building strong
+          online brand presence.
+        </span>
         <span class="fade-right" appFadeRight>
-          Experienced in creating data-driven marketing strategies, optimizing campaigns for better conversion rates, and
+          Experienced in creating data-driven marketing strategies, optimizing campaigns for better conversion rates,
+          and
           helping businesses reach their target audience effectively. Always eager to learn new trends and tools to stay
           ahead in the fast-paced digital marketing world..
         </span>
@@ -41,8 +42,8 @@
     <section class="projects_contect">
       <!--& project 1  -->
       <app-projects-cart [projcets]="projects" [adminMode]="false"></app-projects-cart>
-      <button class="btn_pro fade-up" appFadeUp [routerLink]="'/project'" >show more projects </button>
-      </section>
+      <button class="btn_pro fade-up btn_p" appFadeUp [routerLink]="'/project'">show more projects </button>
+    </section>
   </article>
   <!--& skills  -->
   <article class="my_skills">
@@ -58,7 +59,7 @@
   </article>
   <!--& My Achievements  -->
   <article class="achievements">
-    <!-- <h2>My Achievements</h2> -->
+    <h2>My Achievements</h2>
     <section class="achievements_contect" #achievement>
       <!--! client  -->
       <div class="achievement fade-right" appFadeRight>
@@ -89,7 +90,7 @@
 
   <!--& Services  -->
 
-  <article class="Services"  >
+  <article class="Services">
     <h2 class="fade-up" appFadeUp>Services</h2>
     <section class="Services_contect">
       <!--& service 1  -->
@@ -168,5 +169,42 @@
 
     </section>
   </article>
+
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+         <video class="d-block w-100" controls>
+              <source src="assets/large (3).mp4" type="video/mp4">
+              <p class="alert alert-danger"> <i class="fa-solid fa-circle-exclamation"></i> Your browser does not
+                support the
+                video tag.</p>
+            </video>
+      </div>
+      <div class="carousel-item">
+       <video class="d-block w-100" controls>
+              <source src="assets/large.mp4" type="video/mp4">
+              <p class="alert alert-danger"> <i class="fa-solid fa-circle-exclamation"></i> Your browser does not
+                support the
+                video tag.</p>
+            </video>
+      </div>
+      <div class="carousel-item">
+        <video class="d-block w-100" controls>
+              <source src="assets/small.mp4" type="video/mp4">
+              <p class="alert alert-danger"> <i class="fa-solid fa-circle-exclamation"></i> Your browser does not
+                support the
+                video tag.</p>
+            </video>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 
 </section>

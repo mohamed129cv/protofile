@@ -26,15 +26,10 @@ h2::after {
   left: 50%;
   transform: translateX(-50%);
 }
-
-body.dark h2::after{
-  background-color: var(--color-text);
-}
-
 .home_page {
   width: 100%;
 }
-button {
+button.btn_p {
   cursor: pointer;
   width: 15rem;
   padding: 0.5rem 0.3rem;
@@ -46,7 +41,8 @@ button {
   transition: var(--transition);
   position: relative;
 }
-button::after {
+
+button.btn_p::after {
   content: "";
   width: 0;
   height: 100%;
@@ -57,10 +53,10 @@ button::after {
   z-index: -1;
   transition: var(--transition);
 }
-button:hover {
+button.btn_p:hover {
   color: var(--color-text);
 }
-button:hover::after {
+button.btn_p:hover::after {
   width: 100%;
 }
 
@@ -68,6 +64,7 @@ button:hover::after {
 .hero {
   width: 100%;
   min-height: 90vh;
+  padding: clamp(0.8rem, 0.8rem + 1vw, 1.5rem);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,18 +96,11 @@ button:hover::after {
   transition: var(--transition);
   cursor: pointer;
 }
-body.dark .go_down{
-  background-color: var(--bg3) ;
-}
+
 .hero i {
   font-size: 2rem;
   transition: var(--transition);
   animation: bounce 1s infinite alternate;
-}
-
-.hero .go_down:hover {
-  background-color: var(--main-color);
-  color: var(--color-text);
 }
 
 /*& about me section  */
@@ -145,7 +135,7 @@ body.dark .go_down{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: .7rem;
+  gap: 0.7rem;
   text-transform: capitalize;
 }
 .about_me .informtion span {
@@ -177,9 +167,6 @@ body.dark .go_down{
   position: absolute;
   top: 10px;
   left: -25px;
-}
-body.dark .about_me_text span::after {
-  background-color: var(--bg3);
 }
 /*& project section  */
 .my-project {
@@ -256,6 +243,7 @@ body.dark .about_me_text span::after {
   transform: translateY(-1rem);
   border-color: var(--main-color);
 }
+
 .service-card span {
   display: flex;
   justify-content: center;
@@ -270,6 +258,7 @@ body.dark .about_me_text span::after {
   font-size: 2rem;
   color: var(--main-color);
 }
+
 .service-card h3 {
   font-size: 1.3rem;
   color: var(--bg);
@@ -284,32 +273,66 @@ body.dark .about_me_text span::after {
   width: 100%;
   min-height: 60vh;
   padding: clamp(1rem, 1vw + 0.1rem, 2.5rem);
-  background-attachment: fixed;
-  background:
-    linear-gradient(rgba(0, 120, 255, 0.4), rgba(0, 120, 255, 0.5)),
-    url("/assets/sec5.jpg") center/cover;
-  color: var(--color-text);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
 }
+
 .achievements_contect {
   width: 85%;
   margin: auto;
   padding: 2rem 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
   text-align: center;
 }
+.achievement {
+  width: 40%;
+  padding: clamp(0.8rem, 0.5rem + 1vw, 1.5rem);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  background-color: var(--color-text);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.achievement::after,
+.achievement::before {
+  content: "";
+  width: 5px;
+  height: 0%;
+  background-color: var(--main-color);
+  position: absolute;
+  opacity: 1;
+  transition: var(--transition);
+}
+
+.achievement::after {
+  top: 0;
+  left: 0;
+}
+.achievement::before {
+  bottom: 0%;
+  right: 0;
+}
+.achievement:hover::after,
+.achievement:hover::before {
+  height: 100%;
+  opacity: 1;
+}
+
 .achievement p {
   font-size: 1.3rem;
 }
 .achievement i {
   font-size: 3rem;
   margin-bottom: 0.5rem;
+  color: var(--main-color);
 }
+
 /*! madie Qoury  */
 
 @media screen and (max-width: 992px) {
@@ -584,4 +607,57 @@ body.dark .about_me_text span::after {
   100% {
     content: "|";
   }
+}
+
+/*& dark mode   */
+.home_page.dark h2::after {
+  background-color: var(--green);
+}
+.home_page.dark button.btn_p {
+  border-color: var(--green);
+  color: var(--green);
+}
+.home_page.dark button.btn_p::after {
+  background-color: var(--green);
+}
+.home_page.dark button.btn_p:hover{
+  color: var(--color-text);
+}
+.home_page.dark .go_down {
+  background-color: var(--color-text);
+  color: var(--green);
+}
+.home_page.dark .hero .go_down:hover {
+  background-color: var(--green);
+  color: var(--color-text);
+}
+.home_page.dark .about_me_text span::after {
+  background-color: var(--green);
+}
+.home_page.dark .Services_contect .service-card:hover {
+  border-color: var(--green);
+}
+.home_page.dark .service-card i {
+  color: var(--green);
+}
+.home_page.dark .achievement {
+  background-color: var(--bg4);
+  color: var(--color-text);
+}
+.home_page.dark .achievement i {
+  color: var(--green);
+}
+.home_page.dark .achievement::after,
+.home_page.dark .achievement::before {
+  background-color: var(--green);
+}
+
+
+.carousel-inner {
+  height: 500px;   /* أو أي ارتفاع يناسب الفيديو */
+}
+
+.carousel-item video {
+  height: 100%;
+  object-fit: cover;  /* يغطي السلايد بالكامل */
 }

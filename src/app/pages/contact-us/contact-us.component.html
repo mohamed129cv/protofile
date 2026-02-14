@@ -1,4 +1,4 @@
-<section class="contcat_us">
+<section class="contcat_us"  [ngClass]="{'dark': bg == 'dark'}">
   <article class="myLinks ">
     <section class="fade-left" appFadeLeft>
       <!--& Email  -->
@@ -61,7 +61,8 @@
           }
         }
       </section>
-      <button type="submit" class="fade-up" appFadeUp>send message</button>
+      <button type="submit" class="fade-left" appFadeLeft  >send message</button>
     </form>
   </article>
 </section>
+

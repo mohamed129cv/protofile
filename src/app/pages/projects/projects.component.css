@@ -31,6 +31,7 @@ header span:hover {
 header span:hover i {
   color: var(--main-color);
 }
+
 header .search_result{
   width: 100%;
   max-height: 200px;
@@ -51,15 +52,16 @@ header .search_result{
   z-index: 1;
   text-align: center;
 }
+
+
 header .search_result li{
   padding:10px 15px;
   transition: var(--transition);
 }
 header .search_result li:hover{
-  color: var(--main-color);
-  background-color: var(--color-muted);
+  color: var(--color-text);
+  background-color: var(--main-color);
 }
-
 
 /** فلتير الانواع  */
 .type {
@@ -89,6 +91,7 @@ header .search_result li:hover{
   cursor: pointer;
   transition: var(--transition);
 }
+
 .type ul li:hover,
 .type span:hover {
   color: var(--main-color);
@@ -117,6 +120,8 @@ header .search_result li:hover{
   place-items: center;
   transition: var(--transition);
 }
+
+
 .login form {
   width: 300px;
   padding: clamp(1.2rem, 1vw + 0.8rem, 2rem);
@@ -136,6 +141,7 @@ header .search_result li:hover{
 .login form label {
   color: var(--main-color);
 }
+
 .login form button {
   padding: 0.5rem;
   background-color: var(--main-color);
@@ -165,4 +171,38 @@ header .search_result li:hover{
 
 @media screen and (max-width:762px) {
     .projects { width: 95%; }
+}
+/*& dark mode  */
+
+.project_page.dark header span:hover  {
+  background-color: var(--green);
+}
+.project_page.dark header span i  {
+  color: var(--green);
+}
+.project_page.dark header span:hover i  {
+  color: var(--color-text);
+}
+.project_page.dark header .search_result{
+  background-color: var(--bg2);
+  color: var(--color-text);
+}
+.project_page.dark header .search_result li:hover{
+  background-color: var(--green);
+  color: var(--color-text);
+}
+.project_page.dark .type span,
+.project_page.dark .type ul li{
+  background-color: var(--green);
+  color: var(--color-text);
+}
+.project_page.dark .login form {
+  background-color: var(--bg4);
+}
+
+.project_page.dark .login form h3 {
+  color: var(--green) !important;
+}
+.project_page.dark .login form button {
+  background-color: var(--green);
 }
