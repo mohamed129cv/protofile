@@ -13,7 +13,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-     provideRouter(routes , withHashLocation() ),
+     provideRouter(routes  ),
      provideClientHydration() ,
      provideAnimations() ,
      provideHttpClient(withInterceptors([loadingInterceptor])) ,
