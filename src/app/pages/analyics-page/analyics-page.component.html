@@ -1,0 +1,58 @@
+<section class="analytics-page " [ngClass]="{'dark':bg=='dark'}">
+  <div class="container">
+    <section class="contact">
+      <aside>
+        <ul>
+          <li class="fade-up" appFadeUp [ngClass]="{'active' : activeChart == 'table'}" (click)="showChart('table')">
+            Table</li>
+          <li class="fade-up" appFadeUp [ngClass]="{'active' : activeChart == 'views'}" (click)="showChart('views')">
+            Views</li>
+          <li class="fade-up" appFadeUp [ngClass]="{'active' : activeChart == 'interactions'}"
+            (click)="showChart('interactions')">Interactions</li>
+          <li class="fade-up" appFadeUp [ngClass]="{'active' : activeChart == 'clicks'}"
+            (click)="showChart('clicks')">Link Clicks</li>
+          <li class="fade-up" appFadeUp [ngClass]="{'active' : activeChart == 'visits'}"
+            (click)="showChart('visits')">Page Visits</li>
+          <li class="fade-up" appFadeUp [ngClass]="{'active' : activeChart == 'followers'}"
+            (click)="showChart('followers')">Followers</li>
+
+        </ul>
+      </aside>
+
+      <article class="contact_chart">
+        <div class="table-responsive" *ngIf="activeChart === 'table'">
+          <table class="table table-striped" [ngClass]="{'table-dark': bg == 'dark' }">
+            <thead>
+              <tr>
+                <td class="table-active">index</td>
+                <td>Views</td>
+                <td>Interactions</td>
+                <td>Link Clicks</td>
+                <td>Page Visits</td>
+                <td>Followers</td>
+              </tr>
+            </thead>
+            <tbody>
+              @for (r of project.results; track $index) {
+              <tr>
+                <td class="table-active fade-up" appFadeUp>{{$index + 1}}</td>
+                <td class="fade-up" appFadeUp>{{r.view}}</td>
+                <td class="fade-up" appFadeUp>{{r.interaction}}</td>
+                <td class="fade-up" appFadeUp>{{r.Click}}</td>
+                <td class="fade-up" appFadeUp>{{r.visit_page}} </td>
+                <td class="fade-up" appFadeUp>{{r.New_follower}}</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+          <canvas #allChart *ngIf="activeChart === 'table'"></canvas>
+        </div>
+        <canvas #viewsCanvas *ngIf="activeChart === 'views'"></canvas>
+        <canvas #interactionsCanvas *ngIf="activeChart === 'interactions'"></canvas>
+        <canvas #clicksCanvas *ngIf="activeChart === 'clicks'"></canvas>
+        <canvas #visitsCanvas *ngIf="activeChart === 'visits'"></canvas>
+        <canvas #followersCanvas *ngIf="activeChart === 'followers'"></canvas>
+      </article>
+    </section>
+  </div>
+</section>

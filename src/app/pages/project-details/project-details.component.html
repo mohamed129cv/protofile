@@ -1,16 +1,76 @@
-<section class='details_page'>
+<section class='details_page' [ngClass]="{'dark':bg=='dark'}">
   <div class="container">
     <section class="project_details">
       <article class="details">
-        <h1>{{project.project_title}}</h1>
-        <p>{{project.project_dis}}</p>
+        <h1 class="fade-left" appFadeLeft>{{project.project_title}}</h1>
+        <ul class="roles">
+          @for (role of project.roles; track $index) {
+            <li class="fade-up" appFadeUp> {{role.role}}</li>
+          }
+        </ul>
+        <h6 class="fade-up" appFadeUp>Project Overview :</h6>
+        <p class="fade-up" appFadeUp>{{project.project_dis}}</p>
       </article>
       <article class="poster">
-        <img [src]="project.project_image" [alt]="project.project_title">
+        <img [src]="project.project_poster" class="fade-right" appFadeRight [alt]="project.project_title">
       </article>
     </section>
+    <hr class="fade-up " appFadeUp>
+    <article class="tools">
+      <h3  class="fade-up" appFadeUp >Tools</h3>
+      <ul >
+      @for (tool of project.tools; track $index) {
+        <li class="fade-up" appFadeUp>{{tool.tool}}</li>
+      }
+    </ul>
+    </article>
+    <hr class="fade-up " appFadeUp>
+    <article class="challenge">
+      <h3 class="fade-up" appFadeUp>challenges</h3>
+      <ol type="1">
+        @for (c of project.challenges; track $index) {
+        <li class="fade-up " appFadeUp>{{c.challenge}}</li>
+        }
+      </ol>
+    </article>
+    <hr class="fade-up " appFadeUp>
+    <article class="stra">
+      <h3 class="fade-up" appFadeUp>strategic</h3>
+      <ol>
+        @for (str of project.strategics; track $index) {
+          <li class="fade-up " appFadeUp>{{str.strategic}}</li>
+        }
+      </ol>
+    </article>
+    <hr class="fade-up " appFadeUp>
+
+    <section class="project-analytics">
+      <article class="analytics-header">
+        <div class="title-box">
+          <i class="fa-solid fa-chart-line"></i>
+          <div>
+            <h4>Project Performance Analytics</h4>
+            <p>Overview of engagement, reach and growth metrics</p>
+          </div>
+        </div>
+        <button class="btn btn-outline-primary " [ngClass]="{'btn-outline-success': bg == 'dark'}" (click)="chartPage()">
+          <i class="fa-solid fa-expand"></i> Show All Details
+        </button>
+
+      </article>
+      <!--! الاشكال و التحليلات   -->
+      <article class="charts">
+        <canvas #view appFadeUp class="fade-up"></canvas>
+        <canvas #interaction appFadeUp class="fade-up"></canvas>
+        <canvas #click appFadeUp class="fade-up"></canvas>
+        <canvas #follower appFadeUp class="fade-up"></canvas>
+      </article>
+    </section>
+    <hr class="fade-up" appFadeUp>
+
+    <!--! slider  -->
     <section class="all_media">
-      <h2 class="text-primary my-2 text-capitalize">project details</h2>
+      <h3 class="text-primary my-2 text-capitalize">project details</h3>
       <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
 
@@ -55,4 +115,6 @@
       </div>
     </section>
   </div>
+
+
 </section>

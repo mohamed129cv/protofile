@@ -207,3 +207,7 @@
 .card_page.dark .project_card .rate {
   background-color: var(--green);
 }
+
+.alert.alert-danger{
+  width: 50%;
+}

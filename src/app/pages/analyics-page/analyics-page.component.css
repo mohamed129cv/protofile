@@ -1,0 +1,94 @@
+.analytics-page{
+  width: 100%;
+  min-height:90vh ;
+  padding: clamp(.8rem , 1vw + .6rem , 1.5rem);
+}
+
+.contact{
+  width: 100%;
+  background-color: var(bg4);
+  margin-block:30px ;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: wrap row;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--shadow);
+  border-radius: 1.2rem;
+
+}
+aside {
+  width: 20%;
+  border-radius: 1.2rem;
+  padding: .5rem;
+
+}
+aside ul{
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-flow: column wrap;
+}
+aside ul li{
+  background-color: var(--color-text);
+  color: var(--main-color);
+  transition: var(--transition);
+  width: 100%;
+  padding: .5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: .5rem;
+}
+aside ul li:hover ,
+aside ul li.active{
+  color: var(--color-text);
+  background-color: var(--main-color);
+}
+
+.contact_chart{
+  width: 75%;
+  padding: 1rem;
+}
+canvas {
+  width: 100% !important;
+  height: 500px !important;
+  background-color: var(--color-muted);
+  box-shadow: var(--shadow);
+  border-radius: 1.3rem;
+  margin-bottom: 20px;
+}
+@media screen and (max-width: 992px) {
+  .container{
+    width: 100%;
+  }
+  aside{
+    width: 100%;
+    padding: .1rem;
+  }
+  .contact_chart{
+    width: 100%;
+  }
+  aside ul{
+    flex-direction: row ;
+    gap: .1rem;
+  }
+  aside ul li{
+    width: auto;
+    padding: .3rem;
+  }
+}
+
+/** dark mode  */
+.analytics-page.dark aside ul li{
+  background-color: var(--color-text);
+  color: var(--green);
+}
+.analytics-page.dark aside ul li:hover ,
+.analytics-page.dark aside ul li.active{
+  color: var(--color-text);
+  background-color: var(--green);
+}
+

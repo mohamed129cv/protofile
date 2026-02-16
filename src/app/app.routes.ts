@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { projectDetailsResolver } from './core/resolver/project-details.resolver';
+import { analyicResolver } from './core/resolver/analyic.resolver';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -7,5 +8,6 @@ export const routes: Routes = [
   { path: 'project', loadComponent: () => import('./pages/projects/projects.component').then(c => c.ProjectsComponent), title: ' Projects' },
   {path : 'project/details/:id' , resolve : {  data :projectDetailsResolver}  , loadComponent: ()=> import('./pages/project-details/project-details.component').then(c=>c.ProjectDetailsComponent) , title : 'Project Details'} ,
   { path: 'contact-us', loadComponent: () => import('./pages/contact-us/contact-us.component').then(c => c.ContactUsComponent), title: ' Contact Us' },
+  {path :'project/analytics/:id',resolve :{data : analyicResolver} ,loadComponent :()=>import('./pages/analyics-page/analyics-page.component').then(c=>c.AnalyicsPageComponent) , title:'Project results'},
   { path: '**', loadComponent: () => import('./pages/notfound/notfound.component').then(c => c.NotfoundComponent), title: ' Not Found' }
 ];

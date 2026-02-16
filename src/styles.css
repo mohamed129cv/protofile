@@ -33,6 +33,9 @@ body {
   appearance: none;
   background-color: var(--main-color);
 }
+body.dark::-webkit-scrollbar-thumb {
+  background-color: var(--green);
+}
 @keyframes bounce {
   from {
     transform: translateY(0px);
@@ -45,23 +48,19 @@ body {
   position: fixed;
   top: 2.5rem;
 }
-.fade-up {
+.fade-up  , .fade-left , .fade-right{
   opacity: 0;
-  transform: translateY(90px) scale(0.6);
   transition: 0.8s all ease-in-out;
   transition-delay: 0.2s;
+}
+.fade-up  {
+  transform: translateY(90px) scale(0.6);
 }
 .fade-right{
-  opacity: 0;
   transform: translateX(80px) scale(.6);
-  transition: 0.8s all ease-in-out;
-  transition-delay: 0.2s;
 }
 .fade-left{
-  opacity: 0;
   transform: translateX(-80px) scale(.6);
-  transition: 0.8s all ease-in-out;
-  transition-delay: 0.2s;
 }
 
 .fade-right.show,
@@ -71,7 +70,7 @@ body {
   transform: translate(0) scale(1);
 }
 body.dark{
-  background-color: var(--bg3);
+  background-color: var(--bg2);
 }
 
 body.dark h1,

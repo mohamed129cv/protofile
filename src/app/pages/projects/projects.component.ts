@@ -12,7 +12,7 @@ import { GetTypePipe } from '../../core/pipe/get-type.pipe';
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [GetTypePipe, CommonModule, FormsModule, ReactiveFormsModule, ProjectsCartComponent, SearchPipe],
+  imports: [ CommonModule, FormsModule, ReactiveFormsModule, ProjectsCartComponent, SearchPipe],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css'
 })
@@ -36,7 +36,7 @@ export class ProjectsComponent {
   bg!: string
   projects: Iproject[] = [] as Iproject[]
   allProjects: Iproject[] = [] as Iproject[]
-  adminMode: boolean = false
+  adminMode: boolean = true
   userName: string = 'admin'
   password: string = 'army4'
   searchWord: string = ''

@@ -1,12 +1,12 @@
-<section class="card_page" [ngClass]="{'dark' : bg== 'dark'}" >
+<section class="card_page" [ngClass]="{'dark' : bg== 'dark'}">
   @for (projcet of projcets; track $index) {
   <!--& المشروع  -->
   <article class="project_card fade-up" appFadeUp [attr.data-id]="projcet.id">
-    <img (click)="detalisProject(projcet.id)" [src]="projcet.project_image" alt="project">
+    <img (click)="detalisProject(projcet.id)" [src]="projcet.project_poster" alt="project">
     <span class="rate"><i class="fa-solid fa-star"></i> {{projcet.project_rate}}</span>
     <section class="lr">
       <div class="text">
-        <h4 class="title" (click)="detalisProject(projcet.id)">{{projcet.project_title }}</h4>
+        <h4 class="title" (click)="detalisProject(projcet.id)">{{projcet.project_title | projectDis : 30 }}</h4>
         <p>{{projcet.project_dis |projectDis }}</p>
       </div>
       <div class="tools">
@@ -50,12 +50,26 @@
           }
         </div>
       </article>
-
+      <!--& project poster  -->
+      <article class="flid">
+        <label for="media" class="form-label">project poster</label>
+        <input type="file" name="media" id="media" class="form-control" (change)="uplodeImg($event)">
+        <!-- <div class="validators">
+          @if(project_poster.dirty || project_poster.touched){
+          @if(project_poster.getError('required')){
+          <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this
+            flid
+            required</p>
+          }
+          }
+        </div> -->
+      </article>
       <!--& project main description  -->
       <article class="flid">
-        <label for="description" class="form-label fade-up" appFadeUp>project description</label>
-        <input type="text" name="description" id="description" class="form-control fade-up" appFadeUp
+        <label for="description" class="form-label fade-up" appFadeUp>Project Overview</label>
+        <textarea name="description" id="description" class="form-control fade-up" appFadeUp
           formControlName="project_dis">
+        </textarea>
         <div class="validators">
           @if(project_dis.dirty || project_dis.touched){
           @if(project_dis.getError('required')){
@@ -69,7 +83,6 @@
           }
         </div>
       </article>
-
       <!--& project type  -->
       <article class="flid">
         <label for="type" class="form-label fade-up" appFadeUp>project type</label>
@@ -83,7 +96,186 @@
           }
         </div>
       </article>
+      <!--& Strategic Approach  -->
+      <article class="flid position-relative" formArrayName="strategics">
+        <h4 [ngClass]="{'text-success': bg =='dark'}" class="text-primary fade-up" appFadeUp>Strategic Approach</h4>
+        @for (i of strategicControls.controls; track $index) {
+        <div class="strategic" [formGroupName]="$index">
+          <label for="strategic" class="d-inline m-2 form-label fade-up " appFadeUp>strategic {{$index + 1}}</label>
+          <input type="text" name="strategic" id="strategic" appFadeUp class="d-inline m-2 w-75 fade-up form-control"
+            formControlName="strategic">
+          <div class="validators">
+            @if(i.get('strategic')?.dirty || i.get('strategic')?.touched){
+            @if(i.get('strategic')?.getError('required')){
+            <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this
+              flid
+              required</p>
+            }
+            }
+          </div>
+        </div>
+        }
+        <button class="btn btn-primary position-absolute top-50 end-0 fade-up" appFadeUp
+          [ngClass]="{'btn-success' : bg =='dark'}" (click)="addStrategic()" type="button"><i
+            class="fa-solid fa-plus"></i></button>
+      </article>
+      <!--& Role in the Project  -->
+      <article class="flid position-relative" formArrayName="roles">
 
+        <h4 [ngClass]="{'text-success': bg =='dark'}" class="text-primary fade-up" appFadeUp>My Role in the Project</h4>
+        @for (role of rolesControls.controls; track $index) {
+        <div class="role" [formGroupName]="$index">
+          <label for="role" class="form-label  fade-up mx-3 d-inline my-2  " appFadeUp>Role {{ $index + 1}}</label>
+          <input type="text" name="role" id="role" placeholder="Add your role in the project" appFadeUp
+            class="w-75 my-2 d-inline fade-up form-control" formControlName="role">
+          <div class="validators">
+            @if(role.get("role")?.dirty || role.get("role")?.touched){
+            @if(role.get("role")?.getError('required')){
+            <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this
+              flid
+              required</p>
+            }
+            }
+          </div>
+        </div>
+        }
+        <button class="btn btn-primary position-absolute top-50 end-0 fade-up" appFadeUp
+          [ngClass]="{'btn-success' : bg =='dark'}" (click)="addRole()" type="button"><i
+            class="fa-solid fa-plus"></i></button>
+
+      </article>
+      <!--& Tools  -->
+      <article class="flid position-relative" formArrayName="tools">
+        <h4 [ngClass]="{'text-success': bg =='dark'}" class="text-primary fade-up" appFadeUp>Tools used</h4>
+        @for (i of toolsControls.controls; track $index) {
+        <div class="tools" [formGroupName]="$index">
+          <label for="tool" class="form-label fade-up d-inline " appFadeUp>Tool {{$index + 1}}</label>
+          <input type="text" name="tool" id="details" appFadeUp class="w-75  d-inline fade-up form-control"
+            formControlName="tool">
+          <div class="validators">
+            @if(i.get('tool')?.dirty || i.get('tool')?.touched){
+            @if(i.get('tool')?.getError('required')){
+            <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this
+              flid
+              required</p>
+            }
+            }
+          </div>
+        </div>
+        }
+        <button class="btn btn-primary  position-absolute top-50 end-0 fade-up" appFadeUp
+          [ngClass]="{'btn-success' : bg =='dark'}" (click)="addTools()" type="button"><i
+            class="fa-solid fa-plus"></i></button>
+      </article>
+      <!--& The Challenge  -->
+      <article class="flid position-relative" formArrayName="challenges">
+        <h4 [ngClass]="{'text-success': bg =='dark'}" class="text-primary fade-up" appFadeUp>The Project Challenge</h4>
+        @for (i of challengeControls.controls; track $index) {
+        <div class="challange" [formGroupName]="$index">
+          <label for="challeng" class="form-label fade-up d-inline m-2" appFadeUp>challange {{$index + 1}}</label>
+          <input type="text" name="challeng" id="challeng" appFadeUp class="w-75 d-inline my-2 fade-up form-control"
+            formControlName="challenge">
+          <div class="validators">
+            @if(i.get("challenge")?.dirty || i.get("challenge")?.touched){
+            @if(i.get("challenge")?.getError('required')){
+            <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this
+              flid
+              required</p>
+            }
+            }
+          </div>
+        </div>
+        }
+        <button class="btn btn-primary position-absolute top-50 end-0 fade-up" appFadeUp
+          [ngClass]="{'btn-success' : bg =='dark'}" (click)="addChallenge()" type="button"><i
+            class="fa-solid fa-plus"></i></button>
+      </article>
+      <!--& Results  -->
+      <article class="flid" formArrayName="results">
+        <h4 [ngClass]="{'text-success': bg =='dark'}" class="text-primary fade-up" appFadeUp>Project Results</h4>
+        @for (reselt of resultsControls.controls; track $index) {
+        <div class="results" [formGroupName]="$index">
+          <h6 class="fade-up" appFadeUp>Stage {{$index + 1}} results</h6>
+          <label for="view" class="form-label fade-up w-25 " appFadeUp>Number of views</label>
+          <input type="text" name="view" id="view" placeholder="Number of views" appFadeUp
+            class="ms-auto d-inline w-75 my-2 fade-up form-control" formControlName="view">
+          <div class="validators">
+            @if(reselt.get("view")?.dirty || reselt.get("view")?.touched){
+            @if(reselt.get("view")?.getError('required')){
+            <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this
+              flid
+              required</p>
+            }@if(reselt.get("view")?.getError('pattern')){
+            <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i>
+              Numbers only </p>
+            }
+            }
+          </div>
+          <label for="interaction" class="form-label fade-up  w-25 " appFadeUp>Number of interactions</label>
+          <input type="text" name="interaction" id="interaction" placeholder="Number of interactions" appFadeUp
+            class="d-inline w-75 my-2 fade-up form-control" formControlName="interaction">
+          <div class="validators">
+            @if(reselt.get("interaction")?.dirty || reselt.get("interaction")?.touched){
+            @if(reselt.get("interaction")?.getError('required')){
+            <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this
+              flid
+              required</p>
+            }@if(reselt.get("interaction")?.getError('pattern')){
+            <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i>
+              Numbers only </p>
+            }
+            }
+          </div>
+          <label for="click" class="form-label fade-up  w-25 " appFadeUp>Number of links accessed</label>
+          <input type="text" name="click" id="click" placeholder="Number of links accessed" appFadeUp
+            class="d-inline w-75 my-2 fade-up form-control" formControlName="Click">
+          <div class="validators">
+            @if(reselt.get("Click")?.dirty || reselt.get("Click")?.touched){
+            @if(reselt.get('Click')?.getError('required')){
+            <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this
+              flid
+              required</p>
+            }@if(reselt.get("Click")?.getError('pattern')){
+            <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i>
+              Numbers only </p>
+            }
+            }
+          </div>
+          <label for="vist" class="form-label fade-up  w-25 " appFadeUp>Number of page visits</label>
+          <input type="text" name="vist" id="vist" placeholder="Number of page visits" appFadeUp
+            class="d-inline w-75 my-2 fade-up form-control" formControlName="visit_page">
+          <div class="validators">
+            @if(reselt.get("visit_page")?.dirty || reselt.get("visit_page")?.touched){
+            @if(reselt.get("visit_page")?.getError('required')){
+            <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this
+              flid
+              required</p>
+            }@if(reselt.get("visit_page")?.getError('pattern')){
+            <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i>
+              Numbers only </p>
+            }
+            }
+          </div>
+          <label for="followers" class="form-label fade-up w-25  " appFadeUp>Number of new followers</label>
+          <input type="text" name="followers" id="followers" placeholder="Number of new followers" appFadeUp
+            class="d-inline w-75 my-2 fade-up form-control" formControlName="New_follower">
+          <div class="validators">
+            @if(reselt.get('New_follower')?.dirty || reselt.get('New_follower')?.touched){
+            @if(reselt.get('New_follower')?.getError('required')){
+            <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this
+              flid
+              required</p>
+            }@if(reselt.get('New_follower')?.getError('pattern')){
+            <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i>
+              Numbers only </p>
+            }
+            }
+          </div>
+        </div>
+        }
+        <button class="btn btn-primary fade-up " appFadeUp [ngClass]="{'btn-success' : bg =='dark'}"
+          (click)="addResults()" type="button"><i class="fa-solid fa-plus"></i> Add more results </button>
+      </article>
       <!--& project rate  -->
       <article class="flid">
         <label for="rate" class="form-label fade-up" appFadeUp>project rate</label>
@@ -105,50 +297,30 @@
           }
         </div>
       </article>
-
-      <!--& project poster  -->
-      <article class="flid">
-        <label for="media" class="form-label">project poster</label>
-        <input type="text" name="media" id="media" class="form-control" formControlName="project_image">
-        <div class="validators">
-          @if(project_image.dirty || project_image.touched){
-          @if(project_image.getError('required')){
-          <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this
-            flid
-            required</p>
-          }
-          }
-        </div>
-      </article>
-      <!--& project details  -->
-      <article class="flid">
-        <label for="details" class="form-label fade-up " appFadeUp>project details</label>
-        <input type="text" name="details" id="details" appFadeUp class=" fade-up form-control"
-          formControlName="project_details">
-      </article>
-
       <!--& project media  -->
-      <article class="flid" formArrayName="project_media">
+      <article class="flid position-relative" formArrayName="project_media">
+        <h4 [ngClass]="{'text-success': bg =='dark'}" class="text-primary fade-up" appFadeUp>All media </h4>
         @for (media of mediaControls.controls; track $index) {
         <div class="media" [formGroupName]="$index">
-          <label class="form-label">Add media {{$index + 1}}</label>
-          <input type="text" formControlName="url" placeholder="Media URL" class="my-1 form-control w-25 d-inline mx-1"
-            formControlName="url">
+          <label class="form-label fade-up" appFadeUp>Add media {{$index + 1}}</label>
+          <input type="file"
+            class="my-1 form-control w-25 d-inline mx-1 fade-up" appFadeUp (change)="uplodeImgMedia($event , $index)">
+          <input type="text" formControlName="dis" placeholder="Description"
+            class="my-1 form-control w-25 d-inline mx-1 fade-up" appFadeUp formControlName="dis">
 
-          <input type="text" formControlName="dis" placeholder="Description" class="my-1 form-control w-25 d-inline mx-1"
-            formControlName="dis">
-
-          <select name="isVideo" id="isVideo" class="form-select d-inline w-auto mx-2" formControlName="isVideo">
+          <select name="isVideo" id="isVideo" class="form-select d-inline w-auto mx-2 fade-up" appFadeUp
+            formControlName="isVideo">
             <option [ngValue]="true">Video</option>
             <option [ngValue]="false">Image</option>
           </select>
         </div>
         }
-        <button class="btn btn-primary" [ngClass]="{'btn-success' : bg =='dark'}" (click)="addMedia()" type="button"><i class="fa-solid fa-plus"></i></button>
+        <button class="btn btn-primary position-absolute top-50 end-0 fade-up" appFadeUp
+          [ngClass]="{'btn-success' : bg =='dark'}" (click)="addMedia()" type="button"><i
+            class="fa-solid fa-plus"></i></button>
       </article>
-
-
-      <button class="btn btn-primary w-25 " [ngClass]="{'btn-success' : bg =='dark'}"  type="submit" #btnSubmit>
+      <button class="btn btn-primary w-25 fade-up " appFadeUp [ngClass]="{'btn-success' : bg =='dark'}" type="submit"
+        #btnSubmit>
         @switch (eidtMode) {
         @case (true) {
         Update Project
