@@ -1,3 +1,6 @@
+import { ApexOptions } from './../../../../node_modules/ng-apexcharts/lib/model/apex-types.d';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { Chart2Service } from './../../core/api/chart2.service';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Iproject } from '../../core/interface/iproject';
@@ -7,20 +10,23 @@ import { CommonModule } from '@angular/common';
 import { FadeUpDirective } from "../../core/direcitve/fade-up.directive";
 import { BgService } from '../../core/api/bg.service';
 
+
 @Component({
   selector: 'app-analyics-page',
   standalone: true,
-  imports: [CommonModule, FadeUpDirective],
+  imports: [CommonModule, FadeUpDirective, NgApexchartsModule],
   templateUrl: './analyics-page.component.html',
   styleUrl: './analyics-page.component.css'
 })
 export class AnalyicsPageComponent {
-  constructor(private _bg:BgService, private _ActivatedRoute: ActivatedRoute, private _ChartsService: ChartsService) { }
+  constructor(private Chart2Service: Chart2Service, private _bg: BgService, private _ActivatedRoute: ActivatedRoute, private _ChartsService: ChartsService) { }
   ngOnInit(): void {
     this._ActivatedRoute.data.subscribe((data: any) => {
       this.project = data['data']
-      this.showChart('table')
+      this.updateChart('bar')
     })
+
+    this.barChartOptions = this.Chart2Service.allDateApex(this.project) ?? {};
   }
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
@@ -32,51 +38,42 @@ export class AnalyicsPageComponent {
     })
 
   }
-  bg!:string
+  bg!: string
   project: Iproject = {} as Iproject
   chart!: Chart;
-  activeChart: string = 'table'
-  @ViewChild('viewsCanvas') viewsCanvas!: ElementRef<HTMLCanvasElement>;
-  @ViewChild('interactionsCanvas') interactionsCanvas!: ElementRef<HTMLCanvasElement>;
-  @ViewChild('clicksCanvas') clicksCanvas!: ElementRef<HTMLCanvasElement>;
-  @ViewChild('visitsCanvas') visitsCanvas!: ElementRef<HTMLCanvasElement>;
-  @ViewChild('followersCanvas') followersCanvas!: ElementRef<HTMLCanvasElement>;
-  @ViewChild('allChart') allChart!: ElementRef<HTMLCanvasElement>;
-  showChart(chartName: string) {
+  activeChart: string = 'bar'
+
+  chartOptions: ApexOptions = {};
+  barChartOptions: ApexOptions = {};
+  viewsChartOptions: ApexOptions = {};
+  interactionChartOptions: ApexOptions = {};
+  clickChartOptions: ApexOptions = {};
+  visitChartOptions: ApexOptions = {};
+  followersChartOptions: ApexOptions = {};
+
+
+  updateChart(chartName: string) {
     this.activeChart = chartName;
-    if (this.chart) this.chart.destroy();
-    setTimeout(()=>{
-       switch (chartName) {
-      case 'table':
-        this.chart = new Chart(this.allChart.nativeElement, this._ChartsService.allDate(this.project));
+
+    switch (chartName) {
+      case 'bar':
+        this.chartOptions = this.Chart2Service.allDateApex(this.project);
         break;
       case 'views':
-        this.chart = new Chart(this.viewsCanvas.nativeElement, this._ChartsService.viewsDatafun(this.project));
+        this.chartOptions = this.Chart2Service.viewsDataApex(this.project);
         break;
       case 'interactions':
-        this.chart = new Chart(this.interactionsCanvas.nativeElement, this._ChartsService.interactionDatafun(this.project));
+        this.chartOptions = this.Chart2Service.interactionDataApex(this.project);
         break;
       case 'clicks':
-        this.chart = new Chart(this.clicksCanvas.nativeElement, this._ChartsService.clickDataFun(this.project));
+        this.chartOptions = this.Chart2Service.clickDataApex(this.project);
         break;
       case 'visits':
-        this.chart = new Chart(this.visitsCanvas.nativeElement, this._ChartsService.vistDataFun(this.project));
+        this.chartOptions = this.Chart2Service.vistDataApex(this.project);
         break;
       case 'followers':
-        this.chart = new Chart(this.followersCanvas.nativeElement, this._ChartsService.followersFun(this.project));
-        break;
-      default:
+        this.chartOptions = this.Chart2Service.followersApex(this.project);
         break;
     }
-    },500)
   }
 }
-
-// getPercentageChange(index: number, field: string): number {
-//   if (index === 0) return 0; // أول مرحلة مفيش قبلها حاجة
-
-//   const previous = Number(this.project.results[index - 1][field]);
-//   const current = Number(this.project.results[index][field]);
-//   if (!previous) return 0;
-//   return ((current - previous) / previous) * 100;
-// }

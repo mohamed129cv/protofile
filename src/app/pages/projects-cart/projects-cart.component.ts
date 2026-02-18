@@ -23,7 +23,8 @@ export class ProjectsCartComponent {
     private _ToastrService: ToastrService,
     private _router: Router,
     private _bg: BgService,
-    private _uplodeImg: UplodeImgService) { }
+    private _uplodeImg: UplodeImgService,
+  ) { }
   @Input({ required: true }) adminMode: boolean = false
   @Input({ required: true }) projcets: Iproject[] = [] as Iproject[]
   bg!: string
@@ -52,6 +53,8 @@ export class ProjectsCartComponent {
   add_project!: FormGroup
   project_title!: FormControl
   project_dis!: FormControl
+  date_start !: FormControl
+  date_end !: FormControl
   project_rate!: FormControl
   project_type!: FormControl
   project_poster!: FormControl
@@ -61,7 +64,6 @@ export class ProjectsCartComponent {
   challenge!: FormControl
   strategics!: FormArray
   strategic!: FormControl
-
   tools!: FormArray
   tool !: FormControl
   results!: FormArray
@@ -82,6 +84,9 @@ export class ProjectsCartComponent {
   open_add_pro() {
     this.add_pro_section.nativeElement.classList.add("show")
     this.add_pro_section.nativeElement.classList.remove("hidden")
+    if (!this.eidtMode) {
+      this.pushControls()
+    }
   }
   //! غلق ببرت اضافة مشروع
   closing_add_pro() {
@@ -90,14 +95,16 @@ export class ProjectsCartComponent {
     this.getProjects()
     this.eidtMode = false
     this.add_project.reset()
-    this.mediaControls.clear()
-    this.mediaControls.push(this.createMediaGroup())
+    this.clearControls()
+    // this.pushControls()
   }
   initFormControlNewPro() {
     this.project_title = new FormControl('', [Validators.required, Validators.minLength(3)])
     this.project_dis = new FormControl('', [Validators.required, Validators.minLength(3)])
     this.project_rate = new FormControl('', [Validators.required, Validators.min(1), Validators.max(10)])
     this.project_type = new FormControl('', [Validators.required])
+    this.date_start = new FormControl('', [Validators.required])
+    this.date_end = new FormControl('', [Validators.required])
     this.project_poster = new FormControl(this.imgsrc, [Validators.required])
     this.results = new FormArray([this.createResultsGroup()])
     this.tools = new FormArray([this.createTool()])
@@ -111,6 +118,8 @@ export class ProjectsCartComponent {
       project_title: this.project_title,
       project_dis: this.project_dis,
       project_rate: this.project_rate,
+      date_start: this.date_start,
+      date_end: this.date_end,
       project_type: this.project_type,
       project_poster: this.project_poster,
       results: this.results,
@@ -121,11 +130,13 @@ export class ProjectsCartComponent {
       project_media: this.project_media,
     })
   }
-  createMediaGroup() {
+
+  //!media
+  createMediaGroup(dis: string = '', url: string = '', isVideo: boolean = false) {
     return new FormGroup({
-      url: new FormControl('', Validators.required),
-      dis: new FormControl('', Validators.required),
-      isVideo: new FormControl(false, Validators.required),
+      url: new FormControl(url, Validators.required),
+      dis: new FormControl(dis, Validators.required),
+      isVideo: new FormControl(isVideo, Validators.required),
     })
   }
   get mediaControls() {
@@ -135,13 +146,13 @@ export class ProjectsCartComponent {
     this.mediaControls.push(this.createMediaGroup());
   }
   //& النتائج
-  createResultsGroup() {
+  createResultsGroup(view: number = 0, inter: number = 0, click: number = 0, vist: number = 0, follower: number = 0) {
     return new FormGroup({
-      view: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]),
-      interaction: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]),
-      Click: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]),
-      visit_page: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]),
-      New_follower: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]+$/)]),
+      view: new FormControl(view, [Validators.required, Validators.pattern(/^[0-9]+$/)]),
+      interaction: new FormControl(inter, [Validators.required, Validators.pattern(/^[0-9]+$/)]),
+      Click: new FormControl(click, [Validators.required, Validators.pattern(/^[0-9]+$/)]),
+      visit_page: new FormControl(vist, [Validators.required, Validators.pattern(/^[0-9]+$/)]),
+      New_follower: new FormControl(follower, [Validators.required, Validators.pattern(/^[0-9]+$/)]),
     })
   }
   get resultsControls() {
@@ -152,9 +163,9 @@ export class ProjectsCartComponent {
   }
 
   //& الادوات
-  createTool() {
+  createTool(value: string = '') {
     return new FormGroup({
-      tool: new FormControl('', [Validators.required])
+      tool: new FormControl(value, [Validators.required])
     })
   }
   get toolsControls() {
@@ -164,9 +175,9 @@ export class ProjectsCartComponent {
     this.toolsControls.push(this.createTool())
   }
   //& الاستراتجيات
-  createStrategic() {
+  createStrategic(value: string = '') {
     return new FormGroup({
-      strategic: new FormControl('', [Validators.required])
+      strategic: new FormControl(value, [Validators.required])
     })
   }
   get strategicControls() {
@@ -176,9 +187,9 @@ export class ProjectsCartComponent {
     this.strategicControls.push(this.createStrategic())
   }
   //& التحديات
-  createchallenges() {
+  createchallenges(value: string = '') {
     return new FormGroup({
-      challenge: new FormControl('', [Validators.required])
+      challenge: new FormControl(value, [Validators.required])
     })
   }
   get challengeControls() {
@@ -188,9 +199,9 @@ export class ProjectsCartComponent {
     this.challengeControls.push(this.createchallenges())
   }
   //& الادوار
-  createRoles() {
+  createRoles(value: string = '') {
     return new FormGroup({
-      role: new FormControl('', [Validators.required])
+      role: new FormControl(value, [Validators.required])
     })
   }
   get rolesControls() {
@@ -201,6 +212,22 @@ export class ProjectsCartComponent {
   }
 
 
+  clearControls() {
+    this.mediaControls.clear();
+    this.resultsControls.clear();
+    this.challengeControls.clear();
+    this.rolesControls.clear();
+    this.strategicControls.clear();
+    this.toolsControls.clear();
+  }
+  pushControls() {
+    this.mediaControls.push(this.createMediaGroup());
+    this.resultsControls.push(this.createResultsGroup());
+    this.challengeControls.push(this.createchallenges());
+    this.rolesControls.push(this.createRoles());
+    this.strategicControls.push(this.createStrategic());
+    this.toolsControls.push(this.createTool());
+  }
 
   add_pro_sbumit() {
     if (this.add_project.valid) {
@@ -208,6 +235,8 @@ export class ProjectsCartComponent {
         next: res => {
           this._ToastrService.success('Project added successfully.', 'Success')
           this.add_project.reset()
+          this.clearControls()
+          this.pushControls()
           this.getProjects()
         }
       })
@@ -222,103 +251,66 @@ export class ProjectsCartComponent {
   }
   //* التعديل علي مشروع
   enableEdit(id: number) {
- this.open_add_pro(); // فتح قسم الإضافة/التعديل
-  const project = this.projcets.find(pro => pro.id === id);
-  if (!project) return;
+    const project = this.projcets.find(pro => pro.id === id);
+    if (!project) return;
 
-  this.eidtMode = true;
-  this.projectId = project.id;
+    this.eidtMode = true;
+    this.clearControls()
+    console.log(this.toolsControls.length);
+    this.projectId = project.id;
+    this.imgsrc = project.project_poster;
+    // إضافة القيم مباشرة
+    // tools
+    if (project.tools && project.tools.length) {
+      project.tools.forEach(t => this.toolsControls.push(this.createTool(t.tool)));
+    } else {
+      this.toolsControls.push(this.createTool()); // اعمل واحد افتراضي لو مفيش tools
+    }
+    // Roles
+    if (project.roles && project.roles.length) {
+      project.roles.forEach(r => {
+        this.rolesControls.push(this.createRoles(r.role));
+      })
+    } else {
+      this.rolesControls.push(this.createRoles());
+    }
+    // Challenges
+    if (project.challenges && project.challenges.length) {
+      project.challenges.forEach(c => { this.challengeControls.push(this.createchallenges(c.challenge)); });
+    } else {
+      console.log('object');
+      this.challengeControls.push(this.createchallenges());
+    }
 
-  // مسح كل الـ FormArrays عشان نبدأ من جديد
-  this.mediaControls.clear();
-  this.resultsControls.clear();
-  this.challengeControls.clear();
-  this.rolesControls.clear();
-  this.strategicControls.clear();
-  this.toolsControls.clear();
+    // Strategics
+    if (project.strategics && project.strategics.length) {
+      project.strategics.forEach(s => {
+        this.strategicControls.push(this.createStrategic(s.strategic));
+      });
+    } else {
+      this.strategicControls.push(this.createStrategic());
+    }
 
-  this.imgsrc = project.project_poster;
+    project.results.forEach(res => {
+      this.resultsControls.push(this.createResultsGroup(res.view, res.interaction, res.Click, res.visit_page, res.New_follower));
+    });
 
-  // إضافة القيم مباشرة
- this.toolsControls.clear();
-if (project.tools && project.tools.length) {
-  project.tools.forEach(t => {
-    this.toolsControls.push(new FormGroup({
-      tool: new FormControl(t.tool || '', Validators.required)
-    }));
+    project.project_media.forEach(m => {
+      this.mediaControls.push(this.createMediaGroup(m.dis, m.url, m.isVideo));
+    });
 
-  });
-} else {
-  console.log('object');
-  this.toolsControls.push(this.createTool()); // اعمل واحد افتراضي لو مفيش tools
-}
+    // القيم العادية
+    this.add_project.patchValue({
+      project_title: project.project_title,
+      project_dis: project.project_dis,
+      project_rate: project.project_rate,
+      project_type: project.project_type,
+      project_poster: project.project_poster,
+      date_end: project.date_end,
+      date_start: project.date_start
 
-// Roles
-this.rolesControls.clear();
-if (project.roles && project.roles.length) {
-  project.roles.forEach(r => {
-    this.rolesControls.push(new FormGroup({
-      role: new FormControl(r.role || '', Validators.required)
-    }));
-  });
-} else {
-  console.log('object');
-  this.rolesControls.push(this.createRoles());
-}
-
-// Challenges
-this.challengeControls.clear();
-if (project.challenges && project.challenges.length) {
-  project.challenges.forEach(c => {
-    this.challengeControls.push(new FormGroup({
-      challenge: new FormControl(c.challenge || '', Validators.required)
-    }));
-  });
-} else {
-  console.log('object');
-  this.challengeControls.push(this.createchallenges());
-}
-
-// Strategics
-this.strategicControls.clear();
-if (project.strategics && project.strategics.length) {
-  project.strategics.forEach(s => {
-    this.strategicControls.push(new FormGroup({
-      strategic: new FormControl(s.strategic || '', Validators.required)
-    }));
-  });
-} else {
-  this.strategicControls.push(this.createStrategic());
-}
-
-  project.results.forEach(res => {
-    this.resultsControls.push(new FormGroup({
-      view: new FormControl(Number(res.view), [Validators.required, Validators.pattern(/^[0-9]+$/)]),
-      visit_page: new FormControl(Number(res.visit_page), [Validators.required, Validators.pattern(/^[0-9]+$/)]),
-      interaction: new FormControl(Number(res.interaction), [Validators.required, Validators.pattern(/^[0-9]+$/)]),
-      Click: new FormControl(Number(res.Click) , [Validators.required, Validators.pattern(/^[0-9]+$/)]),
-      New_follower: new FormControl(Number(res.New_follower), [Validators.required, Validators.pattern(/^[0-9]+$/)]),
-    }));
-  });
-
-  project.project_media.forEach(m => {
-    this.mediaControls.push(new FormGroup({
-      url: new FormControl(m.url, Validators.required),
-      dis: new FormControl(m.dis, Validators.required),
-      isVideo: new FormControl(m.isVideo, Validators.required),
-    }));
-  });
-
-  // القيم العادية
-  this.add_project.patchValue({
-    project_title: project.project_title,
-    project_dis: project.project_dis,
-    project_rate: project.project_rate,
-    project_type: project.project_type,
-    project_poster: project.project_poster
-  });
-
-  console.log('Form is ready for edit:', this.add_project.value);
+    });
+    this.open_add_pro(); // فتح قسم الإضافة/التعديل
   }
   //! حفظ التعديلات
   saveChanges() {
@@ -327,6 +319,9 @@ if (project.strategics && project.strategics.length) {
       this._ProjectApiService.updataProject(this.projectId, this.add_project.value).subscribe({
         next: res => {
           this.add_project.reset()
+            this.clearControls()
+          this.pushControls()
+          this.closing_add_pro()
           this._ToastrService.success('Project updated successfully.', 'Success ')
         },
         error: () => {
@@ -394,4 +389,25 @@ if (project.strategics && project.strategics.length) {
       }
     })
   }
+  //!
+  deleteFildes(ind: number, control: FormArray) {
+    if (control.length > 1) {
+      control.removeAt(ind)
+      this._ToastrService.success('The item was successfully deleted', '')
+    } else {
+      this._ToastrService.warning('The last item cannot be deleted', '')
+    }
+  }
+
+  //! لعمل ارقام
+  rangeHalf(max: number): number[] {
+
+    let totalNumbers = max * 2 + 1;
+
+    return Array.from({ length: totalNumbers }, (value, index) => {
+      return index / 2;
+    });
+
+  }
+
 }

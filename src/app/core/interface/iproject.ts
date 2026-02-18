@@ -11,6 +11,8 @@ export interface Iproject {
   challenges : Ichallenges [] ,
   results :Iproject_reselt[] ,
   project_media: Iproject_media[],
+  date_start : Date ,
+  date_end : Date ,
 }
 export interface Itools {
   tool : string

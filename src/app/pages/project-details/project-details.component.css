@@ -126,7 +126,7 @@ hr{
     background: #f8f9fa;
   padding: 30px;
   border-radius: 20px;
-  width: 45%;
+  width: 100%;
   margin-bottom: 30px;
 }
 
@@ -155,19 +155,16 @@ hr{
   font-size: 14px;
 }
 .charts {
-  width: 53%;
-  /* display: flex; */
+  width: 100%;
+  display: flex;
   justify-content: space-evenly;
-  /* flex-flow:  row wrap; */
+  flex-flow:  row wrap;
   align-items: center;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
-.charts canvas {
-
-  width:100% !important;
-  height: 300px !important;
+.charts .apx-chart {
+  width:47% !important;
+  min-height: 300px ;
   background: #fff;
   padding: 15px;
   border-radius: 12px;
@@ -201,18 +198,18 @@ hr{
   background-color: var(--bg4);
 }
 .details_page.dark .details h1:hover {
-  color: var(--green);
+  color: var(--main-color);
 }
 .details_page.dark h3 {
-  color: var(--green) !important;
-  border-color: var(--green);
+  color: var(--main-color) !important;
+  border-color: var(--main-color);
 }
 .details_page.dark hr{
 
-  border-color: var(--green);
+  border-color: var(--main-color);
 }
 .details_page.dark .roles li{
-  background-color: var(--green);
+  background-color: var(--main-color);
   color: var(--color-text);
 }
 .details_page.dark .challenge li,
@@ -223,12 +220,16 @@ hr{
 }
 .details_page.dark .roles li:hover{
   background-color: var(--color-text);
-  color: var(--green);
+  color: var(--main-color);
 
+}
+.details_page.dark .all_media h3 span{
+  color: var(--border) !important ;
+  opacity: .7;
 }
 
 .details_page.dark .title-box > i{
-color: var(--green) !important;
+color: var(--main-color) !important;
 }
 .details_page.dark .title-box h4 {
 

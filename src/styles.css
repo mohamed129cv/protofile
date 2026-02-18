@@ -33,9 +33,6 @@ body {
   appearance: none;
   background-color: var(--main-color);
 }
-body.dark::-webkit-scrollbar-thumb {
-  background-color: var(--green);
-}
 @keyframes bounce {
   from {
     transform: translateY(0px);
@@ -70,7 +67,7 @@ body.dark::-webkit-scrollbar-thumb {
   transform: translate(0) scale(1);
 }
 body.dark{
-  background-color: var(--bg2);
+  background-color: var(--bg3);
 }
 
 body.dark h1,
@@ -82,5 +79,5 @@ body.dark h6,
 body.dark p,
 body.dark label,
 body.dark span{
-  color: #EDEDED  !important;
+  color: #EDEDED  ;
 }

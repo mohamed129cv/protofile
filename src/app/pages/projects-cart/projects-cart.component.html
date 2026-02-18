@@ -64,6 +64,19 @@
           }
         </div> -->
       </article>
+      <!--& date  -->
+      <article class="date ">
+        <div class="start">
+          <label for="start_date" class="form-label fade-up" appFadeUp>Start Date</label>
+          <input type="date" name="start_date" id="date" formControlName="date_start" class="form-control fade-up"
+            appFadeUp>
+        </div>
+        <div class="end">
+          <label for="start_date" class="form-label fade-up" appFadeUp>end Date</label>
+          <input type="date" name="end_date" id="date" formControlName="date_end" class="form-control fade-up"
+            appFadeUp>
+        </div>
+      </article>
       <!--& project main description  -->
       <article class="flid">
         <label for="description" class="form-label fade-up" appFadeUp>Project Overview</label>
@@ -99,11 +112,13 @@
       <!--& Strategic Approach  -->
       <article class="flid position-relative" formArrayName="strategics">
         <h4 [ngClass]="{'text-success': bg =='dark'}" class="text-primary fade-up" appFadeUp>Strategic Approach</h4>
-        @for (i of strategicControls.controls; track $index) {
+        @for (i of strategicControls.controls; track i ; let c = $index) {
         <div class="strategic" [formGroupName]="$index">
           <label for="strategic" class="d-inline m-2 form-label fade-up " appFadeUp>strategic {{$index + 1}}</label>
           <input type="text" name="strategic" id="strategic" appFadeUp class="d-inline m-2 w-75 fade-up form-control"
             formControlName="strategic">
+          <button class="btn del fade-up" appFadeUp (click)="deleteFildes($index , strategicControls)" type="button"><i
+              class="fa-solid fa-xmark"></i> </button>
           <div class="validators">
             @if(i.get('strategic')?.dirty || i.get('strategic')?.touched){
             @if(i.get('strategic')?.getError('required')){
@@ -115,19 +130,21 @@
           </div>
         </div>
         }
-        <button class="btn btn-primary position-absolute top-50 end-0 fade-up" appFadeUp
-          [ngClass]="{'btn-success' : bg =='dark'}" (click)="addStrategic()" type="button"><i
-            class="fa-solid fa-plus"></i></button>
+        <button class="btn btn-primary position-absolute top-50 end-0 fade-up" appFadeUp (click)="addStrategic()"
+          type="button"><i class="fa-solid fa-plus"></i></button>
       </article>
       <!--& Role in the Project  -->
       <article class="flid position-relative" formArrayName="roles">
 
-        <h4 [ngClass]="{'text-success': bg =='dark'}" class="text-primary fade-up" appFadeUp>My Role in the Project</h4>
-        @for (role of rolesControls.controls; track $index) {
+        <h4 class="text-primary fade-up" appFadeUp>My Role in the Project</h4>
+        @for (role of rolesControls.controls; track role ; let c = $index) {
         <div class="role" [formGroupName]="$index">
           <label for="role" class="form-label  fade-up mx-3 d-inline my-2  " appFadeUp>Role {{ $index + 1}}</label>
           <input type="text" name="role" id="role" placeholder="Add your role in the project" appFadeUp
             class="w-75 my-2 d-inline fade-up form-control" formControlName="role">
+          <button class="btn del fade-up" appFadeUp (click)="deleteFildes($index , rolesControls)" type="button"><i
+              class="fa-solid fa-xmark"></i> </button>
+
           <div class="validators">
             @if(role.get("role")?.dirty || role.get("role")?.touched){
             @if(role.get("role")?.getError('required')){
@@ -139,19 +156,21 @@
           </div>
         </div>
         }
-        <button class="btn btn-primary position-absolute top-50 end-0 fade-up" appFadeUp
-          [ngClass]="{'btn-success' : bg =='dark'}" (click)="addRole()" type="button"><i
-            class="fa-solid fa-plus"></i></button>
+        <button class="btn btn-primary position-absolute top-50 end-0 fade-up" appFadeUp (click)="addRole()"
+          type="button"><i class="fa-solid fa-plus"></i></button>
 
       </article>
       <!--& Tools  -->
       <article class="flid position-relative" formArrayName="tools">
-        <h4 [ngClass]="{'text-success': bg =='dark'}" class="text-primary fade-up" appFadeUp>Tools used</h4>
-        @for (i of toolsControls.controls; track $index) {
+        <h4  class="text-primary fade-up" appFadeUp>Tools used</h4>
+        @for (i of toolsControls.controls; track i ; let c= $index) {
         <div class="tools" [formGroupName]="$index">
           <label for="tool" class="form-label fade-up d-inline " appFadeUp>Tool {{$index + 1}}</label>
           <input type="text" name="tool" id="details" appFadeUp class="w-75  d-inline fade-up form-control"
             formControlName="tool">
+          <button class="btn del fade-up" appFadeUp (click)="deleteFildes($index , toolsControls)" type="button"><i
+              class="fa-solid fa-xmark"></i> </button>
+
           <div class="validators">
             @if(i.get('tool')?.dirty || i.get('tool')?.touched){
             @if(i.get('tool')?.getError('required')){
@@ -163,18 +182,20 @@
           </div>
         </div>
         }
-        <button class="btn btn-primary  position-absolute top-50 end-0 fade-up" appFadeUp
-          [ngClass]="{'btn-success' : bg =='dark'}" (click)="addTools()" type="button"><i
-            class="fa-solid fa-plus"></i></button>
+        <button class="btn btn-primary  position-absolute top-50 end-0 fade-up" appFadeUp (click)="addTools()"
+          type="button"><i class="fa-solid fa-plus"></i></button>
       </article>
       <!--& The Challenge  -->
       <article class="flid position-relative" formArrayName="challenges">
-        <h4 [ngClass]="{'text-success': bg =='dark'}" class="text-primary fade-up" appFadeUp>The Project Challenge</h4>
-        @for (i of challengeControls.controls; track $index) {
+        <h4  class="text-primary fade-up" appFadeUp>The Project Challenge</h4>
+        @for (i of challengeControls.controls; track i ; let c = $index) {
         <div class="challange" [formGroupName]="$index">
           <label for="challeng" class="form-label fade-up d-inline m-2" appFadeUp>challange {{$index + 1}}</label>
           <input type="text" name="challeng" id="challeng" appFadeUp class="w-75 d-inline my-2 fade-up form-control"
             formControlName="challenge">
+          <button class="btn del fade-up" appFadeUp (click)="deleteFildes($index , challengeControls)" type="button"><i
+              class="fa-solid fa-xmark"></i> </button>
+
           <div class="validators">
             @if(i.get("challenge")?.dirty || i.get("challenge")?.touched){
             @if(i.get("challenge")?.getError('required')){
@@ -186,14 +207,13 @@
           </div>
         </div>
         }
-        <button class="btn btn-primary position-absolute top-50 end-0 fade-up" appFadeUp
-          [ngClass]="{'btn-success' : bg =='dark'}" (click)="addChallenge()" type="button"><i
-            class="fa-solid fa-plus"></i></button>
+        <button class="btn btn-primary position-absolute top-50 end-0 fade-up" appFadeUp (click)="addChallenge()"
+          type="button"><i class="fa-solid fa-plus"></i></button>
       </article>
       <!--& Results  -->
       <article class="flid" formArrayName="results">
-        <h4 [ngClass]="{'text-success': bg =='dark'}" class="text-primary fade-up" appFadeUp>Project Results</h4>
-        @for (reselt of resultsControls.controls; track $index) {
+        <h4 class="text-primary fade-up" appFadeUp>Project Results</h4>
+        @for (reselt of resultsControls.controls; track reselt ;let c =$index) {
         <div class="results" [formGroupName]="$index">
           <h6 class="fade-up" appFadeUp>Stage {{$index + 1}} results</h6>
           <label for="view" class="form-label fade-up w-25 " appFadeUp>Number of views</label>
@@ -272,39 +292,39 @@
             }
           </div>
         </div>
+        <button class="btn  del fade-up" appFadeUp (click)="deleteFildes($index ,resultsControls)" type="button"><i
+            class="fa-solid fa-xmark"></i> Delete this stage </button>
+
         }
-        <button class="btn btn-primary fade-up " appFadeUp [ngClass]="{'btn-success' : bg =='dark'}"
-          (click)="addResults()" type="button"><i class="fa-solid fa-plus"></i> Add more results </button>
+        <button class="btn btn-primary fade-up " appFadeUp (click)="addResults()" type="button"><i
+            class="fa-solid fa-plus"></i> Add more results </button>
       </article>
       <!--& project rate  -->
       <article class="flid">
         <label for="rate" class="form-label fade-up" appFadeUp>project rate</label>
-        <input type="number" name="rate" id="rate" class="form-control fade-up" appFadeUp
-          formControlName="project_rate">
+        <select class="form-select fade-up" formControlName="project_rate" appFadeUp name="rate" id="rate">
+          @for ( i of rangeHalf(5); track $index) {
+          <option [value]="i">{{i}}</option>
+          }
+        </select>
         <div class="validators">
           @if(project_rate.dirty || project_rate.touched){
-          @if(project_title.getError('required')){
+          @if(project_rate.getError('required')){
           <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> this
             flid
             required</p>
-          }@if(project_title.getError('min')){
-          <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i>
-            project must be big than or equal 1 </p>
-          }@if(project_rate.getError('max')){
-          <p class=" my-2 fade-up alert alert-danger" appFadeUp> <i class="fa-solid fa-circle-exclamation"></i> project
-            rate must be less than or equal 10</p>
           }
           }
         </div>
       </article>
       <!--& project media  -->
       <article class="flid position-relative" formArrayName="project_media">
-        <h4 [ngClass]="{'text-success': bg =='dark'}" class="text-primary fade-up" appFadeUp>All media </h4>
-        @for (media of mediaControls.controls; track $index) {
+        <h4  class="text-primary fade-up" appFadeUp>All media </h4>
+        @for (media of mediaControls.controls; track media ; let c = $index) {
         <div class="media" [formGroupName]="$index">
           <label class="form-label fade-up" appFadeUp>Add media {{$index + 1}}</label>
-          <input type="file"
-            class="my-1 form-control w-25 d-inline mx-1 fade-up" appFadeUp (change)="uplodeImgMedia($event , $index)">
+          <input type="file" class="my-1 form-control w-25 d-inline mx-1 fade-up" appFadeUp
+            (change)="uplodeImgMedia($event , $index)">
           <input type="text" formControlName="dis" placeholder="Description"
             class="my-1 form-control w-25 d-inline mx-1 fade-up" appFadeUp formControlName="dis">
 
@@ -313,14 +333,15 @@
             <option [ngValue]="true">Video</option>
             <option [ngValue]="false">Image</option>
           </select>
+          <button class="btn del fade-up" appFadeUp (click)="deleteFildes($index , mediaControls)" type="button"><i
+              class="fa-solid fa-xmark"></i> </button>
+
         </div>
         }
-        <button class="btn btn-primary position-absolute top-50 end-0 fade-up" appFadeUp
-          [ngClass]="{'btn-success' : bg =='dark'}" (click)="addMedia()" type="button"><i
-            class="fa-solid fa-plus"></i></button>
+        <button class="btn btn-primary position-absolute top-50 end-0 fade-up" appFadeUp (click)="addMedia()"
+          type="button"><i class="fa-solid fa-plus"></i></button>
       </article>
-      <button class="btn btn-primary w-25 fade-up " appFadeUp [ngClass]="{'btn-success' : bg =='dark'}" type="submit"
-        #btnSubmit>
+      <button class="btn btn-primary w-25 fade-up " appFadeUp type="submit" #btnSubmit>
         @switch (eidtMode) {
         @case (true) {
         Update Project

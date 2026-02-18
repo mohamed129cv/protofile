@@ -52,10 +52,10 @@ aside ul li.active{
   width: 75%;
   padding: 1rem;
 }
-canvas {
+.apx-chart {
   width: 100% !important;
   height: 500px !important;
-  background-color: var(--color-muted);
+  background-color: var(--color-text);
   box-shadow: var(--shadow);
   border-radius: 1.3rem;
   margin-bottom: 20px;
@@ -84,11 +84,11 @@ canvas {
 /** dark mode  */
 .analytics-page.dark aside ul li{
   background-color: var(--color-text);
-  color: var(--green);
+  color: var(--main-color);
 }
 .analytics-page.dark aside ul li:hover ,
 .analytics-page.dark aside ul li.active{
   color: var(--color-text);
-  background-color: var(--green);
+  background-color: var(--main-color);
 }
 

@@ -7,6 +7,7 @@ import { FadeLeftDirective } from "../../core/direcitve/fade-left.directive";
 import { FadeRightDirective } from "../../core/direcitve/fade-right.directive";
 import { BgService } from '../../core/api/bg.service';
 import { CommonModule } from '@angular/common';
+import { SeoService } from '../../core/api/seo.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -17,7 +18,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ContactUsComponent {
 
-  constructor(private _ToastrService: ToastrService , private _bg: BgService) {
+  constructor(private _ToastrService: ToastrService, private _bg: BgService, private _seo: SeoService) {
     this.initFormControls()
     this.ititFormGrop()
   }
@@ -27,10 +28,19 @@ export class ContactUsComponent {
   name!: FormControl
   email!: FormControl
   message!: FormControl
-  bg !:string
+  bg !: string
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this._seo.updateMate(
+      "Get in touch with Mohammed Abdelhamid, a Digital Marketing Specialist, for collaboration, consultation, or business inquiries. Reach out via email, phone, or social media channels.",
+      "Contact Us | Digital Marketing",
+      " Contact, Digital Marketing, Consultation, Collaboration, Business Inquiry, Email, Social Media ,Lead Generation, Facebook Ads, Instagram Marketing, Conversion Rate, ROI, Performance Marketing ,Performance Marketing Expert, Meta Ads Specialist, Social Media Growth, Lead Generation Expert, Conversion Optimization"
+    )
+  }
   ngAfterViewInit(): void {
     this._bg.$theme.subscribe({
-      next: res=>{
+      next: res => {
         this.bg = res
       }
     })
@@ -78,15 +88,21 @@ export class ContactUsComponent {
     if (this.form.valid) {
       let phone = '201029155459'
       let massage = `
-      السلام عليكم و رحمة الله وبركاتة
-      Name: ${this.form.value.name} .
-      Email: ${this.form.value.email} .
-      Message: ${this.form.value.message} .
+     "      السلام عليكم و رحمة الله وبركاتة"
+
+     from your website ...
+
+     ${this.form.value.name}  
+
+      ${this.form.value.email}  
+
+      ${this.form.value.message}  
+
       `
       const encodedText = encodeURIComponent(massage);
       let url = `https://wa.me/${phone}?text=${encodedText}`
       window.open(url, '_blank')
-    }else {
+    } else {
       this._ToastrService.error('Please fill out the form correctly.', 'Error')
       this.form.markAllAsTouched()
       Object.keys(this.form.controls).forEach(fild => this.form.controls[fild].markAsDirty())

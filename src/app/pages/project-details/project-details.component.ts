@@ -10,12 +10,14 @@ import { ChartsService } from '../../core/api/charts.service';
 import { Chart } from 'chart.js';
 import { FadeRightDirective } from "../../core/direcitve/fade-right.directive";
 import { FadeLeftDirective } from "../../core/direcitve/fade-left.directive";
+import { Chart2Service } from '../../core/api/chart2.service';
+import { ApexOptions, NgApexchartsModule } from 'ng-apexcharts';
 
 
 @Component({
   selector: 'app-project-details',
   standalone: true,
-  imports: [CommonModule, FadeUpDirective, FadeRightDirective, FadeLeftDirective],
+  imports: [CommonModule, FadeUpDirective, FadeRightDirective, FadeLeftDirective, NgApexchartsModule],
   templateUrl: './project-details.component.html',
   styleUrl: './project-details.component.css'
 })
@@ -25,7 +27,8 @@ export class ProjectDetailsComponent {
     private _ActivatedRoute: ActivatedRoute,
     private _bg: BgService,
     private _router: Router,
-    private _chart: ChartsService
+    private _chart: Chart2Service ,
+
   ) { }
   bg!: string
   id!: string
@@ -34,100 +37,45 @@ export class ProjectDetailsComponent {
     this.id = String(this._ActivatedRoute.snapshot.paramMap.get('id'))
     this._ActivatedRoute.data.subscribe((data: any) => {
       this.project = data['data']
-      console.log(this.project.roles[0].role
-      );
+      this.viewsChartOptions = this._chart.viewsDataApex(this.project)
+      this.clickChartOptions = this._chart.clickDataApex(this.project)
+      this.followersChartOptions = this._chart.followersApex(this.project)
+      this.interactionChartOptions = this._chart.interactionDataApex(this.project)
     })
+    this.renderChart();
   }
 
   ngAfterViewInit() {
-    this.renderChart();
     this._bg.$theme.subscribe({
       next: res => {
         this.bg = res
       }
     })
   }
-  chart!: Chart;
-  @ViewChild('myChart' ,{ static: false }) myChart!: ElementRef<HTMLCanvasElement>;
-  @ViewChild('view' ,{ static: false }) view!: ElementRef<HTMLCanvasElement>;
-  @ViewChild('interaction' ,{ static: false }) interaction!: ElementRef<HTMLCanvasElement>;
-  @ViewChild('click' ,{ static: false }) click!: ElementRef<HTMLCanvasElement>;
-  @ViewChild('follower' ,{ static: false }) follower!: ElementRef<HTMLCanvasElement>;
+  chartOptions: ApexOptions = {};
+   barChartOptions: ApexOptions = {};
+  viewsChartOptions: ApexOptions = {};
+  interactionChartOptions: ApexOptions = {};
+  clickChartOptions: ApexOptions = {};
+  visitChartOptions: ApexOptions = {};
+  followersChartOptions: ApexOptions = {};
   renderChart() {
     if (!this.project.results || this.project.results.length === 0) return;
-    if (this.chart) {
-      this.chart.destroy();
-    }
-    this.chart = new Chart(this.view.nativeElement, this._chart.viewsDatafun(this.project));
-    this.chart = new Chart(this.interaction.nativeElement, this._chart.interactionDatafun(this.project));
-    this.chart = new Chart(this.click.nativeElement, this._chart.clickDataFun(this.project));
-    this.chart = new Chart(this.follower.nativeElement, this._chart.followersFun(this.project));
+    this._chart.viewsDataApex(this.project)
+    this._chart.clickDataApex(this.project)
+    this._chart.followersApex(this.project)
+    this._chart.interactionDataApex(this.project)
   }
 
   chartPage() {
     this._router.navigate(['project/analytics', this.id])
   }
+    //! حساب المدة العمل في المشروع
+  diffInMonths(start: Date | string, end: Date | string) {
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    let months = (endDate.getFullYear() - startDate.getFullYear()) * 12;
+    return months == 0 ? months + 1 : months
+  }
 }
 
-    // viewsDatafun() {
-    //   const stages = this.project.results.map((_, i) => `Stage ${i + 1}`);
-    //   const viewsData: ChartConfiguration = {
-    //     type: 'doughnut',
-    //     data: {
-    //       labels: stages,
-    //       datasets: [{
-    //         data: this.project.results.map(r => Number(r.view)),
-    //         backgroundColor: stages.map(() => `rgba(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255},0.6)`)
-    //       }]
-    //     },
-    //     options: { responsive: true, plugins: { legend: { position: 'top' } } }
-    //   };
-    //   return viewsData
-    // }
-    // interactionDatafun() {
-    //   const stages = this.project.results.map((_, i) => `Stage ${i + 1}`);
-    //   const interactionData: ChartConfiguration = {
-    //     type: 'doughnut',
-    //     data: {
-    //       labels: stages,
-    //       datasets: [{
-    //         data: this.project.results.map(r => Number(r.interaction)),
-    //         backgroundColor: stages.map(() => `rgba(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255},0.6)`)
-    //       }]
-    //     },
-    //     options: { responsive: true, plugins: { legend: { position: 'top' } } }
-    //   };
-    //   return interactionData
-    // }
-    // clickDataFun() {
-    //   const stages = this.project.results.map((_, i) => `Stage ${i + 1}`);
-    //   const clickData: ChartConfiguration = {
-    //     type: 'line',
-    //     data: {
-    //       labels: stages,
-    //       datasets: [{
-    //         label: 'Click',
-    //         data: this.project.results.map(r => Number(r.Click)),
-    //         borderColor: 'red',
-    //         fill: false,
-    //         tension: 0.3
-    //       }]
-    //     },
-    //     options: { responsive: true }
-    //   };
-    //   return clickData
-    // }
-    // followersFun() {
-    //   const followerData: ChartConfiguration = {
-    //     type: 'scatter',
-    //     data: {
-    //       datasets: [{
-    //         label: 'New Followers',
-    //         data: this.project.results.map((r, i) => ({ x: i + 1, y: Number(r.New_follower) })),
-    //         backgroundColor: 'orange'
-    //       }]
-    //     },
-    //     options: { responsive: true, scales: { x: { title: { display: true, text: 'Stage' } }, y: { title: { display: true, text: 'Followers' } } } }
-    //   };
-    //   return followerData
-    // }

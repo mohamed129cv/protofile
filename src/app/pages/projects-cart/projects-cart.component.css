@@ -1,34 +1,33 @@
-.card_page{
+.card_page {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 2rem;
   flex-wrap: wrap;
-
 }
-.project_card{
+.project_card {
   width: 100%;
   height: 250px;
   position: relative;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
   cursor: pointer;
   box-shadow: var(--shadow);
 }
-.project_card img{
+.project_card img {
   width: 100%;
   height: 100%;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
   object-fit: cover;
   anchor-name: --img;
 }
-.lr{
+.lr {
   height: 50%;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
   width: 90%;
   padding: 1rem;
   display: flex;
-  justify-content:space-between;
-  background-color: rgba(255, 255, 255, .8);
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.8);
   position: absolute;
   top: 100%;
   left: 5%;
@@ -39,7 +38,7 @@
 .lr .text {
   flex-grow: 2;
 }
-.lr .text h4{
+.lr .text h4 {
   transition: var(--transition);
 }
 .lr .tools {
@@ -49,7 +48,7 @@
   color: var(--dark);
   transition: var(--transition);
 }
-.lr .tools i{
+.lr .tools i {
   transition: var(--transition);
 }
 .project_card:hover .lr {
@@ -57,7 +56,7 @@
   opacity: 1;
   pointer-events: all;
 }
-.lr .tools i:hover{
+.lr .tools i:hover {
   color: var(--main-color);
 }
 .lr:hover .text h4 {
@@ -70,9 +69,9 @@
   background-color: var(--main-color);
   color: var(--color-text);
   border-radius: 20px;
-  position-anchor: --img ;
-  bottom:  calc( anchor(top) - 50px);
-  left: calc( anchor(right) - 60px);
+  position-anchor: --img;
+  bottom: calc(anchor(top) - 50px);
+  left: calc(anchor(right) - 60px);
 }
 
 /** كرت اضافة المزيد  */
@@ -93,7 +92,7 @@
   width: 100%;
   height: 0;
   background-color: var(--color-muted);
-  border-radius:  0.4rem;
+  border-radius: 0.4rem;
   font-size: 2rem;
   position: absolute;
   top: 100%;
@@ -113,14 +112,14 @@
   color: var(--main-color);
 }
 .add_new_project:hover {
-  color: var(--main-color) ;
+  color: var(--main-color);
   transform: translateY(-15px);
 }
 
 .add_new_project:hover span {
   height: 100%;
   top: 0;
-  opacity: .5;
+  opacity: 0.5;
   color: var(--main-color);
 }
 
@@ -136,7 +135,6 @@
   display: grid;
   place-items: center;
   transition: var(--transition);
-
 }
 .add_type.hidden {
   z-index: 0;
@@ -164,7 +162,7 @@
   position: relative;
 }
 
-.add_type .fa-circle-xmark{
+.add_type .fa-circle-xmark {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -176,38 +174,62 @@
   color: var(--main-color);
   text-transform: capitalize;
 }
+.flid .del {
+  color: var(--red);
+  border-color: var(--red) ;
+  margin-inline:.3rem ;
+  transition: var(--transition);
+}
+
+.flid .del:hover {
+  background-color: var(--red);
+  color: var(--color-text);
+}
+.add_type  .date{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+}
+.add_type  .date div{
+  width: 43%;
+}
 /*& dark mode  */
-.card_page.dark .lr{
+.card_page.dark .lr {
   background-color: var(--bg4);
 }
 .card_page.dark .lr .tools {
   color: var(--color-text);
 }
-.card_page.dark .lr .tools i:hover{
-  color: var(--green);
+.card_page.dark .lr .tools i:hover {
+  color: var(--main-color);
 }
-.card_page.dark .lr:hover .text h4{
-  color: var(--green) !important;
+.card_page.dark .lr:hover .text h4 {
+  color: var(--main-color) !important;
 }
-.card_page.dark .add_new_project{
+.card_page.dark .add_new_project {
   background-color: var(--bg4);
 }
 .card_page.dark .add_new_project span i {
   color: var(--green);
 }
 .card_page.dark .add_new_project:hover {
-  color: var(--green) !important;
+  color: var(--main-color) !important;
 }
 .card_page.dark .add_type form {
   background-color: var(--bg4);
 }
 .card_page.dark .add_type form h2 {
-  color: var(--green) !important;
+  color: var(--main-color) !important;
 }
 .card_page.dark .project_card .rate {
-  background-color: var(--green);
+  background-color: var(--main-color);
 }
 
-.alert.alert-danger{
+.alert.alert-danger {
   width: 50%;
+}
+.card_page.dark .alert.alert-danger {
+  color: var(--red);
 }

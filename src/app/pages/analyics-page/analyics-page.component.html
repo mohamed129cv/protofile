@@ -3,33 +3,36 @@
     <section class="contact">
       <aside>
         <ul>
-          <li class="fade-up" appFadeUp [ngClass]="{'active' : activeChart == 'table'}" (click)="showChart('table')">
+          <li class="fade-up" appFadeUp [ngClass]="{'active' : activeChart == 'bar'}"
+            (click)=" updateChart('bar')">
             Table</li>
-          <li class="fade-up" appFadeUp [ngClass]="{'active' : activeChart == 'views'}" (click)="showChart('views')">
+          <li class="fade-up" appFadeUp [ngClass]="{'active' : activeChart == 'views'}" (click)="updateChart('views')">
             Views</li>
           <li class="fade-up" appFadeUp [ngClass]="{'active' : activeChart == 'interactions'}"
-            (click)="showChart('interactions')">Interactions</li>
+            (click)="updateChart('interactions')">Interactions</li>
           <li class="fade-up" appFadeUp [ngClass]="{'active' : activeChart == 'clicks'}"
-            (click)="showChart('clicks')">Link Clicks</li>
+            (click)="updateChart('clicks')">
+            Link Clicks</li>
           <li class="fade-up" appFadeUp [ngClass]="{'active' : activeChart == 'visits'}"
-            (click)="showChart('visits')">Page Visits</li>
+            (click)="updateChart('visits')">
+            Page Visits</li>
           <li class="fade-up" appFadeUp [ngClass]="{'active' : activeChart == 'followers'}"
-            (click)="showChart('followers')">Followers</li>
+            (click)=" updateChart('followers')">Followers</li>
 
         </ul>
       </aside>
 
       <article class="contact_chart">
-        <div class="table-responsive" *ngIf="activeChart === 'table'">
-          <table class="table table-striped" [ngClass]="{'table-dark': bg == 'dark' }">
+        <div class="table-responsive" >
+          <table class="table table-striped " [ngClass]="{'table-dark': bg == 'dark' }">
             <thead>
               <tr>
-                <td class="table-active">index</td>
-                <td>Views</td>
-                <td>Interactions</td>
-                <td>Link Clicks</td>
-                <td>Page Visits</td>
-                <td>Followers</td>
+                <td class="table-active fade-up" appFadeUp>index</td>
+                <td class="fade-up" appFadeUp>Views</td>
+                <td class="fade-up" appFadeUp>Interactions</td>
+                <td class="fade-up" appFadeUp>Link Clicks</td>
+                <td class="fade-up" appFadeUp>Page Visits</td>
+                <td class="fade-up" appFadeUp>Followers</td>
               </tr>
             </thead>
             <tbody>
@@ -45,14 +48,27 @@
               }
             </tbody>
           </table>
-          <canvas #allChart *ngIf="activeChart === 'table'"></canvas>
+          <apx-chart class="apx-chart" [series]="chartOptions.series!" [chart]="chartOptions.chart!" [xaxis]="chartOptions.xaxis!"
+            [yaxis]="chartOptions.yaxis!" [colors]="chartOptions.colors!" [dataLabels]="barChartOptions.dataLabels!"
+            [stroke]="barChartOptions.stroke!" [plotOptions]="barChartOptions.plotOptions!"
+            [tooltip]="barChartOptions.tooltip!" [fill]="barChartOptions.fill!">
+          </apx-chart>
         </div>
+      </article>
+    </section>
+  </div>
+</section>
+
+
+
+
+<!--
+
+        <canvas #allChart *ngIf="activeChart === 'table'"></canvas>
         <canvas #viewsCanvas *ngIf="activeChart === 'views'"></canvas>
         <canvas #interactionsCanvas *ngIf="activeChart === 'interactions'"></canvas>
         <canvas #clicksCanvas *ngIf="activeChart === 'clicks'"></canvas>
         <canvas #visitsCanvas *ngIf="activeChart === 'visits'"></canvas>
         <canvas #followersCanvas *ngIf="activeChart === 'followers'"></canvas>
-      </article>
-    </section>
-  </div>
-</section>
+
+-->

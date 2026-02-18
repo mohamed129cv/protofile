@@ -17,7 +17,7 @@
     <ul>
       <li [ngClass]="{'active' : typeMode == 'all' }" (click)="getProjects(); typeMode = 'all' ">all</li>
       @for (type of types ; track $index) {
-        <li class="active" (click)="typeMode = type ; filterByType(type) "  >{{type}}</li>
+      <li class="active" (click)="typeMode = type ; filterByType(type) ">{{type}}</li>
       }
     </ul>
 
@@ -29,16 +29,21 @@
   </article>
 
 
-<!--! login section  -->
-<section class="login hidden" #loginSection>
-  <form [formGroup]="singUp" (ngSubmit)="submitLogin()" class="hidden" #popert>
-    <i class="fa-solid fa-circle-xmark" (click)="closing()"></i>
-    <h3>Accessing admin mode</h3>
-    <label class="form-label" for="name">Name</label>
-    <input class="form-control" type="text" id="name" placeholder="Your Name ...." formControlName="user">
-    <label class="form-label" for="password">Password</label>
-    <input class="form-control" type="password" id="password" placeholder="Password" formControlName="pass">
-    <button type="submit">Login</button>
-  </form>
-</section>
+  <!--! login section  -->
+  <section class="login hidden" #loginSection>
+    <form [formGroup]="singUp" (ngSubmit)="submitLogin()" class="hidden" #popert>
+      <i class="fa-solid fa-circle-xmark exit" (click)="closing()"></i>
+      <h3>Accessing admin mode</h3>
+      <label class="form-label" for="name">Name</label>
+      <input class="form-control" type="text" id="name" placeholder="Enter Your Name ...." formControlName="user">
+      <label class="form-label" for="password">
+        Password
+      </label>
+      <div class="password">
+        <input class="form-control" [type]="showPassword ? 'text' : 'password'  "  #passwordInput id="password" placeholder="Enter your Password ..." formControlName="pass">
+        <span (click)="toggleInputToPassword()"> <i class="fa-solid " [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" ></i></span>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  </section>
 </section>

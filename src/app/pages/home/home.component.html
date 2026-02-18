@@ -1,7 +1,7 @@
 <section class="home_page " [ngClass]="{'dark': bg== 'dark'}">
   <!--& hero section  -->
   <article class="hero fade-up" appFadeUp>
-    <h1 class="my_name">i am mohammed rabie Abdelaziz <span></span></h1>
+    <h1 class="my_name">I am Mohammed Abdulaziz <span></span></h1>
     <h4 class="my_job_name"></h4>
     <a class="go_down" (click)="scrollToAboutMe()"> <i class="fa fa-chevron-down"></i></a>
 
@@ -12,7 +12,7 @@
     <section class="about_me_content">
       <!--& informtion -->
       <article class="data">
-        <img src="../../../assets/mohamed_re.png" alt="my_image" class="fade-left" appFadeLeft>
+        <img src="./assets/mohamed_re.png" alt="my_image" class="fade-left" appFadeLeft>
         <div class="informtion fade-right" appFadeRight>
           <p><span>name :</span>mohammed rabie Abdelaziz</p>
           <p><span>age :</span>24</p>
@@ -42,21 +42,37 @@
     <section class="projects_contect">
       <!--& project 1  -->
       <app-projects-cart [projcets]="projects" [adminMode]="false"></app-projects-cart>
-      <button class="btn_pro fade-up btn_p" appFadeUp [routerLink]="'/project'">show more projects </button>
     </section>
+    <button class="btn_pro fade-up btn_p" appFadeUp [routerLink]="'/project'">show more projects </button>
   </article>
   <!--& skills  -->
-  <article class="my_skills">
+  <!-- <article class="my_skills">
     <h2 class="fade-up" appFadeUp>my skills</h2>
-    <section class="skills">
-      <!--& skill one  -->
-      <div class="skill">
-        <img src="" alt="skill-image">
-        <h3 class="skill_name">skill one</h3>
-      </div>
-      <!--& skill tow  -->
+
+    <section class="skills_sec">
+      <aside>
+        <h4 class="fade-left" [ngClass]="{'active': skillMode=='skill'}" appFadeLeft (click)="skillMode = 'skill' ">
+          Skills</h4>
+        <h4 class="fade-left" [ngClass]="{'active': skillMode=='tool'}" appFadeLeft (click)="skillMode = 'tool' ">
+          Tools</h4>
+      </aside>
+      <section class="skills_contcet">
+        @switch (skillMode) {
+        @case ('skill') {
+        <article class="skills">
+          <p class="alert alert-info fade-up" appFadeUp>my skill</p>
+        </article>
+        }
+        @case ('tool') {
+        <article class="tools">
+          <p class="alert alert-info fade-up" appFadeUp>my tools</p>
+        </article>
+        }
+        }
+      </section>
+
     </section>
-  </article>
+  </article> -->
   <!--& My Achievements  -->
   <article class="achievements">
     <h2>My Achievements</h2>
@@ -64,7 +80,7 @@
       <!--! client  -->
       <div class="achievement fade-right" appFadeRight>
         <i class="fa-solid fa-users"></i>
-        <p class="achievement_number">{{counts.client}}</p>
+        <p class="achievement_number">{{counts.client}} + Clients</p>
       </div>
 
       <!--! Number Of project  -->
@@ -75,8 +91,8 @@
 
       <!--! Number of certificates  -->
       <div class="achievement fade-right" appFadeRight>
-        <i class="fas fa-certificate"></i>
-        <p>{{counts.certificate}}</p>
+        <i class="fa-solid fa-trophy"></i>
+        <p>{{counts.certificate}} Brands Successfully Scaled </p>
       </div>
 
       <!--! Number of working hours  -->
@@ -90,121 +106,83 @@
 
   <!--& Services  -->
 
-  <article class="Services">
-    <h2 class="fade-up" appFadeUp>Services</h2>
-    <section class="Services_contect">
-      <!--& service 1  -->
-      <div class="service-card fade-up" appFadeUp>
-        <span>
-          <i class="fa-solid fa-bullhorn"></i>
-        </span>
-        <h3>Paid Advertising</h3>
-        <p>Managing Facebook, Google and social media ad campaigns.</p>
-      </div>
-
-      <!--& service 2  -->
-      <div class="service-card fade-up" appFadeUp>
-        <span>
-          <i class="fa-solid fa-bullhorn"></i>
-        </span>
-        <h3>Social Media Management</h3>
-        <p>Managing pages, posting content and increasing engagement.</p>
-      </div>
-      <!--& service 3  -->
-
-      <div class="service-card fade-up" appFadeUp>
-        <span>
-          <i class="fa-solid fa-pen-nib"></i>
-        </span>
-        <h3>Content Creation</h3>
-        <p>Creating marketing content and attractive posts.</p>
-      </div>
-      <!--& service 4  -->
-
-      <div class="service-card fade-up" appFadeUp>
-        <span>
-          <i class="fa-solid fa-magnifying-glass-chart"></i>
-        </span>
-        <h3>SEO Optimization</h3>
-        <p>Improving website ranking on search engines.</p>
-      </div>
-      <!--& service 5  -->
-
-      <div class="service-card fade-up" appFadeUp>
-        <span>
-          <i class="fa-solid fa-envelope-open-text"></i>
-        </span>
-        <h3>Email Marketing</h3>
-        <p>Creating email campaigns and newsletters.</p>
-      </div>
-      <!--& service 6  -->
-
-      <div class="service-card fade-up" appFadeUp>
-        <span>
-          <i class="fa-solid fa-chart-line"></i>
-        </span>
-        <h3>Marketing Analytics</h3>
-        <p>Analyzing data and tracking campaign performance.</p>
-      </div>
-      <!--& service 7  -->
-
-      <div class="service-card fade-up" appFadeUp>
-        <span>
-          <i class="fa-solid fa-funnel-dollar"></i>
-        </span>
-        <h3>Sales Funnel Setup</h3>
-        <p>Building funnels to increase conversions.</p>
-      </div>
-      <!--& service 8  -->
-
-      <div class="service-card fade-up" appFadeUp>
-        <span>
-          <i class="fa-solid fa-bullseye"></i>
-        </span>
-        <h3>Brand Strategy</h3>
-        <p>Building strong digital brand identity.</p>
-      </div>
-
-
-
-    </section>
-  </article>
-
-  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <video class="d-block w-100" controls>
-          <source src="assets/large (3).mp4" type="video/mp4">
-          <p class="alert alert-danger"> <i class="fa-solid fa-circle-exclamation"></i> Your browser does not
-            support the
-            video tag.</p>
-        </video>
-      </div>
-      <div class="carousel-item">
-        <video class="d-block w-100" controls>
-          <source src="assets/large.mp4" type="video/mp4">
-          <p class="alert alert-danger"> <i class="fa-solid fa-circle-exclamation"></i> Your browser does not
-            support the
-            video tag.</p>
-        </video>
-      </div>
-      <div class="carousel-item">
-        <video class="d-block w-100" controls>
-          <source src="assets/small.mp4" type="video/mp4">
-          <p class="alert alert-danger"> <i class="fa-solid fa-circle-exclamation"></i> Your browser does not
-            support the
-            video tag.</p>
-        </video>
-      </div>
+ <article class="Services">
+  <h2 class="fade-up" appFadeUp>Services</h2>
+  <section class="Services_contect">
+    <!--& service 1  -->
+    <div class="service-card fade-up" appFadeUp>
+      <span>
+        <i class="fa-solid fa-bullhorn"></i>
+      </span>
+      <h3>Digital Marketing Strategy</h3>
+      <p>Planning and managing ad campaigns across Facebook, Google, and other social media platforms.</p>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
+
+    <!--& service 2  -->
+    <div class="service-card fade-up" appFadeUp>
+      <span>
+        <i class="fa-solid fa-envelope-open-text"></i>
+      </span>
+      <h3>Email Marketing</h3>
+      <p>Designing and executing email campaigns to boost engagement and conversions.</p>
+    </div>
+
+    <!--& service 3  -->
+    <div class="service-card fade-up" appFadeUp>
+      <span>
+        <i class="fa-solid fa-pen-nib"></i>
+      </span>
+      <h3>Paid Advertising Services</h3>
+      <p>Creating compelling marketing content and high-performing ad creatives.</p>
+    </div>
+
+    <!--& service 4  -->
+    <div class="service-card fade-up" appFadeUp>
+      <span>
+        <i class="fa-solid fa-magnifying-glass-chart"></i>
+      </span>
+      <h3>Customer Journey Mapping</h3>
+      <p>Optimizing user experience and improving search engine rankings.</p>
+    </div>
+
+    <!--& service 5  -->
+    <div class="service-card fade-up" appFadeUp>
+      <span>
+        <i class="fa-solid fa-laptop-code"></i>
+      </span>
+      <h3>Landing Page Optimization</h3>
+      <p>Enhancing landing pages to increase conversions and engagement.</p>
+    </div>
+
+    <!--& service 6  -->
+    <div class="service-card fade-up" appFadeUp>
+      <span>
+        <i class="fa-solid fa-chart-line"></i>
+      </span>
+      <h3>Content Strategy Specialist</h3>
+      <p>Developing data-driven content strategies to maximize campaign performance.</p>
+    </div>
+
+    <!--& service 7  -->
+    <div class="service-card fade-up" appFadeUp>
+      <span>
+        <i class="fa-solid fa-funnel-dollar"></i>
+      </span>
+      <h3>Ad Campaign Manager</h3>
+      <p>Building and managing sales funnels to drive higher conversions.</p>
+    </div>
+
+    <!--& service 8  -->
+    <div class="service-card fade-up" appFadeUp>
+      <span>
+        <i class="fa-solid fa-bullseye"></i>
+      </span>
+      <h3>Performance Marketing</h3>
+      <p>Executing results-oriented campaigns to strengthen brand identity and ROI.</p>
+    </div>
+  </section>
+</article>
+
+
 
 </section>

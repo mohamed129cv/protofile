@@ -182,7 +182,7 @@ button.btn_p:hover::after {
 }
 .btn_pro {
   position: absolute;
-  bottom: 20px;
+  bottom: -50px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -192,10 +192,41 @@ button.btn_p:hover::after {
   height: 100vh;
   padding: clamp(1rem, 1vw + 0.1rem, 2.5rem);
 }
-
-.skills {
+.skills_sec {
   width: 85%;
-  margin: auto;
+  margin: 20px auto ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+}
+.skills_sec aside{
+  width: 20%;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 1.5rem;
+  margin-block: 1.2rem;
+}
+.skills_sec aside h4{
+  width: 100%;
+  border-radius: .5rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+}
+.skills_sec aside h4.active ,
+.skills_sec aside h4:hover{
+  background-color: var(--main-color);
+  color: var(--color-text);
+}
+.skills_contcet {
+  width: 75%;
+
+}
+.skills {
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -347,6 +378,22 @@ button.btn_p:hover::after {
   .about_me .about_me_content {
     width: 95%;
   }
+  .skills_sec{
+    flex-direction: column;
+    width: 95%;
+  }
+  .skills_sec aside{
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .skills_sec aside h4{
+    width: auto;
+  }
+  .skills_contcet {
+    width: 100%;
+  }
   .skills {
     flex-direction: column;
   }
@@ -365,6 +412,48 @@ button.btn_p:hover::after {
   }
 }
 
+
+
+/*& dark mode   */
+.home_page.dark button.btn_p {
+  border-color: var(--main-color);
+}
+.home_page.dark .go_down {
+  background-color: var(--color-text);
+}
+.home_page.dark h2::after ,
+.home_page.dark button.btn_p::after ,
+.home_page.dark .skills_sec aside h4.active ,
+.home_page.dark .skills_sec aside h4:hover ,
+.home_page.dark .hero .go_down:hover ,
+.home_page.dark .about_me_text span::after {
+  background-color: var(--main-color);
+}
+
+.home_page.dark .about_me .informtion span,
+.home_page.dark .skills_sec aside h4.active ,
+.home_page.dark .skills_sec aside h4:hover ,
+.home_page.dark button.btn_p:hover,
+.home_page.dark .hero .go_down:hover ,
+.home_page.dark .Services_contect .service-card p{
+  color: var(--color-text);
+}
+
+.home_page.dark .Services_contect .service-card ,
+.home_page.dark .about_me .about_me_content  ,
+.home_page.dark .skills_sec aside h4 ,
+.home_page.dark .achievement {
+  background-color: var(--bg4);
+
+}
+.home_page.dark .go_down ,
+.home_page.dark .service-card i ,
+.home_page.dark button.btn_p ,
+.home_page.dark .Services_contect .service-card h3 ,
+.home_page.dark .achievement ,
+.home_page.dark .achievement i {
+  color: var(--main-color);
+}
 /* Digital Marketer */
 /* Data analyst */
 /* Social Media Ads Manager */
@@ -609,55 +698,3 @@ button.btn_p:hover::after {
   }
 }
 
-/*& dark mode   */
-.home_page.dark h2::after {
-  background-color: var(--green);
-}
-.home_page.dark button.btn_p {
-  border-color: var(--green);
-  color: var(--green);
-}
-.home_page.dark button.btn_p::after {
-  background-color: var(--green);
-}
-.home_page.dark button.btn_p:hover{
-  color: var(--color-text);
-}
-.home_page.dark .go_down {
-  background-color: var(--color-text);
-  color: var(--green);
-}
-.home_page.dark .hero .go_down:hover {
-  background-color: var(--green);
-  color: var(--color-text);
-}
-.home_page.dark .about_me_text span::after {
-  background-color: var(--green);
-}
-.home_page.dark .Services_contect .service-card:hover {
-  border-color: var(--green);
-}
-.home_page.dark .service-card i {
-  color: var(--green);
-}
-.home_page.dark .achievement {
-  background-color: var(--bg4);
-  color: var(--color-text);
-}
-.home_page.dark .achievement i {
-  color: var(--green);
-}
-.home_page.dark .achievement::after,
-.home_page.dark .achievement::before {
-  background-color: var(--green);
-}
-
-
-.carousel-inner {
-  height: 500px;   /* أو أي ارتفاع يناسب الفيديو */
-}
-
-.carousel-item video {
-  height: 100%;
-  object-fit: cover;  /* يغطي السلايد بالكامل */
-}

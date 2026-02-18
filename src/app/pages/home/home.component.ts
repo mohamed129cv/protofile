@@ -8,6 +8,7 @@ import { ProjectApiService } from '../../core/api/ProjectApiService';
 import { RouterLink } from '@angular/router';
 import { BgService } from '../../core/api/bg.service';
 import { CommonModule } from '@angular/common';
+import { SeoService } from '../../core/api/seo.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  constructor(private _bg:BgService , private _ProjectApiService:ProjectApiService , private _BgService:BgService){
+  constructor( private _seo : SeoService , private _bg:BgService , private _ProjectApiService:ProjectApiService , private _BgService:BgService){
 
   }
   ngOnInit(): void {
@@ -29,6 +30,12 @@ export class HomeComponent {
         this.bg = res
       }
     })
+
+      this._seo.updateMate(
+        "Results-driven Digital Marketing Specialist focused on scaling brands with targeted campaigns, advanced analytics, and ROI-focused strategies across social media and paid advertising platforms" ,
+        "Growth-Focused Digital Marketing Expert Digital Marketing Specialist | Performance & Growth Expert" ,
+         "Lead Generation, Facebook Ads, Instagram Marketing, Conversion Rate, ROI, Performance Marketing ,Performance Marketing Expert, Meta Ads Specialist, Social Media Growth, Lead Generation Expert, Conversion Optimization"
+      )
   }
    bg!: string
   scrollToAboutMe(){
@@ -37,7 +44,7 @@ export class HomeComponent {
       aboutMeSection.scrollIntoView({behavior:'smooth'})
     }
   }
-
+    skillMode: 'tool' | 'skill' = 'skill'
   counts = {
     project :  0 ,
     client : 0 ,
@@ -97,4 +104,6 @@ export class HomeComponent {
       }
     })
   }
+
+
 }

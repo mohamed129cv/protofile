@@ -107,16 +107,17 @@
   background: var(--bg4);
 }
 .contcat_us.dark .myLinks span {
-  background-color: var(--green) !important;
+  background-color: var(--main-color) !important;
+  color: var(--color-text) !important;
 
 }
 .contcat_us.dark .sendMessage h2::after{
-  background-color: var(--green);
+  background-color: var(--main-color);
 }
 .contcat_us.dark  .sendMessage button{
-  color: var(--green);
-  border-color: var(--green);
+  color: var(--main-color);
+  border-color: var(--main-color);
   }
 .contcat_us.dark .sendMessage button::after{
-  background-color: var(--green);
+  background-color: var(--main-color);
 }
