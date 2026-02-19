@@ -16,7 +16,7 @@
       </ul>
 
       <form class="d-flex">
-        <span class="btn fs-3 mx-1" (click)="toggleBg()">  <i class="fa-solid fa-moon"></i></span>
+        <span class="btn fs-3 mx-1" [ngClass]="{'text-white' : bg =='dark'}"  (click)="toggleBg()">  <i class="fa-solid" [ngClass]="{'fa-sun' : bg =='dark' ,'fa-moon' : bg !=='dark' } "></i></span>
         <!-- <button type="button" class="btn btn-outline-primary"
         (click)="loadConveyThis()"
         >

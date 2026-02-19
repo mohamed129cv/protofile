@@ -8,7 +8,7 @@ export class FadeUpDirective {
 
   constructor(private el :ElementRef) { }
   ngAfterViewInit(): void {
-   
+
     const observable= new IntersectionObserver(entry=>{
       entry.forEach((e)=>{
        if (e.isIntersecting){
@@ -17,7 +17,7 @@ export class FadeUpDirective {
          e.target.classList.remove('show')
        }
       })
-    } ,{threshold:0.1}
+    } ,{threshold:0.2}
   )
     observable.observe(this.el.nativeElement);
 

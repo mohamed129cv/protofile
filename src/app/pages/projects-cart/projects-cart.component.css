@@ -7,59 +7,61 @@
 }
 .project_card {
   width: 100%;
-  height: 250px;
+  height: 350px;
   position: relative;
-  border-radius: 0.3rem;
+  border-radius: 0.6rem;
   cursor: pointer;
   box-shadow: var(--shadow);
+  overflow: hidden;
 }
-.project_card img {
+.project_card .card-img {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+}
+.project_card .card-img img {
   width: 100%;
   height: 100%;
-  border-radius: 0.3rem;
+  border-radius: 0.3rem .3rem 0rem 1.9rem;
   object-fit: cover;
   anchor-name: --img;
 }
-.lr {
-  height: 50%;
-  border-radius: 0.3rem;
-  width: 90%;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  background-color: rgba(255, 255, 255, 0.8);
-  position: absolute;
-  top: 100%;
-  left: 5%;
-  opacity: 0;
-  transition: var(--transition);
-  pointer-events: none;
-}
-.lr .text {
-  flex-grow: 2;
-}
-.lr .text h4 {
-  transition: var(--transition);
-}
-.lr .tools {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.card .card-title {
   color: var(--dark);
   transition: var(--transition);
 }
-.lr .tools i {
-  transition: var(--transition);
-}
-.project_card:hover .lr {
-  top: 45%;
-  opacity: 1;
-  pointer-events: all;
-}
-.lr .tools i:hover {
+.card .card-title:hover {
   color: var(--main-color);
 }
-.lr:hover .text h4 {
+ .card .tools {
+  width: 40%;
+  height: 100%;
+  border-radius: .3rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top : 0 ;
+  right: -40px;
+  opacity: 0;
+  pointer-events: none;
+  color: var(--dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.4rem;
+  z-index: 1;
+  transition: var(--transition);
+}
+.card:hover .tools{
+  opacity: 1;
+  right: 0%;
+  pointer-events: auto;
+}
+.card .tools i {
+  color: var(--color-text);
+  transition: var(--transition);
+}
+.card .tools i:hover {
   color: var(--main-color);
 }
 .project_card .rate {
@@ -71,12 +73,12 @@
   border-radius: 20px;
   position-anchor: --img;
   bottom: calc(anchor(top) - 50px);
-  left: calc(anchor(right) - 60px);
+  right: calc(anchor(left) - 60px);
 }
 
 /** كرت اضافة المزيد  */
 .add_new_project {
-  height: 250px;
+  height: 350px;
   border-radius: 0.4rem;
   background-color: var(--color-text);
   box-shadow: var(--shadow);
@@ -160,6 +162,7 @@
   background-color: var(--color-text);
   box-shadow: var(--shadow);
   position: relative;
+  overflow-x: hidden;
 }
 
 .add_type .fa-circle-xmark {
@@ -177,7 +180,7 @@
 .flid .del {
   color: var(--red);
   border-color: var(--red) ;
-  margin-inline:.3rem ;
+  /* margin-inline:.3rem ; */
   transition: var(--transition);
 }
 
@@ -195,33 +198,72 @@
 .add_type  .date div{
   width: 43%;
 }
+.media,
+.imgBox{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.imgBox input{
+  width: 75%;
+  height: 35px;
+}
+.media_img {
+  width: 75%;
+}
+
+.media img ,
+.imgBox img {
+  width: 20%;
+  height: 150px;
+  border-radius: .7rem;
+}
+@media screen  and (max-width:782px){
+  .imgBox{
+    flex-direction:column ;
+  }
+  .imgBox input{
+    width: 100%;
+  }
+  .imgBox img {
+    width: 100%;
+  }
+  .media{
+    flex-direction: column;
+  }
+}
 /*& dark mode  */
 .card_page.dark .lr {
   background-color: var(--bg4);
 }
-.card_page.dark .lr .tools {
+.card_page.dark .card {
+  background-color: var(--bg4);
   color: var(--color-text);
 }
-.card_page.dark .lr .tools i:hover {
+.card_page.dark .card .card-title {
+  color: var(--color-text);
+}
+.card_page.dark .card .card-title:hover {
   color: var(--main-color);
 }
-.card_page.dark .lr:hover .text h4 {
-  color: var(--main-color) !important;
-}
+
 .card_page.dark .add_new_project {
   background-color: var(--bg4);
+  color: var(--color-text) !important;
 }
 .card_page.dark .add_new_project span i {
-  color: var(--green);
-}
-.card_page.dark .add_new_project:hover {
-  color: var(--main-color) !important;
+  color: var(--main-color);
 }
 .card_page.dark .add_type form {
   background-color: var(--bg4);
 }
-.card_page.dark .add_type form h2 {
+.card_page.dark .add_type form h2  {
   color: var(--main-color) !important;
+}
+.card_page.dark .add_type form label ,.card_page.dark .add_type form h6 {
+  color: var(--color-text);
 }
 .card_page.dark .project_card .rate {
   background-color: var(--main-color);
@@ -229,7 +271,4 @@
 
 .alert.alert-danger {
   width: 50%;
-}
-.card_page.dark .alert.alert-danger {
-  color: var(--red);
 }

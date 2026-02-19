@@ -2,7 +2,7 @@
   <div class="container">
     <section class="project_details">
       <article class="details">
-        <h1 class="fade-left" appFadeLeft>{{project.project_title}} <span class="text-muted fs-6"
+        <h1 class="fade-left" appFadeLeft>{{project.project_title}} <span class="text-white-50 fs-6"
             [ngClass]="{'text-white' : bg =='dark'}">({{diffInMonths( project.date_start,project.date_end
             )}}Month)</span></h1>
         <ul class="roles">
@@ -10,7 +10,7 @@
           <li class="fade-up" appFadeUp> {{role.role}}</li>
           }
         </ul>
-        <h6 class="fade-up" appFadeUp>Project Overview :</h6>
+        <h3 class="fade-up" appFadeUp>Project Overview :</h3>
         <p class="fade-up" appFadeUp>{{project.project_dis}}</p>
       </article>
       <article class="poster">
@@ -18,15 +18,7 @@
       </article>
     </section>
     <hr class="fade-up " appFadeUp>
-    <article class="tools">
-      <h3 class="fade-up" appFadeUp>Tools</h3>
-      <ul>
-        @for (tool of project.tools; track $index) {
-        <li class="fade-up" appFadeUp>{{tool.tool}}</li>
-        }
-      </ul>
-    </article>
-    <hr class="fade-up " appFadeUp>
+    <!--& challenges  -->
     <article class="challenge">
       <h3 class="fade-up" appFadeUp>challenges</h3>
       <ol type="1">
@@ -36,6 +28,17 @@
       </ol>
     </article>
     <hr class="fade-up " appFadeUp>
+    <!--& tools  -->
+    <hr class="fade-up " appFadeUp>
+    <article class="tools">
+      <h3 class="fade-up" appFadeUp>Tools</h3>
+      <ul>
+        @for (tool of project.tools; track $index) {
+        <li class="fade-up" appFadeUp><span>{{$index + 1}}</span> {{tool.tool}}</li>
+        }
+      </ul>
+    </article>
+    <!--& stratges  -->
     <article class="stra">
       <h3 class="fade-up" appFadeUp>strategic</h3>
       <ol>
@@ -45,7 +48,7 @@
       </ol>
     </article>
     <hr class="fade-up " appFadeUp>
-
+    <!--& project-analytics  -->
     <section class="project-analytics">
       <article class="analytics-header">
         <div class="title-box">
@@ -62,37 +65,37 @@
       </article>
       <!--! الاشكال و التحليلات   -->
       <article class="charts">
-        <apx-chart class="apx-chart" [series]="viewsChartOptions.series!" [chart]="viewsChartOptions.chart!"
-          [xaxis]="viewsChartOptions.xaxis!" [yaxis]="chartOptions.yaxis!" [colors]="viewsChartOptions.colors!"
-          [dataLabels]="viewsChartOptions.dataLabels!" [stroke]="viewsChartOptions.stroke!"
-          [plotOptions]="viewsChartOptions.plotOptions!" [tooltip]="viewsChartOptions.tooltip!"
-          [fill]="viewsChartOptions.fill!">
-        </apx-chart> <apx-chart class="apx-chart" [series]="clickChartOptions.series!"
+        <apx-chart class="apx-chart" [labels]="viewsChartOptions.labels!" [series]="viewsChartOptions.series!"
+          [chart]="viewsChartOptions.chart!" [xaxis]="viewsChartOptions.xaxis!" [yaxis]="chartOptions.yaxis!"
+          [colors]="viewsChartOptions.colors!" [dataLabels]="viewsChartOptions.dataLabels!"
+          [stroke]="viewsChartOptions.stroke!" [plotOptions]="viewsChartOptions.plotOptions!"
+          [tooltip]="viewsChartOptions.tooltip!" [fill]="viewsChartOptions.fill!">
+        </apx-chart> <apx-chart class="apx-chart" [labels]="clickChartOptions.labels!" [series]="clickChartOptions.series!"
           [chart]="clickChartOptions.chart!" [xaxis]="clickChartOptions.xaxis!" [yaxis]="clickChartOptions.yaxis!"
           [colors]="clickChartOptions.colors!" [dataLabels]="clickChartOptions.dataLabels!"
           [stroke]="clickChartOptions.stroke!" [plotOptions]="clickChartOptions.plotOptions!"
           [tooltip]="clickChartOptions.tooltip!" [fill]="clickChartOptions.fill!">
-        </apx-chart> <apx-chart class="apx-chart" [series]="interactionChartOptions.series!"
-          [chart]="interactionChartOptions.chart!" [xaxis]="interactionChartOptions.xaxis!"
-          [yaxis]="interactionChartOptions.yaxis!" [colors]="interactionChartOptions.colors!"
-          [dataLabels]="interactionChartOptions.dataLabels!" [stroke]="interactionChartOptions.stroke!"
-          [plotOptions]="interactionChartOptions.plotOptions!" [tooltip]="interactionChartOptions.tooltip!"
-          [fill]="interactionChartOptions.fill!">
-        </apx-chart> <apx-chart class="apx-chart" [series]="followersChartOptions.series!"
-          [chart]="followersChartOptions.chart!" [xaxis]="followersChartOptions.xaxis!"
-          [yaxis]="followersChartOptions.yaxis!" [colors]="followersChartOptions.colors!"
-          [dataLabels]="followersChartOptions.dataLabels!" [stroke]="followersChartOptions.stroke!"
-          [plotOptions]="followersChartOptions.plotOptions!" [tooltip]="followersChartOptions.tooltip!"
-          [fill]="followersChartOptions.fill!">
+        </apx-chart> <apx-chart class="apx-chart" [labels]="interactionChartOptions.labels!"
+          [series]="interactionChartOptions.series!" [chart]="interactionChartOptions.chart!"
+          [xaxis]="interactionChartOptions.xaxis!" [yaxis]="interactionChartOptions.yaxis!"
+          [colors]="interactionChartOptions.colors!" [dataLabels]="interactionChartOptions.dataLabels!"
+          [stroke]="interactionChartOptions.stroke!" [plotOptions]="interactionChartOptions.plotOptions!"
+          [tooltip]="interactionChartOptions.tooltip!" [fill]="interactionChartOptions.fill!">
+        </apx-chart> <apx-chart class="apx-chart" [labels]="followersChartOptions.labels!"
+          [series]="followersChartOptions.series!" [chart]="followersChartOptions.chart!"
+          [xaxis]="followersChartOptions.xaxis!" [yaxis]="followersChartOptions.yaxis!"
+          [colors]="followersChartOptions.colors!" [dataLabels]="followersChartOptions.dataLabels!"
+          [stroke]="followersChartOptions.stroke!" [plotOptions]="followersChartOptions.plotOptions!"
+          [tooltip]="followersChartOptions.tooltip!" [fill]="followersChartOptions.fill!">
         </apx-chart>
       </article>
     </section>
     <hr class="fade-up" appFadeUp>
-
-    <!--! slider  -->
+    <!--& slider  -->
     <section class="all_media">
-      <h3 class="text-primary text-capitalize mb-3">Marketing Project Lifecycle: <span class="text-muted fs-6"> From Handover to Execution and
-        Detailed Deliverables</span></h3>
+      <h3 class="text-primary text-capitalize mb-3">Marketing Project Lifecycle: <span class="text-muted fs-6"> From
+          Handover to Execution and
+          Detailed Deliverables</span></h3>
       <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
 
@@ -136,6 +139,16 @@
         </button>
       </div>
     </section>
+    <hr class="fade-up " appFadeUp>
+    <!--& recommadtion  -->
+    <article class="recommendation">
+      <h3 class="fade-up" appFadeUp>Pending Marketing Proposals</h3>
+      <ul type="1">
+        @for (c of project.recommendations; track $index) {
+        <li class="fade-up " appFadeUp  [style.animationDelay]="($index * 0.1)+'s'">{{c.recommendation}}</li>
+        }
+      </ul>
+    </article>
   </div>
 
 

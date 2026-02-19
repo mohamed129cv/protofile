@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --main-color: #0057ff;
+  --main-color: #1f77b4;
+  /* --main-color: #0057ff; */
   --color-primary: #01b4e4;
   --dark: #0d253f;
   --bg: #081c24;
@@ -70,7 +71,7 @@ body.dark{
   background-color: var(--bg3);
 }
 
-body.dark h1,
+/* body.dark h1,
 body.dark h2,
 body.dark h3,
 body.dark h4,
@@ -80,4 +81,4 @@ body.dark p,
 body.dark label,
 body.dark span{
   color: #EDEDED  ;
-}
+} */

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ProjectsCartComponent } from '../projects-cart/projects-cart.component';
 import { ProjectApiService } from '../../core/api/ProjectApiService';
@@ -16,6 +16,7 @@ import { SeoService } from '../../core/api/seo.service';
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css'
 })
+
 export class ProjectsComponent {
   constructor(private _seo : SeoService, private _ToastrService: ToastrService, private _ProjectApiService: ProjectApiService, private _bg: BgService) {
   }
@@ -44,7 +45,7 @@ export class ProjectsComponent {
   bg!: string
   projects: Iproject[] = [] as Iproject[]
   allProjects: Iproject[] = [] as Iproject[]
-  adminMode: boolean = false
+  adminMode: boolean = true
   userName: string = 'admin'
   password: string = 'army4'
   searchWord: string = ''

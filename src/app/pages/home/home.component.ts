@@ -49,13 +49,17 @@ export class HomeComponent {
     project :  0 ,
     client : 0 ,
     hours : 0 ,
-    certificate : 0
+    certificate : 0 ,
+    Campaigns :0 ,
+    Industries :0 ,
   }
   targets= {
-    project : 100 ,
+    project : 40 ,
     client : 20 ,
     hours : 200 ,
-    certificate : 3
+    certificate : 3 ,
+    Campaigns :9,
+    Industries :6 ,
   }
 
   @ViewChild('achievement' ) achievementsContect!:ElementRef;
@@ -75,6 +79,8 @@ export class HomeComponent {
           this.animateCounter('project')
           this.animateCounter('client')
           this.animateCounter('hours')
+          this.animateCounter('Campaigns')
+          this.animateCounter('Industries')
         }
       })
     })
@@ -85,7 +91,7 @@ export class HomeComponent {
   animateCounter(type : keyof typeof this.counts){
      let count= 0
     let target = this.targets[type]
-     let speed = 10
+     let speed = 20
       let interval = setInterval(()=>{
        if(count<target){
          count++

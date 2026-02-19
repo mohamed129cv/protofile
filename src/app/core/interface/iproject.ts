@@ -13,6 +13,8 @@ export interface Iproject {
   project_media: Iproject_media[],
   date_start : Date ,
   date_end : Date ,
+  recommendations  : Irecommendtion[] ,
+  client_name : string
 }
 export interface Itools {
   tool : string
@@ -25,6 +27,9 @@ export interface Iroles {
 }
 export interface Ichallenges {
   challenge : string
+}
+export interface Irecommendtion {
+  recommendation  : string
 }
 export interface Iproject_media {
   isVideo: boolean,

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { FadeUpDirective } from "../../core/direcitve/fade-up.directive";
 import { BgService } from '../../core/api/bg.service';
 import { UplodeImgService } from '../../core/api/uplode-img.service';
+import { FadeRightDirective } from "../../core/direcitve/fade-right.directive";
 
 @Component({
   selector: 'app-projects-cart',
@@ -48,6 +49,7 @@ export class ProjectsCartComponent {
     })
   }
   //* اضافة مشروع
+  typeSeletion : string[] =[ 'Financial Services Market' ,'Construction & Engineering Market','Fitness & Sports Market', 'Home Services Market' ,'Fashion & Apparel Market' ,'Pharma & Medical Distribution' ,'Kids & Toys Market','Security & Surveillance Market' ,'Automotive Market', 'Legal Services Market','Wholesale Market' , 'Real Estate Market' , 'Education Market' ,'Corporate & B2B Services' ,'Industrial Market' , 'Beauty & Cosmetics Market' , 'Tech & SaaS Market' , 'Food & Beverage Market' , ]
   @ViewChild('add_pro') add_pro_section!: ElementRef
   @ViewChild('btnSubmit') btnSubmit!: ElementRef
   add_project!: FormGroup
@@ -76,6 +78,9 @@ export class ProjectsCartComponent {
   url!: FormControl
   dis!: FormControl
   isVideo!: FormControl
+  recommendations  !: FormArray
+  recommendation !: FormControl
+  client_name !: FormControl
 
   eidtMode: boolean = false
   projectId !: number
@@ -103,6 +108,7 @@ export class ProjectsCartComponent {
     this.project_dis = new FormControl('', [Validators.required, Validators.minLength(3)])
     this.project_rate = new FormControl('', [Validators.required, Validators.min(1), Validators.max(10)])
     this.project_type = new FormControl('', [Validators.required])
+    this.client_name = new FormControl('', [Validators.required])
     this.date_start = new FormControl('', [Validators.required])
     this.date_end = new FormControl('', [Validators.required])
     this.project_poster = new FormControl(this.imgsrc, [Validators.required])
@@ -112,6 +118,7 @@ export class ProjectsCartComponent {
     this.challenges = new FormArray([this.createchallenges()])
     this.strategics = new FormArray([this.createStrategic()])
     this.project_media = new FormArray([this.createMediaGroup()])
+    this.recommendations = new FormArray([this.createRecommendation()])
   }
   initFormGroupNewPro() {
     this.add_project = new FormGroup({
@@ -121,6 +128,7 @@ export class ProjectsCartComponent {
       date_start: this.date_start,
       date_end: this.date_end,
       project_type: this.project_type,
+      client_name: this.client_name,
       project_poster: this.project_poster,
       results: this.results,
       tools: this.tools,
@@ -128,9 +136,21 @@ export class ProjectsCartComponent {
       challenges: this.challenges,
       roles: this.roles,
       project_media: this.project_media,
+      recommendations : this.recommendations ,
     })
   }
-
+  //!Recommendations
+    createRecommendation(value :string=''){
+      return new FormGroup({
+        recommendation : new FormControl(value , Validators.required)
+      })
+    }
+    get recommendationsControls(){
+      return this.add_project.get('recommendations') as FormArray
+    }
+    addRecommendation(){
+      this.recommendationsControls.push(this.createRecommendation())
+    }
   //!media
   createMediaGroup(dis: string = '', url: string = '', isVideo: boolean = false) {
     return new FormGroup({
@@ -219,6 +239,7 @@ export class ProjectsCartComponent {
     this.rolesControls.clear();
     this.strategicControls.clear();
     this.toolsControls.clear();
+    this.recommendationsControls.clear()
   }
   pushControls() {
     this.mediaControls.push(this.createMediaGroup());
@@ -227,6 +248,7 @@ export class ProjectsCartComponent {
     this.rolesControls.push(this.createRoles());
     this.strategicControls.push(this.createStrategic());
     this.toolsControls.push(this.createTool());
+    this.recommendationsControls.push(this.createRecommendation())
   }
 
   add_pro_sbumit() {
@@ -278,7 +300,6 @@ export class ProjectsCartComponent {
     if (project.challenges && project.challenges.length) {
       project.challenges.forEach(c => { this.challengeControls.push(this.createchallenges(c.challenge)); });
     } else {
-      console.log('object');
       this.challengeControls.push(this.createchallenges());
     }
 
@@ -290,7 +311,12 @@ export class ProjectsCartComponent {
     } else {
       this.strategicControls.push(this.createStrategic());
     }
-
+    //Recommendations
+    if(project.recommendations && project.recommendations.length){
+        project.recommendations.forEach(r=>{
+          this.recommendationsControls.push(this.createRecommendation(r.recommendation))
+        })
+    }
     project.results.forEach(res => {
       this.resultsControls.push(this.createResultsGroup(res.view, res.interaction, res.Click, res.visit_page, res.New_follower));
     });
@@ -305,6 +331,7 @@ export class ProjectsCartComponent {
       project_dis: project.project_dis,
       project_rate: project.project_rate,
       project_type: project.project_type,
+      client_name: project.client_name,
       project_poster: project.project_poster,
       date_end: project.date_end,
       date_start: project.date_start
@@ -319,7 +346,7 @@ export class ProjectsCartComponent {
       this._ProjectApiService.updataProject(this.projectId, this.add_project.value).subscribe({
         next: res => {
           this.add_project.reset()
-            this.clearControls()
+          this.clearControls()
           this.pushControls()
           this.closing_add_pro()
           this._ToastrService.success('Project updated successfully.', 'Success ')
@@ -340,7 +367,6 @@ export class ProjectsCartComponent {
       next: res => {
         this._ToastrService.success('Project deleted successfully.', 'Success ')
         this.getProjects()
-
       }
     })
   }
@@ -367,7 +393,6 @@ export class ProjectsCartComponent {
     formData.append('upload_preset', 'portfolio_upload')
     this._uplodeImg.uplodeImg(formData).subscribe({
       next: res => {
-        console.log(res);
         this.imgsrc = res.secure_url
         this.add_project.get('project_poster')?.setValue(this.imgsrc)
       }
@@ -381,7 +406,6 @@ export class ProjectsCartComponent {
     this._uplodeImg.uplodeImg(formDate).subscribe({
       next: res => {
         let img = res.secure_url
-        console.log(img);
         this.mediaControls.at(index).get('url')?.setValue(img)
       },
       error: err => {

@@ -24,7 +24,7 @@
 
       <article class="contact_chart">
         <div class="table-responsive" >
-          <table class="table table-striped " [ngClass]="{'table-dark': bg == 'dark' }">
+          <table class="table table-striped " *ngIf="activeChart == 'bar'" [ngClass]="{'table-dark': bg == 'dark' }">
             <thead>
               <tr>
                 <td class="table-active fade-up" appFadeUp>index</td>
@@ -48,13 +48,13 @@
               }
             </tbody>
           </table>
-          <apx-chart class="apx-chart" [series]="chartOptions.series!" [chart]="chartOptions.chart!" [xaxis]="chartOptions.xaxis!"
-            [yaxis]="chartOptions.yaxis!" [colors]="chartOptions.colors!" [dataLabels]="barChartOptions.dataLabels!"
-            [stroke]="barChartOptions.stroke!" [plotOptions]="barChartOptions.plotOptions!"
-            [tooltip]="barChartOptions.tooltip!" [fill]="barChartOptions.fill!">
-          </apx-chart>
-        </div>
-      </article>
+          <apx-chart class="apx-chart" [labels]="chartOptions.labels!" [series]="chartOptions.series!" [chart]="chartOptions.chart!" [xaxis]="chartOptions.xaxis!"
+          [yaxis]="chartOptions.yaxis!" [colors]="chartOptions.colors!" [dataLabels]="barChartOptions.dataLabels!"
+          [stroke]="barChartOptions.stroke!" [plotOptions]="barChartOptions.plotOptions!"
+          [tooltip]="barChartOptions.tooltip!" [fill]="barChartOptions.fill!">
+        </apx-chart>
+      </div>
+        </article>
     </section>
   </div>
 </section>

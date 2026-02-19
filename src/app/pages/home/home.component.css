@@ -75,10 +75,14 @@ button.btn_p:hover::after {
     url("/assets/mohamed_re.png") no-repeat center/cover;
   color: var(--color-text);
   position: relative;
+
+}
+.hero h1{
+      text-transform: none !important;
 }
 .hero .my_job_name::after {
   content: "";
-  animation: jopAnimation 15s infinite;
+  animation: jopAnimation 25s infinite;
 }
 /*! icon code    */
 .hero .go_down {
@@ -320,7 +324,8 @@ button.btn_p:hover::after {
   text-align: center;
 }
 .achievement {
-  width: 40%;
+  width: 31%;
+  height: 200px;
   padding: clamp(0.8rem, 0.5rem + 1vw, 1.5rem);
   border-radius: 0.5rem;
   cursor: pointer;
@@ -363,7 +368,24 @@ button.btn_p:hover::after {
   margin-bottom: 0.5rem;
   color: var(--main-color);
 }
-
+/*& contact us  */
+.contact .container{
+  background-color: var(--main-color);
+  color: var(--color-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-block: 40px;
+}
+.contact .container h5 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-block:20px ;
+}
 /*! madie Qoury  */
 
 @media screen and (max-width: 992px) {
@@ -404,6 +426,9 @@ button.btn_p:hover::after {
     flex-direction: column;
     width: 100%;
   }
+  .achievement{
+    width: 100%;
+  }
   .about_me .informtion,
   .about_me_text {
     width: 100%;
@@ -412,7 +437,12 @@ button.btn_p:hover::after {
   }
 }
 
-
+.home_page.dark p , .home_page.dark span{
+  color: var(--color-text);
+}
+.home_page.dark h2{
+  color: var(--color-text);
+}
 
 /*& dark mode   */
 .home_page.dark button.btn_p {
@@ -454,247 +484,120 @@ button.btn_p:hover::after {
 .home_page.dark .achievement i {
   color: var(--main-color);
 }
-/* Digital Marketer */
-/* Data analyst */
-/* Social Media Ads Manager */
 @keyframes jopAnimation {
-  0% {
-    content: "|";
-  }
-  2% {
-    content: "D|";
-  }
-  4% {
-    content: "Di|";
-  }
-  5% {
-    content: "Dig|";
-  }
-  6% {
-    content: "Digi|";
-  }
-  7% {
-    content: "Digit|";
-  }
-  8% {
-    content: "Digita|";
-  }
-  9% {
-    content: "Digital |";
-  }
-  10% {
-    content: "Digital M|";
-  }
-  11% {
-    content: "Digital Ma|";
-  }
-  12% {
-    content: "Digital Mar|";
-  }
-  13% {
-    content: "Digital Mark|";
-  }
-  14% {
-    content: "Digital Market|";
-  }
-  15% {
-    content: "Digital Markete|";
-  }
-  16% {
-    content: "Digital Marketer|";
-  }
+  /* Social Media Specialist */
+  0% { content: "|"; }
+  /* 1% { content: "S|"; } */
+  1% { content: "So|"; }
+  2% { content: "Soc|"; }
+  /* 4% { content: "Soci|"; } */
+  3% { content: "Socia|"; }
+  /* 6% { content: "Social|"; } */
+  4% { content: "Social |"; }
+  /* 8% { content: "Social M|"; } */
+  5% { content: "Social Me|"; }
+  /* 10% { content: "Social Med|"; } */
+  6% { content: "Social Medi|"; }
+  /* 12% { content: "Social Media|"; } */
+  7% { content: "Social Media |"; }
+  /* 14% { content: "Social Media S|"; } */
+  8% { content: "Social Media Sp|"; }
+  /* 16% { content: "Social Media Spe|"; } */
+  9% { content: "Social Media Spec|"; }
+  /* 18% { content: "Social Media Speci|"; } */
+  10% { content: "Social Media Specia|"; }
+  /* 20% { content: "Social Media Special|"; } */
+  11% { content: "Social Media Speciali|"; }
+  /* 22% { content: "Social Media Specialis|"; } */
+  12% { content: "Social Media Specialist|"; }
+  15% { content: "Social Media Specialist|"; }
+  /* 25% { content: "Social Media Specialist|"; }
+  26% { content: "Social Media Specialist|"; }
+  27% { content: "Social Media Specialist|"; }
+  30% { content: "Social Media Specialist|"; }
+  */
+  16% { content: "Social Media Speciali|"; }
+  /* 32% { content: "Social Media Specia|"; } */
+  17% { content: "Social Media Spe|"; }
+  18% { content: "Social Media |"; }
+  19% { content: "Social Med|"; }
+  20% { content: "Social |"; }
+  21% { content: "Socia|"; }
+  22% { content: "So|"; }
+  23% { content: "|"; }
+  /* Content Marketing Specialist */
+  25% { content: "C|"; }
+  /* 52% { content: "Co|"; } */
+  26% { content: "Con|"; }
+  27% { content: "Conte|"; }
+  28% { content: "Content |"; }
+  29% { content: "Content Ma|"; }
+  30% { content: "Content Marke|"; }
+  31% { content: "Content Marketing |"; }
+  32% { content: "Content Marketing Spe|"; }
+  33% { content: "Content Marketing Specia|"; }
+  34% { content: "Content Marketing Speciali|"; }
+  35% { content: "Content Marketing Specialist|"; }
+  39% { content: "Content Marketing Special|"; }
+  40% { content: "Content Marketing Spe|"; }
+  41% { content: "Content Marketing |"; }
+  42% { content: "Content Market|"; }
+  43% { content: "Content Mar|"; }
+  44% { content: "Content |"; }
+  45% { content: "Cont|"; }
+  46% { content: "|"; }
 
-  24% {
-    content: "Digital Markt|";
-  }
-  25% {
-    content: "Digital Mark|";
-  }
-  26% {
-    content: "Digital Ma|";
-  }
-  27% {
-    content: "Digital|";
-  }
-  28% {
-    content: "Digit|";
-  }
-  29% {
-    content: "Digi|";
-  }
-  30% {
-    content: "Di|";
-  }
-  31% {
-    content: "|";
-  }
-  32% {
-    content: "D|";
-  }
-  33% {
-    content: "Da|";
-  }
-  34% {
-    content: "Data|";
-  }
-  35% {
-    content: "Data a|";
-  }
-  36% {
-    content: "Data an|";
-  }
-  37% {
-    content: "Data ana|";
-  }
-  38% {
-    content: "Data anal|";
-  }
-  39% {
-    content: "Data analys|";
-  }
-  40% {
-    content: "Data analyst|";
-  }
-  45% {
-    content: "Data anays|";
-  }
-  46% {
-    content: "Data anay|";
-  }
-  47% {
-    content: "Data an|";
-  }
-  48% {
-    content: "Data|";
-  }
-  49% {
-    content: "Dat|";
-  }
-  50% {
-    content: "Da|";
-  }
-  51% {
-    content: "|";
-  }
-  52% {
-    content: "S|";
-  }
-  53% {
-    content: "Soc|";
-  }
-  54% {
-    content: "Socia|";
-  }
-  55% {
-    content: "Social|";
-  }
-  57% {
-    content: "Social |";
-  }
-  58% {
-    content: "Social M|";
-  }
-  59% {
-    content: "Social Me|";
-  }
-  60% {
-    content: "Social Med|";
-  }
-  62% {
-    content: "Social Medi|";
-  }
-  63% {
-    content: "Social Media|";
-  }
-  64% {
-    content: "Social Media |";
-  }
-  66% {
-    content: "Social Media A|";
-  }
-  67% {
-    content: "Social Media Ad|";
-  }
-  68% {
-    content: "Social Media Ads|";
-  }
-  69% {
-    content: "Social Media Ads |";
-  }
-  70% {
-    content: "Social Media Ads M|";
-  }
-  71% {
-    content: "Social Media Ads Ma|";
-  }
-  72% {
-    content: "Social Media Ads Man|";
-  }
-  74% {
-    content: "Social Media Ads Mana|";
-  }
-  76% {
-    content: "Social Media Ads Manag|";
-  }
-  77% {
-    content: "Social Media Ads Manager|";
-  }
-  82% {
-    content: "Social Media Ads Manag|";
-  }
-  83% {
-    content: "Social Media Ads Mana|";
-  }
-  84% {
-    content: "Social Media Ads Man|";
-  }
-  85% {
-    content: "Social Media Ads M|";
-  }
-  86% {
-    content: "Social Media Ads |";
-  }
-  87% {
-    content: "Social Media Ads|";
-  }
-  88% {
-    content: "Social Media A|";
-  }
-  89% {
-    content: "Social Media |";
-  }
-  90% {
-    content: "Social Media|";
-  }
-  91% {
-    content: "Social Medi|";
-  }
-  92% {
-    content: "Social Me|";
-  }
-  93% {
-    content: "Social M|";
-  }
-  94% {
-    content: "Social |";
-  }
-  95% {
-    content: "Social|";
-  }
-  96% {
-    content: "Soci|";
-  }
-  97% {
-    content: "So|";
-  }
-  98% {
-    content: "|";
-  }
-  99% {
-    content: "|";
-  }
-  100% {
-    content: "|";
-  }
+  /* Email Marketing Specialist */
+  48% { content: "E|"; }
+  49% { content: "Ema|"; }
+  50% { content: "Email|"; }
+  51% { content: "Email Ma|"; }
+  52% { content: "Email Market|"; }
+  53% { content: "Email Marketing|"; }
+  54% { content: "Email Marketing |"; }
+  55% { content: "Email Marketing Sp|"; }
+  56% { content: "Email Marketing Speci|"; }
+  57% { content: "Email Marketing Special|"; }
+  58% { content: "Email Marketing Specialist|"; }
+  61% { content: "Email Marketing Special|"; }
+  62% { content: "Email Marketing Spe|"; }
+  63% { content: "Email Marketing |"; }
+  64% { content: "Email Market|"; }
+  65% { content: "Email Ma|"; }
+  66% { content: "Email|"; }
+  67% { content: "Ema|"; }
+  68% { content: "|"; }
+
+  /* Marketing Strategist */
+  69% { content: "M|"; }
+  70% { content: "Mark|"; }
+  71% { content: "Mark |"; }
+  72% { content: "Marketing Str|"; }
+  73% { content: "Marketing Strate|"; }
+  74% { content: "Marketing Strategist|"; }
+  77% { content: "Marketing Strate|"; }
+  78% { content: "Marketing St|"; }
+  79% { content: "Marketing|"; }
+  80% { content: "Mark|"; }
+  81% { content: "Ma|"; }
+  82% { content: "|"; }
+
+  /* Performance Marketing */
+  83% { content: "P|"; }
+  84% { content: "Per|"; }
+  85% { content: "Perorm|"; }
+  86% { content: "Performance|"; }
+  87% { content: "Performance Mar|"; }
+  88% { content: "Performance Marke|"; }
+  89% { content: "Performance Marketing|"; }
+  92% { content: "Performance Market|"; }
+  93% { content: "Performance Mar|"; }
+  94% { content: "Performance |"; }
+  95% { content: "Performa|"; }
+  96% { content: "Perf|"; }
+  97% { content: "Pe|"; }
+  98% { content: "Pe|"; }
+  99% { content: "|"; }
+  100% { content: "|"; }
 }
 

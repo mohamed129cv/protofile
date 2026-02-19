@@ -103,8 +103,12 @@
 
 
 /*& dark mode  */
+
 .contcat_us.dark{
   background: var(--bg4);
+}
+.contcat_us.dark p ,.contcat_us.dark h2 ,.contcat_us.dark label{
+  color: var(--color-text);
 }
 .contcat_us.dark .myLinks span {
   background-color: var(--main-color) !important;

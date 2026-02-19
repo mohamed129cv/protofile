@@ -3,8 +3,12 @@
     <input class="form-control" [(ngModel)]="searchWord" type="text" placeholder="Search projects..." />
     <ul class="search_result" *ngIf="searchWord !==''">
       @for (res of projects ; track $index) {
-      <li *ngIf="res.project_title.toLocaleLowerCase().trim().includes(searchWord.toLocaleLowerCase().trim())"
-        (click)="searchWord = res.project_title">{{res.project_title}}</li>
+        @if (res.project_title.toLocaleLowerCase().trim().includes(searchWord.toLocaleLowerCase().trim())) {
+
+          <li (click)="searchWord = res.project_title">{{res.project_title}}</li>
+        }@else {
+          <li>There is no project by that name.</li>
+        }
       }
     </ul>
     <span>
@@ -17,13 +21,12 @@
     <ul>
       <li [ngClass]="{'active' : typeMode == 'all' }" (click)="getProjects(); typeMode = 'all' ">all</li>
       @for (type of types ; track $index) {
-      <li class="active" (click)="typeMode = type ; filterByType(type) ">{{type}}</li>
+      <li  (click)="typeMode = type ; filterByType(type) " [ngClass]="{'active' : typeMode == type}">{{type}}</li>
       }
     </ul>
-
-    <span *ngIf="adminMode"> <i class="fa-solid fa-plus"></i>
-    </span>
   </article>
+  <h2 class="text-primary mt-5 text-center" [ngClass]="{'text-white ' : bg == 'dark'} ">Our projects</h2>
+  <p class="text-muted mb-3  text-center" [ngClass]="{'text-white-50 ' : bg == 'dark'} ">Our most important projects</p>
   <article class="projects">
     <app-projects-cart [projcets]="projects |search : searchWord" [adminMode]="adminMode"></app-projects-cart>
   </article>

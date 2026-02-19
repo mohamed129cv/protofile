@@ -78,7 +78,6 @@ header .search_result li:hover{
   list-style: none;
   margin: 0;
 }
-.type span,
 .type ul li {
   border-radius: 20px;
   box-shadow: var(--shadow);
@@ -92,8 +91,7 @@ header .search_result li:hover{
   transition: var(--transition);
 }
 
-.type ul li:hover,
-.type span:hover {
+.type ul li:hover{
   color: var(--main-color);
   transform: translateY(-10px);
 }
@@ -230,8 +228,12 @@ header .search_result li:hover{
 }
 .project_page.dark .type span,
 .project_page.dark .type ul li{
-  background-color: var(--main-color);
+  background-color: var(--bg4);
   color: var(--color-text);
+}
+.project_page.dark .type ul li:hover,
+.project_page.dark .type ul li.active{
+  background-color: var(--main-color);
 }
 .project_page.dark .login form {
   background-color: var(--bg4);

@@ -14,9 +14,9 @@
       <article class="data">
         <img src="./assets/mohamed_re.png" alt="my_image" class="fade-left" appFadeLeft>
         <div class="informtion fade-right" appFadeRight>
-          <p><span>name :</span>mohammed rabie Abdelaziz</p>
+          <p><span>name :</span>mohammed Abdulaziz</p>
           <p><span>age :</span>24</p>
-          <p><span>phon :</span>01029155459</p>
+          <p><span>phone :</span>+201029155459</p>
           <p><span>email :</span>mohammedAbdlaiziz1&#64;gmail.com</p>
         </div>
       </article>
@@ -85,20 +85,30 @@
 
       <!--! Number Of project  -->
       <div class="achievement fade-left" appFadeLeft>
-        <i class="fas fa-rocket"></i>
-        <p>{{counts.project}}</p>
+        <i class="fa-solid fa-bullseye"></i>
+        <p>{{counts.project}} + Buyer Personas Built</p>
+      </div>
+      <!--! Number Of Campaigns  -->
+      <div class="achievement fade-left" appFadeLeft>
+        <i class="fa-solid fa-fire"></i>
+        <p>{{counts.Campaigns}} + Underperforming Campaigns Turned Profitable</p>
       </div>
 
+      <!--! Number of Industries  -->
+      <div class="achievement fade-right" appFadeRight>
+        <i class="fa-solid fa-globe"></i>
+        <p>{{counts.Industries}} Industries Served </p>
+      </div>
       <!--! Number of certificates  -->
       <div class="achievement fade-right" appFadeRight>
         <i class="fa-solid fa-trophy"></i>
-        <p>{{counts.certificate}} Brands Successfully Scaled </p>
+        <p>{{counts.certificate}} + Brands Successfully Scaled </p>
       </div>
 
       <!--! Number of working hours  -->
       <div class="achievement fade-left" appFadeLeft>
         <i class="fa-regular fa-clock"></i>
-        <p>{{counts.hours}}</p>
+        <p>{{counts.hours}} + Number of working hours</p>
       </div>
 
     </section>
@@ -106,83 +116,93 @@
 
   <!--& Services  -->
 
- <article class="Services">
-  <h2 class="fade-up" appFadeUp>Services</h2>
-  <section class="Services_contect">
-    <!--& service 1  -->
-    <div class="service-card fade-up" appFadeUp>
-      <span>
-        <i class="fa-solid fa-bullhorn"></i>
-      </span>
-      <h3>Digital Marketing Strategy</h3>
-      <p>Planning and managing ad campaigns across Facebook, Google, and other social media platforms.</p>
+  <article class="Services">
+    <h2 class="fade-up" appFadeUp>Services</h2>
+    <section class="Services_contect">
+      <!--& service 1  -->
+      <div class="service-card fade-up" appFadeUp>
+        <span>
+          <i class="fa-solid fa-bullhorn"></i>
+        </span>
+        <h3>Digital Marketing Strategy</h3>
+        <p>Planning and managing ad campaigns across Facebook, Google, and other social media platforms.</p>
+      </div>
+
+      <!--& service 2  -->
+      <div class="service-card fade-up" appFadeUp>
+        <span>
+          <i class="fa-solid fa-envelope-open-text"></i>
+        </span>
+        <h3>Email Marketing</h3>
+        <p>Designing and executing email campaigns to boost engagement and conversions.</p>
+      </div>
+
+      <!--& service 3  -->
+      <div class="service-card fade-up" appFadeUp>
+        <span>
+          <i class="fa-solid fa-pen-nib"></i>
+        </span>
+        <h3>Paid Advertising Services</h3>
+        <p>Creating compelling marketing content and high-performing ad creatives.</p>
+      </div>
+
+      <!--& service 4  -->
+      <div class="service-card fade-up" appFadeUp>
+        <span>
+          <i class="fa-solid fa-magnifying-glass-chart"></i>
+        </span>
+        <h3>Customer Journey Mapping</h3>
+        <p>Optimizing user experience and improving search engine rankings.</p>
+      </div>
+
+      <!--& service 5  -->
+      <div class="service-card fade-up" appFadeUp>
+        <span>
+          <i class="fa-solid fa-laptop-code"></i>
+        </span>
+        <h3>Landing Page Optimization</h3>
+        <p>Enhancing landing pages to increase conversions and engagement.</p>
+      </div>
+
+      <!--& service 6  -->
+      <div class="service-card fade-up" appFadeUp>
+        <span>
+          <i class="fa-solid fa-chart-line"></i>
+        </span>
+        <h3>Content Strategy Specialist</h3>
+        <p>Developing data-driven content strategies to maximize campaign performance.</p>
+      </div>
+
+      <!--& service 7  -->
+      <div class="service-card fade-up" appFadeUp>
+        <span>
+          <i class="fa-solid fa-funnel-dollar"></i>
+        </span>
+        <h3>Ad Campaign Manager</h3>
+        <p>Building and managing sales funnels to drive higher conversions.</p>
+      </div>
+
+      <!--& service 8  -->
+      <div class="service-card fade-up" appFadeUp>
+        <span>
+          <i class="fa-solid fa-bullseye"></i>
+        </span>
+        <h3>Performance Marketing</h3>
+        <p>Executing results-oriented campaigns to strengthen brand identity and ROI.</p>
+      </div>
+    </section>
+  </article>
+
+  <article class="contact">
+    <div class="container">
+      <h5>Start your journey towards digital success today?</h5>
+      <p>Free consultation to help you achieve real and sustainable growth for your project.</p>
+      <div>
+        <button type="button" class="btn p-3 btn-outline-light mx-2" [routerLink]="'/contact-us'">Book now</button>
+        <button type="button" class="btn p-3 btn-outline-light mx-2" [routerLink]="'/project'">My projects</button>
+
+      </div>
     </div>
-
-    <!--& service 2  -->
-    <div class="service-card fade-up" appFadeUp>
-      <span>
-        <i class="fa-solid fa-envelope-open-text"></i>
-      </span>
-      <h3>Email Marketing</h3>
-      <p>Designing and executing email campaigns to boost engagement and conversions.</p>
-    </div>
-
-    <!--& service 3  -->
-    <div class="service-card fade-up" appFadeUp>
-      <span>
-        <i class="fa-solid fa-pen-nib"></i>
-      </span>
-      <h3>Paid Advertising Services</h3>
-      <p>Creating compelling marketing content and high-performing ad creatives.</p>
-    </div>
-
-    <!--& service 4  -->
-    <div class="service-card fade-up" appFadeUp>
-      <span>
-        <i class="fa-solid fa-magnifying-glass-chart"></i>
-      </span>
-      <h3>Customer Journey Mapping</h3>
-      <p>Optimizing user experience and improving search engine rankings.</p>
-    </div>
-
-    <!--& service 5  -->
-    <div class="service-card fade-up" appFadeUp>
-      <span>
-        <i class="fa-solid fa-laptop-code"></i>
-      </span>
-      <h3>Landing Page Optimization</h3>
-      <p>Enhancing landing pages to increase conversions and engagement.</p>
-    </div>
-
-    <!--& service 6  -->
-    <div class="service-card fade-up" appFadeUp>
-      <span>
-        <i class="fa-solid fa-chart-line"></i>
-      </span>
-      <h3>Content Strategy Specialist</h3>
-      <p>Developing data-driven content strategies to maximize campaign performance.</p>
-    </div>
-
-    <!--& service 7  -->
-    <div class="service-card fade-up" appFadeUp>
-      <span>
-        <i class="fa-solid fa-funnel-dollar"></i>
-      </span>
-      <h3>Ad Campaign Manager</h3>
-      <p>Building and managing sales funnels to drive higher conversions.</p>
-    </div>
-
-    <!--& service 8  -->
-    <div class="service-card fade-up" appFadeUp>
-      <span>
-        <i class="fa-solid fa-bullseye"></i>
-      </span>
-      <h3>Performance Marketing</h3>
-      <p>Executing results-oriented campaigns to strengthen brand identity and ROI.</p>
-    </div>
-  </section>
-</article>
-
-
+  </article>
 
 </section>

@@ -19,10 +19,10 @@
   background-color: var(--main-color);
 }
 .go_to_up.dark{
-  color: var(--green) !important;
+  color: var(--main-color) !important;
 }
 .go_to_up.dark:hover{
-  background-color: var(--green) !important;
+  background-color: var(--main-color) !important;
   color: var(--color-text) !important;
 }
 .go_to_up.hidden{
