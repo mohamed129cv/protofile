@@ -45,7 +45,7 @@ export class ProjectsComponent {
   bg!: string
   projects: Iproject[] = [] as Iproject[]
   allProjects: Iproject[] = [] as Iproject[]
-  adminMode: boolean = true
+  adminMode: boolean = false
   userName: string = 'admin'
   password: string = 'army4'
   searchWord: string = ''
