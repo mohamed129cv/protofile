@@ -1,0 +1,115 @@
+[debug] [2026-02-20T09:48:26.555Z] ----------------------------------------------------------------------
+[debug] [2026-02-20T09:48:26.559Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\mohamed\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting
+[debug] [2026-02-20T09:48:26.560Z] CLI Version:   15.7.0
+[debug] [2026-02-20T09:48:26.560Z] Platform:      win32
+[debug] [2026-02-20T09:48:26.560Z] Node Version:  v22.20.0
+[debug] [2026-02-20T09:48:26.561Z] Time:          Fri Feb 20 2026 11:48:26 GMT+0200 (Eastern European Standard Time)
+[debug] [2026-02-20T09:48:26.561Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\project web\protofile
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2026-02-20T09:49:22.900Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-20T09:49:22.900Z] > authorizing via signed-in user (mohamed129cv@gmail.com)
+[debug] [2026-02-20T09:51:05.495Z] Checked if tokens are valid: true, expires at: 1771584386962
+[debug] [2026-02-20T09:51:05.496Z] Checked if tokens are valid: true, expires at: 1771584386962
+[debug] [2026-02-20T09:51:05.499Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2026-02-20T09:51:05.499Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"protofile123"}
+[debug] [2026-02-20T09:51:06.325Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2026-02-20T09:51:06.325Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_UNAVAILABLE","suggestedProjectId":"protofile123-8e3b3"}
+[debug] [2026-02-20T09:51:14.383Z] Checked if tokens are valid: true, expires at: 1771584386962
+[debug] [2026-02-20T09:51:14.384Z] Checked if tokens are valid: true, expires at: 1771584386962
+[debug] [2026-02-20T09:51:14.385Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2026-02-20T09:51:14.385Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"protofile129cv"}
+[debug] [2026-02-20T09:51:14.815Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2026-02-20T09:51:14.816Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_AVAILABLE","suggestedProjectId":"protofile129cv"}
+[debug] [2026-02-20T09:51:33.182Z] Checked if tokens are valid: true, expires at: 1771584386962
+[debug] [2026-02-20T09:51:33.182Z] Checked if tokens are valid: true, expires at: 1771584386962
+[debug] [2026-02-20T09:51:33.183Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2026-02-20T09:51:33.183Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"protofile129cv","name":"dist/protofile/browser"}
+[debug] [2026-02-20T09:51:34.178Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 400
+[debug] [2026-02-20T09:51:34.179Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":400,"message":"field [display_name] has issue [project display name contains invalid characters]","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","fieldViolations":[{"field":"display_name","description":"project display name contains invalid characters"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"url":"https://cloud.google.com/resource-manager/reference/rest/v1/projects"}]}]}}
+[debug] [2026-02-20T09:51:34.561Z] FirebaseError: Request to https://cloudresourcemanager.googleapis.com/v1/projects had HTTP Error: 400, field [display_name] has issue [project display name contains invalid characters]
+    at responseToError (C:\Users\mohamed\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:53:12)
+    at RetryOperation._fn (C:\Users\mohamed\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:330:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.
+[debug] [2026-02-20T09:51:40.003Z] ----------------------------------------------------------------------
+[debug] [2026-02-20T09:51:40.008Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\mohamed\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init hosting
+[debug] [2026-02-20T09:51:40.008Z] CLI Version:   15.7.0
+[debug] [2026-02-20T09:51:40.008Z] Platform:      win32
+[debug] [2026-02-20T09:51:40.008Z] Node Version:  v22.20.0
+[debug] [2026-02-20T09:51:40.009Z] Time:          Fri Feb 20 2026 11:51:40 GMT+0200 (Eastern European Standard Time)
+[debug] [2026-02-20T09:51:40.009Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\project web\protofile
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2026-02-20T09:51:52.510Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-20T09:51:52.510Z] > authorizing via signed-in user (mohamed129cv@gmail.com)
+[debug] [2026-02-20T09:51:59.562Z] Checked if tokens are valid: true, expires at: 1771584386962
+[debug] [2026-02-20T09:51:59.563Z] Checked if tokens are valid: true, expires at: 1771584386962
+[debug] [2026-02-20T09:51:59.566Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1/projects:checkProjectId [none]
+[debug] [2026-02-20T09:51:59.566Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"proposedId":"protofile129cv"}
+[debug] [2026-02-20T09:52:00.117Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1/projects:checkProjectId 200
+[debug] [2026-02-20T09:52:00.118Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1/projects:checkProjectId {"projectIdStatus":"PROJECT_ID_AVAILABLE","suggestedProjectId":"protofile129cv"}
+[debug] [2026-02-20T09:52:02.040Z] Checked if tokens are valid: true, expires at: 1771584386962
+[debug] [2026-02-20T09:52:02.040Z] Checked if tokens are valid: true, expires at: 1771584386962
+[debug] [2026-02-20T09:52:02.041Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2026-02-20T09:52:02.041Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"protofile129cv","name":"protofile129cv"}
+[debug] [2026-02-20T09:52:03.018Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 200
+[debug] [2026-02-20T09:52:03.018Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"name":"operations/create_project.global.7582599716398986875"}
+[debug] [2026-02-20T09:52:03.021Z] Checked if tokens are valid: true, expires at: 1771584386962
+[debug] [2026-02-20T09:52:03.021Z] Checked if tokens are valid: true, expires at: 1771584386962
+[debug] [2026-02-20T09:52:03.022Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.7582599716398986875 [none]
+[debug] [2026-02-20T09:52:03.747Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.7582599716398986875 200
+[debug] [2026-02-20T09:52:03.747Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.7582599716398986875 {"name":"operations/create_project.global.7582599716398986875"}
+[debug] [2026-02-20T09:52:04.263Z] [Project Creation Poller] Retrying task index 0
+[debug] [2026-02-20T09:52:04.264Z] Checked if tokens are valid: true, expires at: 1771584386962
+[debug] [2026-02-20T09:52:04.264Z] Checked if tokens are valid: true, expires at: 1771584386962
+[debug] [2026-02-20T09:52:04.265Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.7582599716398986875 [none]
+[debug] [2026-02-20T09:52:04.500Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.7582599716398986875 200
+[debug] [2026-02-20T09:52:04.500Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/operations/create_project.global.7582599716398986875 {"name":"operations/create_project.global.7582599716398986875","metadata":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.ProjectCreationStatus","gettable":true,"ready":true},"done":true,"response":{"@type":"type.googleapis.com/google.cloudresourcemanager.v1.Project","projectNumber":"549978876806","projectId":"protofile129cv","lifecycleState":"ACTIVE","name":"protofile129cv","createTime":"2026-02-20T09:52:00.056487Z"}}
+[debug] [2026-02-20T09:52:04.504Z] Checked if tokens are valid: true, expires at: 1771584386962
+[debug] [2026-02-20T09:52:04.505Z] Checked if tokens are valid: true, expires at: 1771584386962
+[debug] [2026-02-20T09:52:04.505Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1beta1/projects/protofile129cv:addFirebase [none]
+[debug] [2026-02-20T09:52:05.668Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1beta1/projects/protofile129cv:addFirebase 403
+[debug] [2026-02-20T09:52:05.669Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1beta1/projects/protofile129cv:addFirebase {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2026-02-20T09:52:05.672Z] Request to https://firebase.googleapis.com/v1beta1/projects/protofile129cv:addFirebase had HTTP Error: 403, The caller does not have permission
+[debug] [2026-02-20T09:52:05.960Z] FirebaseError: Request to https://firebase.googleapis.com/v1beta1/projects/protofile129cv:addFirebase had HTTP Error: 403, The caller does not have permission
+    at responseToError (C:\Users\mohamed\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:53:12)
+    at RetryOperation._fn (C:\Users\mohamed\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:330:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[error] 
+[error] Error: Failed to add Firebase to Google Cloud Platform project. See firebase-debug.log for more info.
