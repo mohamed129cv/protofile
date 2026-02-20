@@ -3,16 +3,13 @@
   width: 85%;
   margin: auto;
   margin-block: 50px;
-  border-radius: 0.5rem;
+  border-radius: 0.6rem;
   box-shadow: var(--shadow);
   padding:  clamp(1rem , 1vw + .8rem , 2.2rem);
-    overflow: hidden;
+  overflow: hidden;
 }
 .myLinks {
   width: 100%;
-  /* display: flex;
-  flex-wrap: wrap;
-  flex-direction: row; */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   justify-content: center;
@@ -100,7 +97,7 @@
     flex-direction: column;
   }
 }
-
+/* dark mode */
 
 /*& dark mode  */
 
